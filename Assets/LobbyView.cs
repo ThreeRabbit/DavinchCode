@@ -12,7 +12,7 @@ public class LobbyView : MonoBehaviour
     {
         match_btn.OnClickAsObservable().Subscribe(_ =>
         {
-            BackendManager.Instance.JoinMatchMakinServer();
+            BackendManager.Instance.RequestJoinMatchMakingServer();
         }).AddTo(this.gameObject);
     }
 }

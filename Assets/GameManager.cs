@@ -11,6 +11,7 @@ public class GameManager : TRSingleton<GameManager>
         BackendManager.Instance.Init(
             success: () =>
             {
+                BackendManager.Instance.MatchServerHandler();
                 LoginProcess();
             },
             fail: (message) =>
@@ -38,6 +39,7 @@ public class GameManager : TRSingleton<GameManager>
                         Debug.Log("BackendManager: GuestLogin Fail");
                     });
             });
+
     }
 }
 

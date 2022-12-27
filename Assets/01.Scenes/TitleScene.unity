@@ -1413,6 +1413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9078e789f076c498687c8e85b9fc0144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matchCardIndate: {fileID: 11400000, guid: 9a175dd40b0b649e1ac26f7038f315db, type: 2}
 --- !u!4 &1104250344
 Transform:
   m_ObjectHideFlags: 0
