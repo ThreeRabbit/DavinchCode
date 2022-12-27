@@ -5,30 +5,24 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using ThreeRabbitPackage.DesignPattern;
 using BackEnd;
+using BackEnd.Tcp;
 
 public class BackendManager : TRSingleton<BackendManager>
 {
-    public GameObject UICanvas;
-
     public enum LogType { NONE, GREEN, YELLOW, RED}
-    private void Start()
-    {
-        Init();
-    }
 
-    public void Init(UnityAction success = null, UnityAction fail = null)
+    public void Init(UnityAction success = null, UnityAction<string> fail = null)
     {
         var bro = Backend.Initialize(true);
-
         if (bro.IsSuccess())
         {
-            BackendLog(bro, LogType.GREEN);
+            BackendLog(bro, LogType.GREEN, "Init");
             success?.Invoke();
         }
         else
         {
-            BackendLog(bro, LogType.RED);
-            fail?.Invoke();
+            BackendLog(bro, LogType.RED, "Init");
+            fail?.Invoke(bro.GetMessage());
         }
     }
 
@@ -99,7 +93,7 @@ public class BackendManager : TRSingleton<BackendManager>
         });
     }
 
-    public void CheckNicknameDuplication(string nickname, UnityAction success = null, UnityAction fail = null)
+    public void CheckNicknameDuplication(string nickname, UnityAction success = null, UnityAction<string> fail = null)
     {
         SendQueue.Enqueue(Backend.BMember.CheckNicknameDuplication, nickname, ( callback ) =>
         {
@@ -111,59 +105,46 @@ public class BackendManager : TRSingleton<BackendManager>
             else
             {
                 BackendLog(callback, LogType.RED);
-                fail?.Invoke();
+                fail?.Invoke(callback.GetMessage());
             }
         });
     }
 
-    public void BackendLog(BackendReturnObject bro, LogType logType = LogType.NONE)
+    public void BackendLog(BackendReturnObject bro, LogType logType = LogType.NONE, string funcName = "")
     {
         switch (logType)
         {
             case LogType.NONE:
-                Debug.Log($"BackendManager: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}");
+                Debug.Log($"BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}");
             break;
 
             case LogType.GREEN:
-                Debug.Log($"<color=green>BackendManager: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
+                Debug.Log($"<color=green>BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
             break;
 
             case LogType.YELLOW:
-               Debug.LogWarning($"<color=yellow>BackendManager: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
+               Debug.LogWarning($"<color=yellow>BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
             break;
 
             case LogType.RED:
-                Debug.LogError($"<color=red>BackendManager: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
+                Debug.LogError($"<color=red>BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
             break;
 
             default:
-                Debug.Log($"BackendManager: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}");
+                Debug.Log($"BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}");
             break;
         }
     }
-    public void LoginProcess()
-    {
-        Debug.Log("BackendManager: LoginProcess");
-        TokenLogin(
-            success: () =>
-            {
-                Debug.Log("BackendManager: TokenLogin Success");
-                UICanvas.SetActive(true);
-            },
-            fail: () =>
-            {
-                Debug.Log("BackendManager: TokenLogin Fail");
-                GuestLogin(
-                    success: () =>
-                    {
-                        Debug.Log("BackendManager: GuestLogin Success");
-                        UICanvas.SetActive(true);
-                    },
-                    fail: () =>
-                    {
-                        Debug.Log("BackendManager: GuestLogin Fail");
 
-                    });
-            });
+    public void JoinMatchMakinServer()
+    {
+        ErrorInfo errorInfo = new ErrorInfo();
+        Backend.Match.JoinMatchMakingServer(out errorInfo);
+        Debug.Log(errorInfo);
+    }
+
+    public void CreateMatchRoom()
+    {
+        Backend.Match.CreateMatchRoom();
     }
 }
