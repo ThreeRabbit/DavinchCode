@@ -9,11 +9,13 @@ using BackEnd;
 public class BackendManager : TRSingleton<BackendManager>
 {
     public GameObject UICanvas;
+
     private void Start()
     {
         Init(
             success: () =>
             {
+                Debug.Log("BackendManager: Init Success");
                 LoginProcess();
             },
             fail: () =>
@@ -68,6 +70,7 @@ public class BackendManager : TRSingleton<BackendManager>
             }
         });
     }
+
 
     public void LoginProcess()
     {
