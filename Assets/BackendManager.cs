@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using ThreeRabbitPackage.DesignPattern;
 using BackEnd;
+using BackEnd.Tcp;
+
 
 public class BackendManager : TRSingleton<BackendManager>
 {
@@ -14,6 +16,13 @@ public class BackendManager : TRSingleton<BackendManager>
     private void Start()
     {
         Init();
+
+        
+        // Backend.Match.OnJoinMatchMakingServer += (ar) => 
+        // {
+        //     Debug.Log("매치서버 접속 성공");
+        //     Debug.Log(ar);
+        // };
     }
 
     public void Init(UnityAction success = null, UnityAction fail = null)
@@ -165,5 +174,20 @@ public class BackendManager : TRSingleton<BackendManager>
 
                     });
             });
+    }
+
+    public void JoinMatchMakingServer()
+    {
+        ErrorInfo errorInfo = new ErrorInfo();
+
+        Backend.Match.JoinMatchMakingServer(out errorInfo);
+
+        Debug.Log(errorInfo);
+    }
+
+    public void Update()
+    {
+        Backend.AsyncPoll();
+        // Backend.Match.Poll();
     }
 }
