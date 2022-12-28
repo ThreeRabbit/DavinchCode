@@ -106,12 +106,12 @@ public class BackendManager : TRSingleton<BackendManager>
         SendQueue.Enqueue(Backend.BMember.GuestLogin, "게스트 로그인으로 로그인함", callback => {
             if (callback.IsSuccess())
             {
-                BackendLog(callback, LogType.GREEN);
+                BackendLog(callback, LogType.GREEN,"GuestLogin");
                 success?.Invoke();
             }
             else
             {
-                BackendLog(callback, LogType.RED);
+                BackendLog(callback, LogType.RED,"GuestLogin");
                 fail?.Invoke();
             }
         });
@@ -123,12 +123,12 @@ public class BackendManager : TRSingleton<BackendManager>
         {
             if (callback.IsSuccess())
             {
-                BackendLog(callback, LogType.GREEN);
+                BackendLog(callback, LogType.GREEN,"TokenLogin");
                 success?.Invoke();
             }
             else
             {
-                BackendLog(callback, LogType.RED);
+                BackendLog(callback, LogType.RED,"TokenLogin");
                 fail?.Invoke();
             }
         });
@@ -140,12 +140,12 @@ public class BackendManager : TRSingleton<BackendManager>
         {
             if(callback.IsSuccess())
             {
-                BackendLog(callback, LogType.GREEN);
+                BackendLog(callback, LogType.GREEN,"CreateNickname");
                 success?.Invoke();
             }
             else
             {
-                BackendLog(callback, LogType.RED);
+                BackendLog(callback, LogType.RED,"CreateNickname");
                 fail?.Invoke();
             }
         });
@@ -157,12 +157,12 @@ public class BackendManager : TRSingleton<BackendManager>
         {
             if(callback.IsSuccess())
             {
-                BackendLog(callback, LogType.GREEN);
+                BackendLog(callback, LogType.GREEN,"UpdateNickname");
                 success?.Invoke();
             }
             else
             {
-                BackendLog(callback, LogType.RED);
+                BackendLog(callback, LogType.RED,"UpdateNickname");
                 fail?.Invoke();
             }
         });
@@ -174,12 +174,12 @@ public class BackendManager : TRSingleton<BackendManager>
         {
             if(callback.IsSuccess())
             {
-                BackendLog(callback, LogType.GREEN);
+                BackendLog(callback, LogType.GREEN,"CheckNicknameDuplication");
                 success?.Invoke();
             }
             else
             {
-                BackendLog(callback, LogType.RED);
+                BackendLog(callback, LogType.RED,"CheckNicknameDuplication");
                 fail?.Invoke(callback.GetMessage());
             }
         });
@@ -267,6 +267,7 @@ public class BackendManager : TRSingleton<BackendManager>
         Backend.Match.OnJoinMatchMakingServer += (args) =>
         {
             Debug.Log("OnJoinMatchMakingServer : " + args.ErrInfo);
+            // BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseJoinMAtchMakingServer");
             JoinMatchMakingServer.OnNext(Unit.Default);
             BackendManager.Instance.RequestCreateMatchRoom();
         };
@@ -305,6 +306,7 @@ public class BackendManager : TRSingleton<BackendManager>
         Backend.Match.OnMatchMakingResponse += (args) =>
         {
             Debug.Log("OnMatchMakingResponse : " + args.ErrInfo + " : " + args.Reason);
+            // BackendLog($"{args.ErrInfo}"+":"+$"{args.Reason}", LogType.GREEN, "OnMatchMakingResponse");
             MatchMaking.OnNext(Unit.Default);
             // 성공하면 게임씬으로 이동
         };
@@ -318,6 +320,7 @@ public class BackendManager : TRSingleton<BackendManager>
         Backend.Match.OnMatchMakingRoomCreate += (args) =>
         {
             Debug.Log("OnMatchMakingRoomCreate : " + args.ErrInfo + " : " + args.Reason);
+            // BackendLog($"{args.ErrInfo}"+":"+$"{args.Reason}", LogType.GREEN, "onMatchMakingRoomCreate");
             MatchMakingRoomCreate.OnNext(Unit.Default);
         };
     }
