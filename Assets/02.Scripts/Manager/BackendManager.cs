@@ -24,9 +24,10 @@ public class BackendManager : TRSingleton<BackendManager>
     public Subject<Unit> LeaveMatchMakingServer = new Subject<Unit>();
     public Subject<Unit> MatchMakingRoomCreate = new Subject<Unit>();
     public Subject<Unit> MatchMaking = new Subject<Unit>();
+    public Subject<Unit> CancelMatchMaking = new Subject<Unit>();
     #endregion
 
-    #region Match Server Debug Log
+    #region Log
     private string NOTCONNECT_MATCHSERVER = "매치 서버에 연결되어 있지 않습니다.";
     private string RECONNECT_MATCHSERVER = "매치 서버에 접속을 시도합니다.";
     private string FAIL_CONNECT_MATCHSERVER = "매치 서버 접속 실패 : {0}";
@@ -39,23 +40,6 @@ public class BackendManager : TRSingleton<BackendManager>
     private string INVALID_MODETYPE = "잘못된 모드 타입입니다.";
     private string INVALID_OPERATION = "잘못된 요청입니다\n{0}";
     private string EXCEPTION_OCCUR = "예외 발생 : {0}\n다시 매칭을 시도합니다.";
-    #endregion
-
-    #region Private Method
-
-    private void Update()
-    {
-        Poll();
-    }
-
-    private void Poll()
-    {
-        Backend.AsyncPoll();
-        if (isConnectMatchServer)
-        {
-            Backend.Match.Poll();
-        }
-    }
 
     private void BackendLog(BackendReturnObject bro, LogType logType = LogType.NONE, string funcName = "")
     {
@@ -82,6 +66,51 @@ public class BackendManager : TRSingleton<BackendManager>
                 break;
         }
     }
+
+    private void BackendLog(string message, LogType logType = LogType.NONE, string funcName = "")
+    {
+        switch (logType)
+        {
+            case LogType.NONE:
+                Debug.Log($"BackendManager {funcName}: {message}");
+                break;
+
+            case LogType.GREEN:
+                Debug.Log($"<color=green>BackendManager {funcName}: {message}</color>");
+                break;
+
+            case LogType.YELLOW:
+                Debug.LogWarning($"<color=yellow>BackendManager {funcName}: {message}</color>");
+                break;
+
+            case LogType.RED:
+                Debug.LogError($"<color=red>BackendManager {funcName}: {message}</color>");
+                break;
+
+            default:
+                Debug.Log($"BackendManager {funcName}: {message}");
+                break;
+        }
+    }
+
+    #endregion
+
+    #region Private Method
+
+    private void Update()
+    {
+        Poll();
+    }
+
+    private void Poll()
+    {
+        Backend.AsyncPoll();
+        if (isConnectMatchServer)
+        {
+            Backend.Match.Poll();
+        }
+    }
+
     #endregion
 
     #region Backend Base
@@ -106,12 +135,12 @@ public class BackendManager : TRSingleton<BackendManager>
         SendQueue.Enqueue(Backend.BMember.GuestLogin, "게스트 로그인으로 로그인함", callback => {
             if (callback.IsSuccess())
             {
-                BackendLog(callback, LogType.GREEN,"GuestLogin");
+                BackendLog(callback, LogType.GREEN);
                 success?.Invoke();
             }
             else
             {
-                BackendLog(callback, LogType.RED,"GuestLogin");
+                BackendLog(callback, LogType.RED);
                 fail?.Invoke();
             }
         });
@@ -123,12 +152,12 @@ public class BackendManager : TRSingleton<BackendManager>
         {
             if (callback.IsSuccess())
             {
-                BackendLog(callback, LogType.GREEN,"TokenLogin");
+                BackendLog(callback, LogType.GREEN);
                 success?.Invoke();
             }
             else
             {
-                BackendLog(callback, LogType.RED,"TokenLogin");
+                BackendLog(callback, LogType.RED);
                 fail?.Invoke();
             }
         });
@@ -140,12 +169,12 @@ public class BackendManager : TRSingleton<BackendManager>
         {
             if(callback.IsSuccess())
             {
-                BackendLog(callback, LogType.GREEN,"CreateNickname");
+                BackendLog(callback, LogType.GREEN, "CreateNickname");
                 success?.Invoke();
             }
             else
             {
-                BackendLog(callback, LogType.RED,"CreateNickname");
+                BackendLog(callback, LogType.RED);
                 fail?.Invoke();
             }
         });
@@ -157,12 +186,12 @@ public class BackendManager : TRSingleton<BackendManager>
         {
             if(callback.IsSuccess())
             {
-                BackendLog(callback, LogType.GREEN,"UpdateNickname");
+                BackendLog(callback, LogType.GREEN);
                 success?.Invoke();
             }
             else
             {
-                BackendLog(callback, LogType.RED,"UpdateNickname");
+                BackendLog(callback, LogType.RED);
                 fail?.Invoke();
             }
         });
@@ -174,12 +203,12 @@ public class BackendManager : TRSingleton<BackendManager>
         {
             if(callback.IsSuccess())
             {
-                BackendLog(callback, LogType.GREEN,"CheckNicknameDuplication");
+                BackendLog(callback, LogType.GREEN);
                 success?.Invoke();
             }
             else
             {
-                BackendLog(callback, LogType.RED,"CheckNicknameDuplication");
+                BackendLog(callback, LogType.RED);
                 fail?.Invoke(callback.GetMessage());
             }
         });
@@ -230,7 +259,6 @@ public class BackendManager : TRSingleton<BackendManager>
             // 잠시 후 다시 시도하세요. 팝업 호출 필요
             return false;
         }
-        Debug.Log("방 생성 요청을 서버로 보냄");
         Backend.Match.CreateMatchRoom();
         return true;
     }
@@ -244,6 +272,12 @@ public class BackendManager : TRSingleton<BackendManager>
     public void RequestMatchMaking(MatchType matchType, MatchModeType matchModeType, string matchCardIndateKey)
     {
         Backend.Match.RequestMatchMaking(matchType, matchModeType, matchCardIndate.stringDictionary[matchCardIndateKey]);
+    }
+
+    public void RequestCancleMatchMaking()
+    {
+        Backend.Match.CancelMatchMaking();
+        CancelMatchMaking.OnNext(Unit.Default);
     }
     #endregion
 
@@ -266,10 +300,8 @@ public class BackendManager : TRSingleton<BackendManager>
     {
         Backend.Match.OnJoinMatchMakingServer += (args) =>
         {
-            Debug.Log("OnJoinMatchMakingServer : " + args.ErrInfo);
-            // BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseJoinMAtchMakingServer");
+            BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseJoinMatchMakingServer"); 
             JoinMatchMakingServer.OnNext(Unit.Default);
-            BackendManager.Instance.RequestCreateMatchRoom();
         };
     }
 
@@ -306,9 +338,7 @@ public class BackendManager : TRSingleton<BackendManager>
         Backend.Match.OnMatchMakingResponse += (args) =>
         {
             Debug.Log("OnMatchMakingResponse : " + args.ErrInfo + " : " + args.Reason);
-            // BackendLog($"{args.ErrInfo}"+":"+$"{args.Reason}", LogType.GREEN, "OnMatchMakingResponse");
             MatchMaking.OnNext(Unit.Default);
-            // 성공하면 게임씬으로 이동
         };
     }
 
@@ -320,7 +350,6 @@ public class BackendManager : TRSingleton<BackendManager>
         Backend.Match.OnMatchMakingRoomCreate += (args) =>
         {
             Debug.Log("OnMatchMakingRoomCreate : " + args.ErrInfo + " : " + args.Reason);
-            // BackendLog($"{args.ErrInfo}"+":"+$"{args.Reason}", LogType.GREEN, "onMatchMakingRoomCreate");
             MatchMakingRoomCreate.OnNext(Unit.Default);
         };
     }
