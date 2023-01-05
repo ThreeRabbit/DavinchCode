@@ -17,6 +17,7 @@ public class BackendManager : TRSingleton<BackendManager>
 
     #region public Variable
     public TRStringResources matchCardIndate;
+    public int matchTime = 10;
     #endregion
 
     #region Subject

@@ -52,7 +52,7 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
             .RepeatSafe()
             .Subscribe(_ =>
             {
-                if(_lobbyModel.matchWaitingTime.Value > 5)
+                if(_lobbyModel.matchWaitingTime.Value > BackendManager.Instance.matchTime)
                 {
                     _lobbyView.match_btn.interactable = true;
                     _lobbyView.match_txt.text = "Match";
