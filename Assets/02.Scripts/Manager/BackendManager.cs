@@ -13,18 +13,28 @@ public class BackendManager : TRSingleton<BackendManager>
     #region Private Variable
     private enum LogType { NONE, GREEN, YELLOW, RED}
     private bool isConnectMatchServer = false;
+    private string serverAddress;
+    private ushort serverPort;
+    private string roomToken;
     #endregion
 
     #region public Variable
     public TRStringResources matchCardIndate;
+    public int matchTime = 10;
     #endregion
-    
+
     #region Subject
-    public Subject<Unit> JoinMatchMakingServer = new Subject<Unit>();
+    public Subject<JoinChannelEventArgs> JoinMatchMakingServer = new Subject<JoinChannelEventArgs>();
     public Subject<Unit> LeaveMatchMakingServer = new Subject<Unit>();
     public Subject<Unit> MatchMakingRoomCreate = new Subject<Unit>();
-    public Subject<Unit> MatchMaking = new Subject<Unit>();
+    public Subject<Unit> MatchMakingRoomJoin = new Subject<Unit>();
+    public Subject<MatchMakingResponseEventArgs> MatchMaking = new Subject<MatchMakingResponseEventArgs>();
     public Subject<Unit> CancelMatchMaking = new Subject<Unit>();
+    public Subject<Unit> JoinGameServer = new Subject<Unit>();
+    public Subject<Unit> LeaveGameServer = new Subject<Unit>();
+    public Subject<Unit> JoinGameRoom = new Subject<Unit>();
+    public Subject<Unit> SessionListInServer = new Subject<Unit>();
+    public Subject<Unit> MatchInGameStart = new Subject<Unit>();    
     #endregion
 
     #region Log
@@ -291,6 +301,7 @@ public class BackendManager : TRSingleton<BackendManager>
         ResponseLeaveMatchMakingServer();
         ResponseMatchMaking();
         ResponseMatchMakingRoomCreate();
+        ResponseMatchMakingRoomJoin();
     }
     
     /// <summary>
@@ -301,7 +312,7 @@ public class BackendManager : TRSingleton<BackendManager>
         Backend.Match.OnJoinMatchMakingServer += (args) =>
         {
             BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseJoinMatchMakingServer"); 
-            JoinMatchMakingServer.OnNext(Unit.Default);
+            JoinMatchMakingServer.OnNext(args);
         };
     }
 
@@ -338,7 +349,10 @@ public class BackendManager : TRSingleton<BackendManager>
         Backend.Match.OnMatchMakingResponse += (args) =>
         {
             BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseMatchMaking");
-            MatchMaking.OnNext(Unit.Default);
+            serverAddress = args.RoomInfo.m_inGameServerEndPoint.m_address;
+            serverPort = args.RoomInfo.m_inGameServerEndPoint.m_port;
+            roomToken = args.RoomInfo.m_inGameRoomToken;
+            MatchMaking.OnNext(args);
         };
     }
 
@@ -352,6 +366,120 @@ public class BackendManager : TRSingleton<BackendManager>
             BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseMatchMaikngRoomCreate");
             MatchMakingRoomCreate.OnNext(Unit.Default);
         };
+    }  /// <summary>
+       /// 대기방에 유저가 입장했을 때 호출되는 이벤트입니다.
+       /// 유저가 입장할 때마다 대기방에 존재하는 모든 유저에게 호출됩니다.
+       /// 입장한 유저에게도 호출됩니다.
+       /// 대기방을 생성했을 때는 호출되지 않습니다.
+       /// </summary>
+    private void ResponseMatchMakingRoomJoin()
+    {
+        Backend.Match.OnMatchMakingRoomJoin = (MatchMakingGamerInfoInRoomEventArgs args) =>
+        {
+            MatchMakingRoomJoin.OnNext(Unit.Default);
+            BackendLog($"{args.ErrInfo}, {args.Reason}, {args.UserInfo.m_nickName}, {args.UserInfo.m_sessionId}", LogType.NONE, "OnMatchMakingRoomJoin");
+        };
     }
+
+    #endregion
+
+    #region Backend InGame Request
+    /// <summary>
+    /// 인게임 서버 접속
+    /// </summary>
+    public void RequestJoinGameServer()
+    {
+        ErrorInfo errorInfo = null;
+        if (Backend.Match.JoinGameServer(serverAddress, serverPort, true, out errorInfo) == false)
+        {
+            BackendLog(errorInfo.Reason, LogType.RED, "JoinGameServer");
+            return;
+        }
+    }
+
+    /// <summary>
+    /// 인게임 서버 접속 종료
+    /// </summary>
+    public void RequestLeaveGameServer()
+    {
+        Backend.Match.LeaveGameServer();
+    }
+
+    /// <summary>
+    /// 게임 방 입장
+    /// </summary>
+    public void RequestJoinGameRoom()
+    {
+        Backend.Match.JoinGameRoom(roomToken);
+    }
+    #endregion
+
+    #region Backend InGame Response
+
+    public void InGameServerHandler()
+    {
+        ResponseJoinGameServer();
+        RseponseLeaveGameServer();
+        ResponseSessionListInServer();
+        ResponseJoinGameRoom();
+    }
+    /// <summary>
+    /// 인게임 서버 접속에 대한 응답
+    /// </summary>
+    public void ResponseJoinGameServer()
+    {
+        Backend.Match.OnSessionJoinInServer += (args) =>
+        {
+            Debug.Log($"OnSessionJoinInServer : {args.ErrInfo}: {args.ErrInfo.Category}, {args.ErrInfo.Detail}, {args.ErrInfo.Reason}");
+            JoinGameServer.OnNext(Unit.Default);
+        };
+    }
+
+    /// <summary>
+    /// 인게임 접속 종료에 대한 응답
+    /// </summary>
+    public void RseponseLeaveGameServer()
+    {
+        Backend.Match.OnLeaveInGameServer = (MatchInGameSessionEventArgs args) =>
+        {
+            BackendLog($"{args.ErrInfo}, {args.Reason}, {args.GameRecord}", LogType.NONE, "OnLeaveInGameServer");
+            LeaveGameServer.OnNext(Unit.Default);
+        };
+    }
+
+    /// <summary>
+    /// 유저가 게임방 접속에 성공했을 때 입장한 유저에게만 최초 1회 호출되는 이벤트 핸들러입니다.
+    /// 자신을 포함하여 현재 게임방에 접속해 있는 유저들의 세션 정보와 매칭 기록이 포함되어 있습니다.
+    /// 인게임 서버에 재접속했을 때도 호출됩니다.
+    /// </summary>
+    public void ResponseSessionListInServer()
+    {
+        Backend.Match.OnSessionListInServer = (MatchInGameSessionListEventArgs args) => {
+            BackendLog($"{args.ErrInfo}, {args.Reason}, {args.GameRecords}", LogType.NONE, "OnSessionListInServer");
+            SessionListInServer.OnNext(Unit.Default);
+        };
+    }
+    /// <summary>
+    /// 게임방 입장 후 응답
+    /// </summary>
+    public void ResponseJoinGameRoom()
+    {
+        Backend.Match.OnMatchInGameAccess = (MatchInGameSessionEventArgs args) => {
+            BackendLog($"{args.ErrInfo}, {args.Reason}, {args.GameRecord}", LogType.NONE, "OnMatchInGameAccess");
+            JoinGameRoom.OnNext(Unit.Default);
+        };
+    }
+
+
+    /// <summary>
+    /// 게임 시작 후 응답
+    /// </summary>
+    public void ResponseMatchInGameStart()
+    {
+        Backend.Match.OnMatchInGameStart = () => {
+            MatchInGameStart.OnNext(Unit.Default);
+        };
+    }
+
     #endregion
 }
