@@ -13,6 +13,10 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
     private void Awake()
     {
         SubscribeResponseJoinMatchMakingServer();
+        SubscribeResponseMatchMaking();
+        SubscribeResponseMatchMakingRoomCreate();
+        SubscribeResponseMatchMakingRoomJoin();
+        SubscribeResponseJoinGameServer();
         SubscribeCancelMatchMaking();
     }
 
@@ -52,7 +56,7 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
             .RepeatSafe()
             .Subscribe(_ =>
             {
-                if(_lobbyModel.matchWaitingTime.Value > 5)
+                if(_lobbyModel.matchWaitingTime.Value > BackendManager.Instance.matchTime)
                 {
                     _lobbyView.match_btn.interactable = true;
                     _lobbyView.match_txt.text = "Match";
@@ -82,19 +86,144 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
         BackendManager.Instance.RequestCancleMatchMaking();
     }
 
-    public void SubscribeCancelMatchMaking()
+    /// <summary>
+    /// 인게임 서버 접속
+    /// </summary>
+    public void JoinGameServer()
     {
+        BackendManager.Instance.RequestJoinGameServer();
+    }
+
+    /// <summary>
+    /// 매칭이 취소 되었을 때
+    /// </summary>
+    public void SubscribeCancelMatchMaking()
+    {   
         BackendManager.Instance.CancelMatchMaking.Subscribe(_ =>
         {
             SceneManager.LoadSceneAsync("GameScene");
         }).AddTo(this.gameObject);
     }
 
+    /// <summary>
+    /// 매치 서버에 접속 했을 때
+    /// </summary>
     public void SubscribeResponseJoinMatchMakingServer()
     {
-        BackendManager.Instance.JoinMatchMakingServer.Subscribe(_ =>
+        BackendManager.Instance.JoinMatchMakingServer.Subscribe(joinMatchMakingServer =>
         {
-            CreateMatchRoom();
+            if(joinMatchMakingServer.ErrInfo == BackEnd.Tcp.ErrorInfo.Success)
+            {
+                CreateMatchRoom();
+            }
         }).AddTo(this.gameObject);
-    }    
+    }
+
+    /// <summary>
+    /// 매칭 신청 후 응답
+    /// </summary>
+    public void SubscribeResponseMatchMaking()
+    {
+        BackendManager.Instance.MatchMaking.Subscribe(matchMaking =>
+        {
+            switch (matchMaking.ErrInfo)
+            {
+                case BackEnd.Tcp.ErrorCode.Success:
+                    JoinGameServer();
+                    break;
+                case BackEnd.Tcp.ErrorCode.Exception:
+                    break;
+                case BackEnd.Tcp.ErrorCode.SocketOperationError:
+                    break;
+                case BackEnd.Tcp.ErrorCode.AuthenticationFailed:
+                    break;
+                case BackEnd.Tcp.ErrorCode.BrokenStream:
+                    break;
+                case BackEnd.Tcp.ErrorCode.NetworkTimeout:
+                    break;
+                case BackEnd.Tcp.ErrorCode.DisconnectFromLocal:
+                    break;
+                case BackEnd.Tcp.ErrorCode.DisconnectFromRemote:
+                    break;
+                case BackEnd.Tcp.ErrorCode.InvalidMessage:
+                    break;
+                case BackEnd.Tcp.ErrorCode.InvalidOperation:
+                    break;
+                case BackEnd.Tcp.ErrorCode.InvalidSession:
+                    break;
+                case BackEnd.Tcp.ErrorCode.ChannelTimeout:
+                    break;
+                case BackEnd.Tcp.ErrorCode.BannedChat:
+                    break;
+                case BackEnd.Tcp.ErrorCode.DuplicateConnection:
+                    break;
+                case BackEnd.Tcp.ErrorCode.NetworkOffline:
+                    break;
+                case BackEnd.Tcp.ErrorCode.NetworkOnline:
+                    break;
+                case BackEnd.Tcp.ErrorCode.INTERNAL_ERROR_CODE_RESERVED_END:
+                    break;
+                case BackEnd.Tcp.ErrorCode.MATCH_ERROR_CODE_RESERVED_BEGIN:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_Making_NotJoinedRoom:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_Making_NotFoundGamer:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_Making_AlreadyJoinedRoom:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_Making_InvalidRoom:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_Making_KickedByOwner:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_InvalidMatchType:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_InvalidModeType:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_InProgress:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_MatchMakingCanceled:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_InGame_AuthroizeFailed:
+                    break;
+                case BackEnd.Tcp.ErrorCode.Match_InGame_Timeout:
+                    break;
+                case BackEnd.Tcp.ErrorCode.MATCH_ERROR_CODE_RESERVED_END:
+                    break;
+            }
+        }).AddTo(this.gameObject);
+    }
+
+    /// <summary>
+    /// 대기방 생성 했을 때
+    /// </summary>
+    public void SubscribeResponseMatchMakingRoomCreate()
+    {
+        BackendManager.Instance.MatchMakingRoomCreate.Subscribe(_ =>
+        {
+
+        }).AddTo(this.gameObject);
+    }
+
+    /// <summary>
+    /// 대기방에 유저가 입장했을 때
+    /// </summary>
+    public void SubscribeResponseMatchMakingRoomJoin()
+    {
+        BackendManager.Instance.MatchMakingRoomJoin.Subscribe(_ =>
+        {
+            JoinGameServer();
+        }).AddTo(this.gameObject);
+
+    }
+
+    /// <summary>
+    /// 게임 서버에 접속 했을 때
+    /// </summary>
+    public void SubscribeResponseJoinGameServer()
+    {
+        BackendManager.Instance.JoinGameServer.Subscribe(_ =>
+        {
+
+        }).AddTo(this.gameObject);
+    }
 }

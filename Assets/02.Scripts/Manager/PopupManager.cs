@@ -8,7 +8,6 @@ using System.Linq;
 
 namespace ThreeRabbitPackage
 {
-
     public class PopupManager : TRSingleton<PopupManager>
     {
         public TRGameObjectResources popupResources;
@@ -16,12 +15,6 @@ namespace ThreeRabbitPackage
         public void OnPopup(string popupName)
         {
             GameObject obj = Instantiate(popupResources.gameObjectDictionary[popupName], this.transform);
-        }
-
-        public void OnMessage(string message)
-		{
-            GameObject obj = Instantiate(popupResources.gameObjectDictionary["Message"], this.transform);
-            obj.GetComponentInChildren<Text>().text = message;
         }
     }
 

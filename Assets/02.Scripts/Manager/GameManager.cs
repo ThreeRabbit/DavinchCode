@@ -12,6 +12,7 @@ public class GameManager : TRSingleton<GameManager>
             success: () =>
             {
                 BackendManager.Instance.MatchServerHandler();
+                BackendManager.Instance.InGameServerHandler();
                 LoginProcess();
             },
             fail: (message) =>

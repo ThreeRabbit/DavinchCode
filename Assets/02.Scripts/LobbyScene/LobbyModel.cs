@@ -18,7 +18,7 @@ public class LobbyModel
     {
         matchWaitingTime.Subscribe(time =>
         {
-            if (time > 5)
+            if (time > BackendManager.Instance.matchTime)
             {
                 matchTimeHandler.Dispose();
                 matchWaitingTime.Value = 0;

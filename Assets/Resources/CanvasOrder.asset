@@ -15,7 +15,7 @@ MonoBehaviour:
   intDictionary:
     m_keys:
     - Background
-    - Tile
+    - Game
     - UI
     - Popup
     - HighLight
