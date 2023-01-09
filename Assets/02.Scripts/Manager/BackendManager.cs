@@ -425,7 +425,7 @@ public class BackendManager : TRSingleton<BackendManager>
     }
     /// <summary>
     /// 인게임 서버 접속에 대한 응답
-    /// </summary>
+    /// </summary> 
     public void ResponseJoinGameServer()
     {
         Backend.Match.OnSessionJoinInServer += (args) =>
