@@ -19,7 +19,9 @@ public class LobbyView : MonoBehaviour
     {
         match_btn.OnClickAsObservable().Subscribe(_ =>
         {
+            BackendManager.Instance.RequestLeaveGameServer();
             LobbyPresenter.Instance.MatchMaking(MatchType.Random, MatchModeType.Melee, "Normal");
+            
         }).AddTo(this.gameObject);
 
         
