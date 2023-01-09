@@ -40,6 +40,10 @@ public class GameManager : TRSingleton<GameManager>
                         Debug.Log("BackendManager: GuestLogin Fail");
                     });
             });
+    }
+
+    public void MatchingProcess()
+    {
 
     }
 }

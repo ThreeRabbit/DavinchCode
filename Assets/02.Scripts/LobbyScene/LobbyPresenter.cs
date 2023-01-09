@@ -13,6 +13,7 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
     private void Awake()
     {
         SubscribeResponseJoinMatchMakingServer();
+        SubscribeResponseLeaveMatchMakingServer();
         SubscribeResponseMatchMaking();
         SubscribeResponseMatchMakingRoomCreate();
         SubscribeResponseMatchMakingRoomJoin();
@@ -189,6 +190,24 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
                     break;
                 case BackEnd.Tcp.ErrorCode.MATCH_ERROR_CODE_RESERVED_END:
                     break;
+            }
+        }).AddTo(this.gameObject);
+    }
+
+    /// <summary>
+    /// 매치 서버를 떠났을 때
+    /// </summary>
+    public void SubscribeResponseLeaveMatchMakingServer()
+    {
+        BackendManager.Instance.LeaveMatchMakingServer.Subscribe(args =>
+        {
+            if (args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.DisconnectFromRemote)
+                || args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.Exception)
+                || args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.NetworkTimeout))
+            {
+                // TODO:
+                // 서버에서 강제로 끊은 경우
+                // 에러 메시지 팝업 등록
             }
         }).AddTo(this.gameObject);
     }

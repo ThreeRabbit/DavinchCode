@@ -25,7 +25,7 @@ public class BackendManager : TRSingleton<BackendManager>
 
     #region Subject
     public Subject<JoinChannelEventArgs> JoinMatchMakingServer = new Subject<JoinChannelEventArgs>();
-    public Subject<Unit> LeaveMatchMakingServer = new Subject<Unit>();
+    public Subject<LeaveChannelEventArgs> LeaveMatchMakingServer = new Subject<LeaveChannelEventArgs>();
     public Subject<Unit> MatchMakingRoomCreate = new Subject<Unit>();
     public Subject<Unit> MatchMakingRoomJoin = new Subject<Unit>();
     public Subject<MatchMakingResponseEventArgs> MatchMaking = new Subject<MatchMakingResponseEventArgs>();
@@ -325,7 +325,7 @@ public class BackendManager : TRSingleton<BackendManager>
         {
             // 매칭 서버에서 접속 종료할 때 호출
             TRLog.Green("OnLeaveMatchMakingServer : " + args.ErrInfo);
-            LeaveMatchMakingServer.OnNext(Unit.Default);
+            LeaveMatchMakingServer.OnNext(args);
 
             if (args.ErrInfo.Category.Equals(ErrorCode.DisconnectFromRemote)
                 || args.ErrInfo.Category.Equals(ErrorCode.Exception)
