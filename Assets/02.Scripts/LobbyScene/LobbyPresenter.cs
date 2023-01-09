@@ -19,6 +19,7 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
         SubscribeResponseMatchMakingRoomJoin();
         SubscribeResponseJoinGameServer();
         SubscribeCancelMatchMaking();
+        SubscribeResponseJoinGameRoom();
     }
 
     public void InitLobbyView(LobbyView lobbyView)
@@ -61,7 +62,7 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
                 {
                     _lobbyView.match_btn.interactable = true;
                     _lobbyView.match_txt.text = "Match";
-                    CancelMatchMaking();
+                    //CancelMatchMaking();
                 }
 
                 else
@@ -92,7 +93,7 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
     /// </summary>
     public void JoinGameServer()
     {
-        BackendManager.Instance.RequestJoinGameServer();
+        BackendManager.Instance.RequestJoinGameServer(false);
     }
 
     /// <summary>
@@ -230,7 +231,6 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
     {
         BackendManager.Instance.MatchMakingRoomJoin.Subscribe(_ =>
         {
-            JoinGameServer();
         }).AddTo(this.gameObject);
 
     }
@@ -242,7 +242,15 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
     {
         BackendManager.Instance.JoinGameServer.Subscribe(_ =>
         {
+            BackendManager.Instance.RequestJoinGameRoom();
+        }).AddTo(this.gameObject);
+    }
 
+    public void SubscribeResponseJoinGameRoom()
+    {
+        BackendManager.Instance.JoinGameRoom.Subscribe(_ =>
+        {
+            SceneManager.LoadSceneAsync("GameScene");
         }).AddTo(this.gameObject);
     }
 }

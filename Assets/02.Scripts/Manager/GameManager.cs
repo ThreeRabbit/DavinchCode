@@ -42,7 +42,7 @@ public class GameManager : TRSingleton<GameManager>
             });
     }
 
-    public void MatchingProcess()
+    public void MatchingProcess(BackEnd.Tcp.MatchType matchType)
     {
 
     }

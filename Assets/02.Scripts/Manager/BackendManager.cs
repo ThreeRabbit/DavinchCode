@@ -366,18 +366,20 @@ public class BackendManager : TRSingleton<BackendManager>
             BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseMatchMaikngRoomCreate");
             MatchMakingRoomCreate.OnNext(Unit.Default);
         };
-    }  /// <summary>
-       /// 대기방에 유저가 입장했을 때 호출되는 이벤트입니다.
-       /// 유저가 입장할 때마다 대기방에 존재하는 모든 유저에게 호출됩니다.
-       /// 입장한 유저에게도 호출됩니다.
-       /// 대기방을 생성했을 때는 호출되지 않습니다.
-       /// </summary>
+    }
+
+    /// <summary>
+    /// 대기방에 유저가 입장했을 때 호출되는 이벤트입니다.
+    /// 유저가 입장할 때마다 대기방에 존재하는 모든 유저에게 호출됩니다.
+    /// 입장한 유저에게도 호출됩니다.
+    /// 대기방을 생성했을 때는 호출되지 않습니다.
+    /// </summary>
     private void ResponseMatchMakingRoomJoin()
     {
         Backend.Match.OnMatchMakingRoomJoin = (MatchMakingGamerInfoInRoomEventArgs args) =>
         {
-            MatchMakingRoomJoin.OnNext(Unit.Default);
             BackendLog($"{args.ErrInfo}, {args.Reason}, {args.UserInfo.m_nickName}, {args.UserInfo.m_sessionId}", LogType.NONE, "OnMatchMakingRoomJoin");
+            MatchMakingRoomJoin.OnNext(Unit.Default);
         };
     }
 
@@ -385,16 +387,18 @@ public class BackendManager : TRSingleton<BackendManager>
 
     #region Backend InGame Request
     /// <summary>
-    /// 인게임 서버 접속
+    /// 인게임 접속
     /// </summary>
-    public void RequestJoinGameServer()
+    /// <param name="isReconnect">재접속 시 인자 값을 true로 설정</param>
+    public void RequestJoinGameServer(bool isReconnect)
     {
         ErrorInfo errorInfo = null;
-        if (Backend.Match.JoinGameServer(serverAddress, serverPort, true, out errorInfo) == false)
+        if (Backend.Match.JoinGameServer(serverAddress, serverPort, isReconnect, out errorInfo) == false)
         {
             BackendLog(errorInfo.Reason, LogType.RED, "JoinGameServer");
             return;
         }
+        BackendLog($"{errorInfo.Category}, {errorInfo.Reason}, {errorInfo.Detail}", LogType.GREEN, "JoinGameServer");
     }
 
     /// <summary>
@@ -422,6 +426,7 @@ public class BackendManager : TRSingleton<BackendManager>
         RseponseLeaveGameServer();
         ResponseSessionListInServer();
         ResponseJoinGameRoom();
+        ResponseMatchInGameStart();
     }
     /// <summary>
     /// 인게임 서버 접속에 대한 응답
@@ -431,6 +436,7 @@ public class BackendManager : TRSingleton<BackendManager>
         Backend.Match.OnSessionJoinInServer += (args) =>
         {
             Debug.Log($"OnSessionJoinInServer : {args.ErrInfo}: {args.ErrInfo.Category}, {args.ErrInfo.Detail}, {args.ErrInfo.Reason}");
+            
             JoinGameServer.OnNext(Unit.Default);
         };
     }
