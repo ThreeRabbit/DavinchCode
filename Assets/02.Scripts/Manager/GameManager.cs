@@ -23,6 +23,7 @@ public class GameManager : TRSingleton<GameManager>
 
     public void LoginProcess()
     {
+        // 1. 토큰 로그인을 시도한다.
         BackendManager.Instance.TokenLogin(
             success: () =>
             {
@@ -30,6 +31,7 @@ public class GameManager : TRSingleton<GameManager>
             },
             fail: () =>
             {
+                // 2. 토큰 로그인에 실패 시 게스트 로그인을 시도한다. 
                 BackendManager.Instance.GuestLogin(
                     success: () =>
                     {

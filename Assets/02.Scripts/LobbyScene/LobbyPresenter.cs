@@ -25,6 +25,7 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
     public void InitLobbyView(LobbyView lobbyView)
     {
         _lobbyView = lobbyView;
+        JoinMatchServer();
     }
 
     /// <summary>

@@ -12,7 +12,6 @@ public class LobbyView : MonoBehaviour
     private void Awake()
     {
         LobbyPresenter.Instance.InitLobbyView(this);
-        LobbyPresenter.Instance.JoinMatchServer();
         SubscribeLobbyUI();       
     }
 
