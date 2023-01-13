@@ -20,6 +20,7 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
         SubscribeResponseJoinGameServer();
         SubscribeCancelMatchMaking();
         SubscribeResponseJoinGameRoom();
+        SubscribeResponseMatchInGameStart();
     }
 
     public void InitLobbyView(LobbyView lobbyView)
@@ -247,11 +248,24 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
         }).AddTo(this.gameObject);
     }
 
+    /// <summary>
+    /// 인게임 룸 접속 했을 때
+    /// </summary>
     public void SubscribeResponseJoinGameRoom()
     {
         BackendManager.Instance.JoinGameRoom.Subscribe(_ =>
         {
             SceneManager.LoadSceneAsync("GameScene");
+        }).AddTo(this.gameObject);
+    }
+
+    /// <summary>
+    /// 게임이 시작 되었을 때
+    /// </summary>
+    public void SubscribeResponseMatchInGameStart()
+    {
+        BackendManager.Instance.MatchInGameStart.Subscribe(_ =>
+        {
         }).AddTo(this.gameObject);
     }
 }

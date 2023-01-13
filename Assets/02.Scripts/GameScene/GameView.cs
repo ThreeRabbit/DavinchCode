@@ -10,4 +10,9 @@ public class GameView : MonoBehaviour
     {
         GamePresenter.Instance.InitGameView(this);
     }
+
+    public void Start()
+    {
+        
+    }
 }

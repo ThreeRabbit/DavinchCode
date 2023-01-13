@@ -483,6 +483,7 @@ public class BackendManager : TRSingleton<BackendManager>
     public void ResponseMatchInGameStart()
     {
         Backend.Match.OnMatchInGameStart = () => {
+            BackendLog($"Game Start", LogType.GREEN, "OnMatchInGameAccess");
             MatchInGameStart.OnNext(Unit.Default);
         };
     }

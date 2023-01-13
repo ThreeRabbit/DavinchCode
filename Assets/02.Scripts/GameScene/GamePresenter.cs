@@ -15,6 +15,7 @@ public class GamePresenter : TRSingleton<GamePresenter>
     private GetTilePopup _getTilePopup;
     private GameModel _gameModel = new GameModel();
     List<TileModel> list = new List<TileModel>();
+
     private void Awake()
     {
         _gameModel.CreateTiles(TileModel.TileType.Black);
@@ -38,5 +39,6 @@ public class GamePresenter : TRSingleton<GamePresenter>
 
         TilePresenter.Instance.SetTile(tile, obj.GetComponent<TileView>());
     }
+
 
 }
