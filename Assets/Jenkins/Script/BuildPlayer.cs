@@ -13,12 +13,14 @@ namespace ThreeRabbitPackage.Build
             string buildItemName = GetCommand("-buildItemName");
             BuildItem buildItem = Resources.Load<BuildItem>($"Build/{buildItemName}");
             Debug.Log("BuildItemName: " + buildItemName);
+            Debug.Log("BuildItemTarget: " + buildItem.buildTarget);
+            Debug.Log("BuildItemOption: " + buildItem.buildOptions);
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = FindEnabledEditgorScenes();
             buildPlayerOptions.locationPathName = $"{buildItem.buildTarget}/{buildItem.buildName}.apk";
             buildPlayerOptions.target = buildItem.buildTarget;
             buildPlayerOptions.options = buildItem.buildOptions;
-            PlayerSettings.productName = "threerabbitskeleton";
+            PlayerSettings.productName = "davinchcode";
             PlayerSettings.keystorePass = "threerabbit1!";
             PlayerSettings.keyaliasPass = "threerabbit1!";
 
