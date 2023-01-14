@@ -20,7 +20,7 @@ namespace ThreeRabbitPackage.Build
             buildPlayerOptions.locationPathName = $"{buildItem.buildTarget}/{buildItem.buildName}.apk";
             buildPlayerOptions.target = buildItem.buildTarget;
             buildPlayerOptions.options = buildItem.buildOptions;
-            PlayerSettings.productName = "davinchcode";
+            PlayerSettings.productName = "DavinchCode";
             PlayerSettings.keystorePass = "threerabbit1!";
             PlayerSettings.keyaliasPass = "threerabbit1!";
 
