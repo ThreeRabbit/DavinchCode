@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e174be80d9e420881be8c6dccb7a55, type: 3}
   m_Name: ANDROID_DEV_DEBUG
   m_EditorClassIdentifier: 
-  buildName: ThreeRabbitSkeleton_Android_0.0.1_1
+  buildName: DavinchCode_Android_1.0.2_1
+  productName: DavinchCode
   buildTarget: 13
   buildOptions: 1
   defineSymbols:
