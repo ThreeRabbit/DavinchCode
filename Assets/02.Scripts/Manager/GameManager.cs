@@ -39,7 +39,9 @@ public class GameManager : TRSingleton<GameManager>
                     },
                     fail: () =>
                     {
+                        // 3. 게스트 로그인에 실패 시 닉네임 생성 팝업을 오픈한다.
                         Debug.Log("BackendManager: GuestLogin Fail");
+                        ThreeRabbitPackage.PopupManager.Instance.OnPopup("NicknamePopup");
                     });
             });
     }
