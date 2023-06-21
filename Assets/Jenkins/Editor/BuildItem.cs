@@ -9,6 +9,7 @@ namespace ThreeRabbitPackage.Build
     public class BuildItem : ScriptableObject
     {
         [HideInInspector] public string buildName;
+        public string productName;
         public BuildTarget buildTarget;
         public BuildOptions buildOptions;
         public string[] defineSymbols;
