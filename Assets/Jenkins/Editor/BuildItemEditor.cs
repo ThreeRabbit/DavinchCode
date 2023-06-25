@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace ThreeRabbitPackage.Build
+namespace ThreeRabbitPackage.Jenkins
 {
     [CustomEditor(typeof(BuildItem))]
     public class BuildItemEditor : Editor

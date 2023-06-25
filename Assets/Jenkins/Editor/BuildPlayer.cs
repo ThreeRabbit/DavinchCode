@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 
-namespace ThreeRabbitPackage.Build
+namespace ThreeRabbitPackage.Jenkins
 {
     public class BuildPlayer
     {
