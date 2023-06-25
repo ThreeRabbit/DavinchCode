@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 660911240, guid: f624596d5fe1bd5459a5da424a8abc1b, type: 3}
   m_Name: TheBackendSettings
   m_EditorClassIdentifier: 
-  clientAppID: 
-  signatureKey: 
+  clientAppID: e201d350-84de-11ed-9be8-5da060e8fefc4316
+  signatureKey: e201fa60-84de-11ed-9be8-5da060e8fefc4316
   functionAuthKey: 
   packageName: com.threerabbitgames.davinchcode
   isAllPlatform: 1
