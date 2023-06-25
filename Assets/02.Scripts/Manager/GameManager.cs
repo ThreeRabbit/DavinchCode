@@ -46,9 +46,9 @@ public class GameManager : TRSingleton<GameManager>
             });
     }
 
-    public void MatchingProcess(BackEnd.Tcp.MatchType matchType)
-    {
+    //public void MatchingProcess(BackEnd.Tcp.MatchType matchType)
+    //{
 
-    }
+    //}
 }
 

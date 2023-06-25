@@ -51,36 +51,36 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
     /// <param name="matchType">매칭 타입</param>
     /// <param name="matchModeType">매치 모드 타입</param>
     /// <param name="matchCardIndateKey">매치카드 인데이</param>
-    public void MatchMaking(BackEnd.Tcp.MatchType matchType, BackEnd.Tcp.MatchModeType matchModeType, string matchCardIndateKey)
-    {
-        BackendManager.Instance.RequestMatchMaking(matchType, matchModeType, matchCardIndateKey);
-        _lobbyModel.matchTimeHandler =
-            Observable
-            .Timer(System.TimeSpan.FromSeconds(0), System.TimeSpan.FromSeconds(1))
-            .RepeatSafe()
-            .Subscribe(_ =>
-            {
-                if(_lobbyModel.matchWaitingTime.Value > BackendManager.Instance.matchTime)
-                {
-                    _lobbyView.match_btn.interactable = true;
-                    _lobbyView.match_txt.text = "Match";
-                    //CancelMatchMaking();
-                }
+    //public void MatchMaking(BackEnd.Tcp.MatchType matchType, BackEnd.Tcp.MatchModeType matchModeType, string matchCardIndateKey)
+    //{
+    //    BackendManager.Instance.RequestMatchMaking(matchType, matchModeType, matchCardIndateKey);
+    //    _lobbyModel.matchTimeHandler =
+    //        Observable
+    //        .Timer(System.TimeSpan.FromSeconds(0), System.TimeSpan.FromSeconds(1))
+    //        .RepeatSafe()
+    //        .Subscribe(_ =>
+    //        {
+    //            if(_lobbyModel.matchWaitingTime.Value > BackendManager.Instance.matchTime)
+    //            {
+    //                _lobbyView.match_btn.interactable = true;
+    //                _lobbyView.match_txt.text = "Match";
+    //                //CancelMatchMaking();
+    //            }
 
-                else
-                {
-                    string loading = $"Match{new string('.', _lobbyModel.matchWaitingTime.Value % 4)}";
+    //            else
+    //            {
+    //                string loading = $"Match{new string('.', _lobbyModel.matchWaitingTime.Value % 4)}";
 
-                    if (_lobbyView != null)
-                    {
-                        _lobbyView.match_txt.text = loading;
-                        _lobbyView.match_btn.interactable = false;
-                    }
-                }
+    //                if (_lobbyView != null)
+    //                {
+    //                    _lobbyView.match_txt.text = loading;
+    //                    _lobbyView.match_btn.interactable = false;
+    //                }
+    //            }
 
-                _lobbyModel.matchWaitingTime.Value++;
-            }).AddTo(this.gameObject);
-    }
+    //            _lobbyModel.matchWaitingTime.Value++;
+    //        }).AddTo(this.gameObject);
+    //}
 
     /// <summary>
     /// 매칭 취소
@@ -114,13 +114,13 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
     /// </summary>
     public void SubscribeResponseJoinMatchMakingServer()
     {
-        BackendManager.Instance.JoinMatchMakingServer.Subscribe(joinMatchMakingServer =>
-        {
-            if(joinMatchMakingServer.ErrInfo == BackEnd.Tcp.ErrorInfo.Success)
-            {
-                CreateMatchRoom();
-            }
-        }).AddTo(this.gameObject);
+        //BackendManager.Instance.JoinMatchMakingServer.Subscribe(joinMatchMakingServer =>
+        //{
+        //    if(joinMatchMakingServer.ErrInfo == BackEnd.Tcp.ErrorInfo.Success)
+        //    {
+        //        CreateMatchRoom();
+        //    }
+        //}).AddTo(this.gameObject);
     }
 
     /// <summary>
@@ -128,73 +128,73 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
     /// </summary>
     public void SubscribeResponseMatchMaking()
     {
-        BackendManager.Instance.MatchMaking.Subscribe(matchMaking =>
-        {
-            switch (matchMaking.ErrInfo)
-            {
-                case BackEnd.Tcp.ErrorCode.Success:
-                    JoinGameServer();
-                    break;
-                case BackEnd.Tcp.ErrorCode.Exception:
-                    break;
-                case BackEnd.Tcp.ErrorCode.SocketOperationError:
-                    break;
-                case BackEnd.Tcp.ErrorCode.AuthenticationFailed:
-                    break;
-                case BackEnd.Tcp.ErrorCode.BrokenStream:
-                    break;
-                case BackEnd.Tcp.ErrorCode.NetworkTimeout:
-                    break;
-                case BackEnd.Tcp.ErrorCode.DisconnectFromLocal:
-                    break;
-                case BackEnd.Tcp.ErrorCode.DisconnectFromRemote:
-                    break;
-                case BackEnd.Tcp.ErrorCode.InvalidMessage:
-                    break;
-                case BackEnd.Tcp.ErrorCode.InvalidOperation:
-                    break;
-                case BackEnd.Tcp.ErrorCode.InvalidSession:
-                    break;
-                case BackEnd.Tcp.ErrorCode.ChannelTimeout:
-                    break;
-                case BackEnd.Tcp.ErrorCode.BannedChat:
-                    break;
-                case BackEnd.Tcp.ErrorCode.DuplicateConnection:
-                    break;
-                case BackEnd.Tcp.ErrorCode.NetworkOffline:
-                    break;
-                case BackEnd.Tcp.ErrorCode.NetworkOnline:
-                    break;
-                case BackEnd.Tcp.ErrorCode.INTERNAL_ERROR_CODE_RESERVED_END:
-                    break;
-                case BackEnd.Tcp.ErrorCode.MATCH_ERROR_CODE_RESERVED_BEGIN:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_Making_NotJoinedRoom:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_Making_NotFoundGamer:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_Making_AlreadyJoinedRoom:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_Making_InvalidRoom:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_Making_KickedByOwner:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_InvalidMatchType:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_InvalidModeType:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_InProgress:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_MatchMakingCanceled:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_InGame_AuthroizeFailed:
-                    break;
-                case BackEnd.Tcp.ErrorCode.Match_InGame_Timeout:
-                    break;
-                case BackEnd.Tcp.ErrorCode.MATCH_ERROR_CODE_RESERVED_END:
-                    break;
-            }
-        }).AddTo(this.gameObject);
+        //BackendManager.Instance.MatchMaking.Subscribe(matchMaking =>
+        //{
+        //    switch (matchMaking.ErrInfo)
+        //    {
+        //        case BackEnd.Tcp.ErrorCode.Success:
+        //            JoinGameServer();
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Exception:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.SocketOperationError:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.AuthenticationFailed:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.BrokenStream:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.NetworkTimeout:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.DisconnectFromLocal:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.DisconnectFromRemote:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.InvalidMessage:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.InvalidOperation:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.InvalidSession:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.ChannelTimeout:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.BannedChat:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.DuplicateConnection:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.NetworkOffline:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.NetworkOnline:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.INTERNAL_ERROR_CODE_RESERVED_END:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.MATCH_ERROR_CODE_RESERVED_BEGIN:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_Making_NotJoinedRoom:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_Making_NotFoundGamer:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_Making_AlreadyJoinedRoom:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_Making_InvalidRoom:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_Making_KickedByOwner:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_InvalidMatchType:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_InvalidModeType:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_InProgress:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_MatchMakingCanceled:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_InGame_AuthroizeFailed:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.Match_InGame_Timeout:
+        //            break;
+        //        case BackEnd.Tcp.ErrorCode.MATCH_ERROR_CODE_RESERVED_END:
+        //            break;
+        //    }
+        //}).AddTo(this.gameObject);
     }
 
     /// <summary>
@@ -202,17 +202,17 @@ public class LobbyPresenter : TRSingleton<LobbyPresenter>
     /// </summary>
     public void SubscribeResponseLeaveMatchMakingServer()
     {
-        BackendManager.Instance.LeaveMatchMakingServer.Subscribe(args =>
-        {
-            if (args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.DisconnectFromRemote)
-                || args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.Exception)
-                || args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.NetworkTimeout))
-            {
-                // TODO:
-                // 서버에서 강제로 끊은 경우
-                // 에러 메시지 팝업 등록
-            }
-        }).AddTo(this.gameObject);
+        //BackendManager.Instance.LeaveMatchMakingServer.Subscribe(args =>
+        //{
+        //    if (args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.DisconnectFromRemote)
+        //        || args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.Exception)
+        //        || args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.NetworkTimeout))
+        //    {
+        //        // TODO:
+        //        // 서버에서 강제로 끊은 경우
+        //        // 에러 메시지 팝업 등록
+        //    }
+        //}).AddTo(this.gameObject);
     }
 
     /// <summary>
