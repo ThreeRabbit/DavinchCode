@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using ThreeRabbitPackage;
 using ThreeRabbitPackage.DesignPattern;
-//using BackEnd;
-//using BackEnd.Tcp;
+using BackEnd;
+using BackEnd.Tcp;
 using UniRx;
 
 public class BackendManager : TRSingleton<BackendManager>
@@ -24,11 +24,11 @@ public class BackendManager : TRSingleton<BackendManager>
     #endregion
 
     #region Subject
-    //public Subject<JoinChannelEventArgs> JoinMatchMakingServer = new Subject<JoinChannelEventArgs>();
-   // public Subject<LeaveChannelEventArgs> LeaveMatchMakingServer = new Subject<LeaveChannelEventArgs>();
+    public Subject<JoinChannelEventArgs> JoinMatchMakingServer = new Subject<JoinChannelEventArgs>();
+    public Subject<LeaveChannelEventArgs> LeaveMatchMakingServer = new Subject<LeaveChannelEventArgs>();
     public Subject<Unit> MatchMakingRoomCreate = new Subject<Unit>();
     public Subject<Unit> MatchMakingRoomJoin = new Subject<Unit>();
-    //public Subject<MatchMakingResponseEventArgs> MatchMaking = new Subject<MatchMakingResponseEventArgs>();
+    public Subject<MatchMakingResponseEventArgs> MatchMaking = new Subject<MatchMakingResponseEventArgs>();
     public Subject<Unit> CancelMatchMaking = new Subject<Unit>();
     public Subject<Unit> JoinGameServer = new Subject<Unit>();
     public Subject<Unit> LeaveGameServer = new Subject<Unit>();
@@ -51,31 +51,31 @@ public class BackendManager : TRSingleton<BackendManager>
     private string INVALID_OPERATION = "잘못된 요청입니다\n{0}";
     private string EXCEPTION_OCCUR = "예외 발생 : {0}\n다시 매칭을 시도합니다.";
 
-    //private void BackendLog(BackendReturnObject bro, LogType logType = LogType.NONE, string funcName = "")
-    //{
-    //    switch (logType)
-    //    {
-    //        case LogType.NONE:
-    //            Debug.Log($"BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}");
-    //            break;
+    private void BackendLog(BackendReturnObject bro, LogType logType = LogType.NONE, string funcName = "")
+    {
+        switch (logType)
+        {
+            case LogType.NONE:
+                Debug.Log($"BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}");
+                break;
 
-    //        case LogType.GREEN:
-    //            Debug.Log($"<color=green>BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
-    //            break;
+            case LogType.GREEN:
+                Debug.Log($"<color=green>BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
+                break;
 
-    //        case LogType.YELLOW:
-    //            Debug.LogWarning($"<color=yellow>BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
-    //            break;
+            case LogType.YELLOW:
+                Debug.LogWarning($"<color=yellow>BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
+                break;
 
-    //        case LogType.RED:
-    //            Debug.LogError($"<color=red>BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
-    //            break;
+            case LogType.RED:
+                Debug.LogError($"<color=red>BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}</color>");
+                break;
 
-    //        default:
-    //            Debug.Log($"BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}");
-    //            break;
-    //    }
-    //}
+            default:
+                Debug.Log($"BackendManager {funcName}: StatusCode - {bro.GetStatusCode()}, ErrorCode - {bro.GetErrorCode()}, Message - {bro.GetMessage()}");
+                break;
+        }
+    }
 
     private void BackendLog(string message, LogType logType = LogType.NONE, string funcName = "")
     {
@@ -114,11 +114,11 @@ public class BackendManager : TRSingleton<BackendManager>
 
     private void Poll()
     {
-        //Backend.AsyncPoll();
-        //if (isConnectMatchServer)
-        //{
-        //    Backend.Match.Poll();
-        //}
+        Backend.AsyncPoll();
+        if (isConnectMatchServer)
+        {
+            Backend.Match.Poll();
+        }
     }
 
     #endregion
@@ -127,101 +127,102 @@ public class BackendManager : TRSingleton<BackendManager>
 
     public void Init(UnityAction success = null, UnityAction<string> fail = null)
     {
-        //var bro = Backend.Initialize(true);
-        //if (bro.IsSuccess())
-        //{
-        //    BackendLog(bro, LogType.GREEN, "Init");
-        //    success?.Invoke();
-        //}
-        //else
-        //{
-        //    BackendLog(bro, LogType.RED, "Init");
-        //    fail?.Invoke(bro.GetMessage());
-        //}
+        var bro = Backend.Initialize(true);
+        if (bro.IsSuccess())
+        {
+            BackendLog(bro, LogType.GREEN, "Init");
+            success?.Invoke();
+        }
+        else
+        {
+            BackendLog(bro, LogType.RED, "Init");
+            fail?.Invoke(bro.GetMessage());
+        }
     }
 
     public void GuestLogin(UnityAction success = null, UnityAction fail = null)
     {
-        //SendQueue.Enqueue(Backend.BMember.GuestLogin, "게스트 로그인으로 로그인함", callback => {
-        //    if (callback.IsSuccess())
-        //    {
-        //        BackendLog(callback, LogType.GREEN, "GuestLogin");
-        //        success?.Invoke();
-        //    }
-        //    else
-        //    {
-        //        BackendLog(callback, LogType.RED, "GuestLogin");
-        //        fail?.Invoke();
-        //    }
-        //});
+        SendQueue.Enqueue(Backend.BMember.GuestLogin, "게스트 로그인으로 로그인함", callback =>
+        {
+            if (callback.IsSuccess())
+            {
+                BackendLog(callback, LogType.GREEN, "GuestLogin");
+                success?.Invoke();
+            }
+            else
+            {
+                BackendLog(callback, LogType.RED, "GuestLogin");
+                fail?.Invoke();
+            }
+        });
     }
 
     public void TokenLogin(UnityAction success = null, UnityAction fail = null)
     {
-        //SendQueue.Enqueue(Backend.BMember.LoginWithTheBackendToken, (callback) =>
-        //{
-        //    if (callback.IsSuccess())
-        //    {
-        //        BackendLog(callback, LogType.GREEN, "TokenLogin");
-        //        success?.Invoke();
-        //    }
-        //    else
-        //    {
-        //        BackendLog(callback, LogType.RED, "TockenLogin");
-        //        fail?.Invoke();
-        //    }
-        //});
+        SendQueue.Enqueue(Backend.BMember.LoginWithTheBackendToken, (callback) =>
+        {
+            if (callback.IsSuccess())
+            {
+                BackendLog(callback, LogType.GREEN, "TokenLogin");
+                success?.Invoke();
+            }
+            else
+            {
+                BackendLog(callback, LogType.RED, "TockenLogin");
+                fail?.Invoke();
+            }
+        });
     }
 
     public void CreateNickname(string nickname, UnityAction success = null, UnityAction fail = null)
     {
-        //SendQueue.Enqueue(Backend.BMember.CreateNickname, nickname, ( callback ) =>
-        //{
-        //    if(callback.IsSuccess())
-        //    {
-        //        BackendLog(callback, LogType.GREEN, "CreateNickname");
-        //        success?.Invoke();
-        //    }
-        //    else
-        //    {
-        //        BackendLog(callback, LogType.RED, "CreateNickname");
-        //        fail?.Invoke();
-        //    }
-        //});
+        SendQueue.Enqueue(Backend.BMember.CreateNickname, nickname, (callback) =>
+        {
+            if (callback.IsSuccess())
+            {
+                BackendLog(callback, LogType.GREEN, "CreateNickname");
+                success?.Invoke();
+            }
+            else
+            {
+                BackendLog(callback, LogType.RED, "CreateNickname");
+                fail?.Invoke();
+            }
+        });
     }
 
     public void UpdateNickname(string nickname, UnityAction success = null, UnityAction fail = null)
     {
-        //SendQueue.Enqueue(Backend.BMember.UpdateNickname, nickname, ( callback ) =>
-        //{
-        //    if(callback.IsSuccess())
-        //    {
-        //        BackendLog(callback, LogType.GREEN, "UpdateNickname");
-        //        success?.Invoke();
-        //    }
-        //    else
-        //    {
-        //        BackendLog(callback, LogType.RED, "UpdateNickname");
-        //        fail?.Invoke();
-        //    }
-        //});
+        SendQueue.Enqueue(Backend.BMember.UpdateNickname, nickname, (callback) =>
+        {
+            if (callback.IsSuccess())
+            {
+                BackendLog(callback, LogType.GREEN, "UpdateNickname");
+                success?.Invoke();
+            }
+            else
+            {
+                BackendLog(callback, LogType.RED, "UpdateNickname");
+                fail?.Invoke();
+            }
+        });
     }
 
     public void CheckNicknameDuplication(string nickname, UnityAction success = null, UnityAction<string> fail = null)
     {
-        //SendQueue.Enqueue(Backend.BMember.CheckNicknameDuplication, nickname, ( callback ) =>
-        //{
-        //    if(callback.IsSuccess())
-        //    {
-        //        BackendLog(callback, LogType.GREEN, "CheckNicknameDuplication");
-        //        success?.Invoke();
-        //    }
-        //    else
-        //    {
-        //        BackendLog(callback, LogType.RED, "CheckNicknamDuplication");
-        //        fail?.Invoke(callback.GetMessage());
-        //    }
-        //});
+        SendQueue.Enqueue(Backend.BMember.CheckNicknameDuplication, nickname, (callback) =>
+        {
+            if (callback.IsSuccess())
+            {
+                BackendLog(callback, LogType.GREEN, "CheckNicknameDuplication");
+                success?.Invoke();
+            }
+            else
+            {
+                BackendLog(callback, LogType.RED, "CheckNicknamDuplication");
+                fail?.Invoke(callback.GetMessage());
+            }
+        });
     }
 
     #endregion
@@ -234,15 +235,15 @@ public class BackendManager : TRSingleton<BackendManager>
     public void RequestJoinMatchMakingServer()
     {
         // 이미 연결되어 있는 경우 리턴
-        //if (isConnectMatchServer) return;
+        if (isConnectMatchServer) return;
 
-        //ErrorInfo errorInfo;
-        //isConnectMatchServer = true;
-        //if (!Backend.Match.JoinMatchMakingServer(out errorInfo))
-        //{
-        //    var errorLog = string.Format(FAIL_CONNECT_MATCHSERVER, errorInfo.ToString());
-        //    TRLog.Green(errorLog);
-        //}
+        ErrorInfo errorInfo;
+        isConnectMatchServer = true;
+        if (!Backend.Match.JoinMatchMakingServer(out errorInfo))
+        {
+            var errorLog = string.Format(FAIL_CONNECT_MATCHSERVER, errorInfo.ToString());
+            TRLog.Green(errorLog);
+        }
     }
 
     /// <summary>
@@ -250,7 +251,7 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary>
     public void RequestLeaveMatchMakingServer()
     {
-        //Backend.Match.LeaveMatchMakingServer();
+        Backend.Match.LeaveMatchMakingServer();
         TRLog.Green("LeaveMatchMakingServer");
     }
 
@@ -269,7 +270,7 @@ public class BackendManager : TRSingleton<BackendManager>
             // 잠시 후 다시 시도하세요. 팝업 호출 필요
             return false;
         }
-        //Backend.Match.CreateMatchRoom();
+        Backend.Match.CreateMatchRoom();
         return true;
     }
 
@@ -279,14 +280,14 @@ public class BackendManager : TRSingleton<BackendManager>
     /// <param name="matchType">Random, Point, MMR</param>
     /// <param name="matchModeType">1대1, 팀전, 개인전</param>
     /// <param name="matchCardIndate">뒤끝 서버의 매치 생성 날짜</param>
-    //public void RequestMatchMaking(MatchType matchType, MatchModeType matchModeType, string matchCardIndateKey)
-    //{
-    //    Backend.Match.RequestMatchMaking(matchType, matchModeType, matchCardIndate.stringDictionary[matchCardIndateKey]);
-    //}
+    public void RequestMatchMaking(MatchType matchType, MatchModeType matchModeType, string matchCardIndateKey)
+    {
+        Backend.Match.RequestMatchMaking(matchType, matchModeType, matchCardIndate.stringDictionary[matchCardIndateKey]);
+    }
 
     public void RequestCancleMatchMaking()
     {
-        //Backend.Match.CancelMatchMaking();
+        Backend.Match.CancelMatchMaking();
         CancelMatchMaking.OnNext(Unit.Default);
     }
     #endregion
@@ -309,11 +310,11 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary>
     private void ResponseJoinMatchMakingServer()
     {
-        //Backend.Match.OnJoinMatchMakingServer += (args) =>
-        //{
-        //    BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseJoinMatchMakingServer"); 
-        //    JoinMatchMakingServer.OnNext(args);
-        //};
+        Backend.Match.OnJoinMatchMakingServer += (args) =>
+        {
+            BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseJoinMatchMakingServer");
+            JoinMatchMakingServer.OnNext(args);
+        };
     }
 
     /// <summary>
@@ -321,39 +322,39 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary>
     private void ResponseLeaveMatchMakingServer()
     {
-        //Backend.Match.OnLeaveMatchMakingServer += (args) =>
-        //{
-        //    // 매칭 서버에서 접속 종료할 때 호출
-        //    TRLog.Green("OnLeaveMatchMakingServer : " + args.ErrInfo);
-        //    LeaveMatchMakingServer.OnNext(args);
+        Backend.Match.OnLeaveMatchMakingServer += (args) =>
+        {
+            // 매칭 서버에서 접속 종료할 때 호출
+            TRLog.Green("OnLeaveMatchMakingServer : " + args.ErrInfo);
+            LeaveMatchMakingServer.OnNext(args);
 
-        //    if (args.ErrInfo.Category.Equals(ErrorCode.DisconnectFromRemote)
-        //        || args.ErrInfo.Category.Equals(ErrorCode.Exception)
-        //        || args.ErrInfo.Category.Equals(ErrorCode.NetworkTimeout))
-        //    {
-        //        // 서버에서 강제로 끊은 경우
-        //        //if (LobbyUI.GetInstance())
-        //        //{
-        //        //    LobbyUI.GetInstance().MatchRequestCallback(false);
-        //        //    LobbyUI.GetInstance().CloseRoomUIOnly();
-        //        //    LobbyUI.GetInstance().SetErrorObject("매칭서버와 연결이 끊어졌습니다.\n\n" + args.ErrInfo.Reason);
-        //        //}
-        //    }
-        //};
+            if (args.ErrInfo.Category.Equals(ErrorCode.DisconnectFromRemote)
+                || args.ErrInfo.Category.Equals(ErrorCode.Exception)
+                || args.ErrInfo.Category.Equals(ErrorCode.NetworkTimeout))
+            {
+                // 서버에서 강제로 끊은 경우
+                //if (LobbyUI.GetInstance())
+                //{
+                //    LobbyUI.GetInstance().MatchRequestCallback(false);
+                //    LobbyUI.GetInstance().CloseRoomUIOnly();
+                //    LobbyUI.GetInstance().SetErrorObject("매칭서버와 연결이 끊어졌습니다.\n\n" + args.ErrInfo.Reason);
+                //}
+            }
+        };
     }
     /// <summary>
     /// 매칭 신청 후 응답
     /// </summary>
     private void ResponseMatchMaking()
     {
-        //Backend.Match.OnMatchMakingResponse += (args) =>
-        //{
-        //    BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseMatchMaking");
-        //    serverAddress = args.RoomInfo.m_inGameServerEndPoint.m_address;
-        //    serverPort = args.RoomInfo.m_inGameServerEndPoint.m_port;
-        //    roomToken = args.RoomInfo.m_inGameRoomToken;
-        //    MatchMaking.OnNext(args);
-        //};
+        Backend.Match.OnMatchMakingResponse += (args) =>
+        {
+            BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseMatchMaking");
+            serverAddress = args.RoomInfo.m_inGameServerEndPoint.m_address;
+            serverPort = args.RoomInfo.m_inGameServerEndPoint.m_port;
+            roomToken = args.RoomInfo.m_inGameRoomToken;
+            MatchMaking.OnNext(args);
+        };
     }
 
     /// <summary>
@@ -361,11 +362,11 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary>
     private void ResponseMatchMakingRoomCreate()
     {
-        //Backend.Match.OnMatchMakingRoomCreate += (args) =>
-        //{
-        //    BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseMatchMaikngRoomCreate");
-        //    MatchMakingRoomCreate.OnNext(Unit.Default);
-        //};
+        Backend.Match.OnMatchMakingRoomCreate += (args) =>
+        {
+            BackendLog($"{args.ErrInfo}", LogType.GREEN, "ResponseMatchMaikngRoomCreate");
+            MatchMakingRoomCreate.OnNext(Unit.Default);
+        };
     }
 
     /// <summary>
@@ -376,11 +377,11 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary>
     private void ResponseMatchMakingRoomJoin()
     {
-        //Backend.Match.OnMatchMakingRoomJoin = (MatchMakingGamerInfoInRoomEventArgs args) =>
-        //{
-        //    BackendLog($"{args.ErrInfo}, {args.Reason}, {args.UserInfo.m_nickName}, {args.UserInfo.m_sessionId}", LogType.NONE, "OnMatchMakingRoomJoin");
-        //    MatchMakingRoomJoin.OnNext(Unit.Default);
-        //};
+        Backend.Match.OnMatchMakingRoomJoin = (MatchMakingGamerInfoInRoomEventArgs args) =>
+        {
+            BackendLog($"{args.ErrInfo}, {args.Reason}, {args.UserInfo.m_nickName}, {args.UserInfo.m_sessionId}", LogType.NONE, "OnMatchMakingRoomJoin");
+            MatchMakingRoomJoin.OnNext(Unit.Default);
+        };
     }
 
     #endregion
@@ -392,13 +393,13 @@ public class BackendManager : TRSingleton<BackendManager>
     /// <param name="isReconnect">재접속 시 인자 값을 true로 설정</param>
     public void RequestJoinGameServer(bool isReconnect)
     {
-        //ErrorInfo errorInfo = null;
-        //if (Backend.Match.JoinGameServer(serverAddress, serverPort, isReconnect, out errorInfo) == false)
-        //{
-        //    BackendLog(errorInfo.Reason, LogType.RED, "JoinGameServer");
-        //    return;
-        //}
-        //BackendLog($"{errorInfo.Category}, {errorInfo.Reason}, {errorInfo.Detail}", LogType.GREEN, "JoinGameServer");
+        ErrorInfo errorInfo = null;
+        if (Backend.Match.JoinGameServer(serverAddress, serverPort, isReconnect, out errorInfo) == false)
+        {
+            BackendLog(errorInfo.Reason, LogType.RED, "JoinGameServer");
+            return;
+        }
+        BackendLog($"{errorInfo.Category}, {errorInfo.Reason}, {errorInfo.Detail}", LogType.GREEN, "JoinGameServer");
     }
 
     /// <summary>
@@ -406,7 +407,7 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary>
     public void RequestLeaveGameServer()
     {
-        //Backend.Match.LeaveGameServer();
+        Backend.Match.LeaveGameServer();
     }
 
     /// <summary>
@@ -414,7 +415,7 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary>
     public void RequestJoinGameRoom()
     {
-        //Backend.Match.JoinGameRoom(roomToken);
+        Backend.Match.JoinGameRoom(roomToken);
     }
     #endregion
 
@@ -433,12 +434,12 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary> 
     public void ResponseJoinGameServer()
     {
-        //Backend.Match.OnSessionJoinInServer += (args) =>
-        //{
-        //    Debug.Log($"OnSessionJoinInServer : {args.ErrInfo}: {args.ErrInfo.Category}, {args.ErrInfo.Detail}, {args.ErrInfo.Reason}");
-            
-        //    JoinGameServer.OnNext(Unit.Default);
-        //};
+        Backend.Match.OnSessionJoinInServer += (args) =>
+        {
+            Debug.Log($"OnSessionJoinInServer : {args.ErrInfo}: {args.ErrInfo.Category}, {args.ErrInfo.Detail}, {args.ErrInfo.Reason}");
+
+            JoinGameServer.OnNext(Unit.Default);
+        };
     }
 
     /// <summary>
@@ -446,11 +447,11 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary>
     public void RseponseLeaveGameServer()
     {
-        //Backend.Match.OnLeaveInGameServer = (MatchInGameSessionEventArgs args) =>
-        //{
-        //    BackendLog($"{args.ErrInfo}, {args.Reason}, {args.GameRecord}", LogType.NONE, "OnLeaveInGameServer");
-        //    LeaveGameServer.OnNext(Unit.Default);
-        //};
+        Backend.Match.OnLeaveInGameServer = (MatchInGameSessionEventArgs args) =>
+        {
+            BackendLog($"{args.ErrInfo}, {args.Reason}, {args.GameRecord}", LogType.NONE, "OnLeaveInGameServer");
+            LeaveGameServer.OnNext(Unit.Default);
+        };
     }
 
     /// <summary>
@@ -460,20 +461,22 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary>
     public void ResponseSessionListInServer()
     {
-        //Backend.Match.OnSessionListInServer = (MatchInGameSessionListEventArgs args) => {
-        //    BackendLog($"{args.ErrInfo}, {args.Reason}, {args.GameRecords}", LogType.NONE, "OnSessionListInServer");
-        //    SessionListInServer.OnNext(Unit.Default);
-        //};
+        Backend.Match.OnSessionListInServer = (MatchInGameSessionListEventArgs args) =>
+        {
+            BackendLog($"{args.ErrInfo}, {args.Reason}, {args.GameRecords}", LogType.NONE, "OnSessionListInServer");
+            SessionListInServer.OnNext(Unit.Default);
+        };
     }
     /// <summary>
     /// 게임방 입장 후 응답
     /// </summary>
     public void ResponseJoinGameRoom()
     {
-        //Backend.Match.OnMatchInGameAccess = (MatchInGameSessionEventArgs args) => {
-        //    BackendLog($"{args.ErrInfo}, {args.Reason}, {args.GameRecord}", LogType.NONE, "OnMatchInGameAccess");
-        //    JoinGameRoom.OnNext(Unit.Default);
-        //};
+        Backend.Match.OnMatchInGameAccess = (MatchInGameSessionEventArgs args) =>
+        {
+            BackendLog($"{args.ErrInfo}, {args.Reason}, {args.GameRecord}", LogType.NONE, "OnMatchInGameAccess");
+            JoinGameRoom.OnNext(Unit.Default);
+        };
     }
 
 
@@ -482,10 +485,11 @@ public class BackendManager : TRSingleton<BackendManager>
     /// </summary>
     public void ResponseMatchInGameStart()
     {
-        //Backend.Match.OnMatchInGameStart = () => {
-        //    BackendLog($"Game Start", LogType.GREEN, "OnMatchInGameAccess");
-        //    MatchInGameStart.OnNext(Unit.Default);
-        //};
+        Backend.Match.OnMatchInGameStart = () =>
+        {
+            BackendLog($"Game Start", LogType.GREEN, "OnMatchInGameAccess");
+            MatchInGameStart.OnNext(Unit.Default);
+        };
     }
 
     #endregion
