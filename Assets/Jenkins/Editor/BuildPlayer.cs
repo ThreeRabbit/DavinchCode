@@ -34,7 +34,7 @@ namespace ThreeRabbitPackage.Jenkins
                     break;
 
                 case BuildResult.Failed:
-                    Debug.Log("build succesded: " + summary.totalSize + " bytes");
+                    Debug.Log("build failed: " + summary.totalSize + " bytes");
                     break;
             }
         }
