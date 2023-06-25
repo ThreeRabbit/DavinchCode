@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace ThreeRabbitPackage.Build
+namespace ThreeRabbitPackage.Jenkins
 {
     [CreateAssetMenu(fileName = "Build Item", menuName = "Assets/Build", order = int.MaxValue)]
     public class BuildItem : ScriptableObject
