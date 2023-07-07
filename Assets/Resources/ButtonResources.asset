@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1666082664, guid: 549df22451305e5488982e4a540c538a, type: 3}
+  m_Name: ButtonResources
+  m_EditorClassIdentifier: 
+  spriteDictionary:
+    m_keys:
+    - MainButton_Blue
+    - MainButton_Dark
+    - MainButton_Gray
+    - MainButton_Green
+    - MainButton_Orange
+    - MainButton_Purple
+    - MainButton_Red
+    - MainButton_Sky
+    - MainButton_White
+    - MainButton_Yellow
+    - OtherButton_Circle01_d
+    - OtherButton_Circle01_n
+    - OtherButton_Circle02
+    - OtherButton_Hexagon_Blue
+    - OtherButton_Hexagon_Red
+    - OtherButton_Polygon01
+    - OtherButton_Polygon02
+    - SideButton01_Left
+    - SideButton02_Right
+    - OtherButton_Square01_Blue
+    - OtherButton_Square01_Yellow
+    - OtherButton_Square02
+    - OtherButton_Square03_Blue
+    - OtherButton_Square03_Purple
+    - OtherButton_Square04
+    - OtherButton_Square05
+    - OtherButton_Square06
+    - OtherButton_Square07
+    - OtherButton_Square08
+    m_values:
+    - {fileID: 21300000, guid: 4faf2356854154cd98c00e2733861655, type: 3}
+    - {fileID: 21300000, guid: f40084e17b90448eca919e3da8a1a0c9, type: 3}
+    - {fileID: 21300000, guid: 25d60a2f4cf2f4429a44b15b65be6025, type: 3}
+    - {fileID: 21300000, guid: 908f712e87b194b42acd990345220e0f, type: 3}
+    - {fileID: 21300000, guid: 719b60600d2a9442287c03a28cc1601e, type: 3}
+    - {fileID: 21300000, guid: 2850d2916697b4ba8a4d20871da60d4f, type: 3}
+    - {fileID: 21300000, guid: eabbfc0c88d4441faa363a6fb4576d1c, type: 3}
+    - {fileID: 21300000, guid: a96019931d4414beba47868d86abe133, type: 3}
+    - {fileID: 21300000, guid: 01fb73bf6b70d4a418c42c3a622cac59, type: 3}
+    - {fileID: 21300000, guid: 3b4e18897ce37408da93e2b2b784f730, type: 3}
+    - {fileID: 21300000, guid: 789daf59ae2a04a998499c49e940e31b, type: 3}
+    - {fileID: 21300000, guid: 742f52afe0a104f478d877db51a3321a, type: 3}
+    - {fileID: 21300000, guid: d57994a69e680444b95c92e917a9c843, type: 3}
+    - {fileID: 21300000, guid: ef337475efc8f47e0a137be142ee61c3, type: 3}
+    - {fileID: 21300000, guid: a07f1de97da8b48b6bd4d976ad1b1fad, type: 3}
+    - {fileID: 21300000, guid: bdd674017bb6b4807aa77daf5310b898, type: 3}
+    - {fileID: 21300000, guid: 0972555577dae4776a602b0ce67c77f4, type: 3}
+    - {fileID: 21300000, guid: 89bfafeec14b047a4ac5510b8751485d, type: 3}
+    - {fileID: 21300000, guid: f337ec50763134ed1bbb82848ae3b024, type: 3}
+    - {fileID: 21300000, guid: 0036322b5b88b4794b6e86458a3c81ce, type: 3}
+    - {fileID: 21300000, guid: 77f2fa5c779c34ab9ad50e39ebe0bacf, type: 3}
+    - {fileID: 21300000, guid: a5a4c7809bc8a4bad8dca1aebba59b46, type: 3}
+    - {fileID: 21300000, guid: 43d850e9432604fbe9fc16c8c0fa806a, type: 3}
+    - {fileID: 21300000, guid: 0d64f6174c0ee48ac82b9113016322ad, type: 3}
+    - {fileID: 21300000, guid: e0c60779c9ad14104a26ff569c139f15, type: 3}
+    - {fileID: 21300000, guid: 93c93e80f179c4cae911a48ab2fc913b, type: 3}
+    - {fileID: 21300000, guid: fb4ddd419e9fb4bcd8d3c4ded642e4f4, type: 3}
+    - {fileID: 21300000, guid: 12cfc2b0181f64634bb2c971f1562978, type: 3}
+    - {fileID: 21300000, guid: 9a7976714d40049be9d58d49c442c7e9, type: 3}
