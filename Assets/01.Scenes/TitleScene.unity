@@ -1788,7 +1788,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1453720479}
         m_TargetAssemblyTypeName: LoginHandler, Assembly-CSharp
-        m_MethodName: GoogleLogin
+        m_MethodName: GPGSLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

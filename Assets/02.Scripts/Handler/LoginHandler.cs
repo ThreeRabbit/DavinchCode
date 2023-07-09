@@ -5,7 +5,7 @@ using ThreeRabbitPackage.DesignPattern;
 
 public class LoginHandler : TRSingleton<LoginHandler>
 {
-    public bool GPGSLogin()
+    public void GPGSLogin()
     {
         // 이미 로그인 된 경우
         if (Social.localUser.authenticated == true)
@@ -27,7 +27,5 @@ public class LoginHandler : TRSingleton<LoginHandler>
                 }
             });
         }
-
-        return Social.localUser.authenticated;
     }
 }
