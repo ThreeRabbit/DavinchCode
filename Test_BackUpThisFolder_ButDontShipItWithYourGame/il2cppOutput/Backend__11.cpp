@@ -2530,8 +2530,6 @@ struct ListChangedEventArgs_tAAB4841B3E3BD67D39FBE075E920B653B5F35442  : public 
 	int32_t ___U3CNewIndexU3Ek__BackingField_2;
 	// System.Int32 System.ComponentModel.ListChangedEventArgs::<OldIndex>k__BackingField
 	int32_t ___U3COldIndexU3Ek__BackingField_3;
-	// System.ComponentModel.PropertyDescriptor System.ComponentModel.ListChangedEventArgs::<PropertyDescriptor>k__BackingField
-	PropertyDescriptor_t03F8CBE01C4EDA631BF9BE7D9EB32C8F30F13381* ___U3CPropertyDescriptorU3Ek__BackingField_4;
 };
 
 // oksDuFIbspCdm9QQmdiA.MCOuyCIb1l1L0qFaD25v
@@ -33329,7 +33327,7 @@ IL_000e:
 		RuntimeObject* L_6 = __this->___DpTIbLC2A0a_4;
 		NullCheck(L_5);
 		bool L_7;
-		L_7 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(121 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_5, L_6);
+		L_7 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(120 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_5, L_6);
 		if (!L_7)
 		{
 			goto IL_005a;
@@ -33365,7 +33363,7 @@ IL_003e:
 		RuntimeObject* L_15 = V_2;
 		NullCheck(L_14);
 		bool L_16;
-		L_16 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(121 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_14, L_15);
+		L_16 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(120 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_14, L_15);
 		if (!L_16)
 		{
 			goto IL_0050;
@@ -33472,7 +33470,7 @@ IL_000e:
 		RuntimeObject* L_6 = __this->___DpTIbLC2A0a_4;
 		NullCheck(L_5);
 		bool L_7;
-		L_7 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(121 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_5, L_6);
+		L_7 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(120 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_5, L_6);
 		if (!L_7)
 		{
 			goto IL_007c;
@@ -33510,7 +33508,7 @@ IL_0041:
 		RuntimeObject* L_14 = V_3;
 		NullCheck(L_13);
 		bool L_15;
-		L_15 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(121 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_13, L_14);
+		L_15 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(120 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_13, L_14);
 		if (L_15)
 		{
 			goto IL_0059;

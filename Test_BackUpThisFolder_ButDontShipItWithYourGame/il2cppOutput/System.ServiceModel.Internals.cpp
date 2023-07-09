@@ -1325,8 +1325,6 @@ struct XmlNode_t3180B9B3D5C36CD58F5327D9F13458E3B3F030AF  : public RuntimeObject
 // System.Xml.XmlWriter
 struct XmlWriter_tCBC8D0C4891828A0A384C68D0414337F20E1A17F  : public RuntimeObject
 {
-	// System.Char[] System.Xml.XmlWriter::writeNodeBuffer
-	CharU5BU5D_t799905CF001DD5F13F7DBB310181FC4D8B7D0AAB* ___writeNodeBuffer_0;
 };
 
 // System.Runtime.Diagnostics.EtwDiagnosticTrace/StringBuilderPool
@@ -2334,53 +2332,53 @@ struct WindowsIdentity_t18EC60B678C8A1AA9A67A89BC3BCFA1CC1E2C459  : public Claim
 struct XmlTextWriter_t9CB64E379F8FE646DA31698A03CE6AF8A594A73B  : public XmlWriter_tCBC8D0C4891828A0A384C68D0414337F20E1A17F
 {
 	// System.IO.TextWriter System.Xml.XmlTextWriter::textWriter
-	TextWriter_tA9E5461506CF806E17B6BBBF2119359DEDA3F0F3* ___textWriter_1;
+	TextWriter_tA9E5461506CF806E17B6BBBF2119359DEDA3F0F3* ___textWriter_0;
 	// System.Xml.XmlTextEncoder System.Xml.XmlTextWriter::xmlEncoder
-	XmlTextEncoder_tACD13BCC8237E0710F82A7703FAF7D09FCDF0C40* ___xmlEncoder_2;
+	XmlTextEncoder_tACD13BCC8237E0710F82A7703FAF7D09FCDF0C40* ___xmlEncoder_1;
 	// System.Text.Encoding System.Xml.XmlTextWriter::encoding
-	Encoding_t65CDEF28CF20A7B8C92E85A4E808920C2465F095* ___encoding_3;
+	Encoding_t65CDEF28CF20A7B8C92E85A4E808920C2465F095* ___encoding_2;
 	// System.Xml.Formatting System.Xml.XmlTextWriter::formatting
-	int32_t ___formatting_4;
+	int32_t ___formatting_3;
 	// System.Boolean System.Xml.XmlTextWriter::indented
-	bool ___indented_5;
+	bool ___indented_4;
 	// System.Int32 System.Xml.XmlTextWriter::indentation
-	int32_t ___indentation_6;
+	int32_t ___indentation_5;
 	// System.Char System.Xml.XmlTextWriter::indentChar
-	Il2CppChar ___indentChar_7;
+	Il2CppChar ___indentChar_6;
 	// System.Xml.XmlTextWriter/TagInfo[] System.Xml.XmlTextWriter::stack
-	TagInfoU5BU5D_tC6FBAFF4593190EF8F7EEBAB8913C4E17D645776* ___stack_8;
+	TagInfoU5BU5D_tC6FBAFF4593190EF8F7EEBAB8913C4E17D645776* ___stack_7;
 	// System.Int32 System.Xml.XmlTextWriter::top
-	int32_t ___top_9;
+	int32_t ___top_8;
 	// System.Xml.XmlTextWriter/State[] System.Xml.XmlTextWriter::stateTable
-	StateU5BU5D_t41A58B7031FABDC61B34059A1FB722121203D858* ___stateTable_10;
+	StateU5BU5D_t41A58B7031FABDC61B34059A1FB722121203D858* ___stateTable_9;
 	// System.Xml.XmlTextWriter/State System.Xml.XmlTextWriter::currentState
-	int32_t ___currentState_11;
+	int32_t ___currentState_10;
 	// System.Xml.XmlTextWriter/Token System.Xml.XmlTextWriter::lastToken
-	int32_t ___lastToken_12;
+	int32_t ___lastToken_11;
 	// System.Xml.XmlTextWriterBase64Encoder System.Xml.XmlTextWriter::base64Encoder
-	XmlTextWriterBase64Encoder_tC7209F119916DF622459E830377C23D7BFA2B30D* ___base64Encoder_13;
+	XmlTextWriterBase64Encoder_tC7209F119916DF622459E830377C23D7BFA2B30D* ___base64Encoder_12;
 	// System.Char System.Xml.XmlTextWriter::quoteChar
-	Il2CppChar ___quoteChar_14;
+	Il2CppChar ___quoteChar_13;
 	// System.Char System.Xml.XmlTextWriter::curQuoteChar
-	Il2CppChar ___curQuoteChar_15;
+	Il2CppChar ___curQuoteChar_14;
 	// System.Boolean System.Xml.XmlTextWriter::namespaces
-	bool ___namespaces_16;
+	bool ___namespaces_15;
 	// System.Xml.XmlTextWriter/SpecialAttr System.Xml.XmlTextWriter::specialAttr
-	int32_t ___specialAttr_17;
+	int32_t ___specialAttr_16;
 	// System.String System.Xml.XmlTextWriter::prefixForXmlNs
-	String_t* ___prefixForXmlNs_18;
+	String_t* ___prefixForXmlNs_17;
 	// System.Boolean System.Xml.XmlTextWriter::flush
-	bool ___flush_19;
+	bool ___flush_18;
 	// System.Xml.XmlTextWriter/Namespace[] System.Xml.XmlTextWriter::nsStack
-	NamespaceU5BU5D_tF0F2AD10B1537EBB0F35B1611FD7D89D48FA9E93* ___nsStack_20;
+	NamespaceU5BU5D_tF0F2AD10B1537EBB0F35B1611FD7D89D48FA9E93* ___nsStack_19;
 	// System.Int32 System.Xml.XmlTextWriter::nsTop
-	int32_t ___nsTop_21;
+	int32_t ___nsTop_20;
 	// System.Collections.Generic.Dictionary`2<System.String,System.Int32> System.Xml.XmlTextWriter::nsHashtable
-	Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588* ___nsHashtable_22;
+	Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588* ___nsHashtable_21;
 	// System.Boolean System.Xml.XmlTextWriter::useNsHashtable
-	bool ___useNsHashtable_23;
+	bool ___useNsHashtable_22;
 	// System.Xml.XmlCharType System.Xml.XmlTextWriter::xmlCharType
-	XmlCharType_t7C471894C8862126737E800F5A14AACBD14FCBC3 ___xmlCharType_24;
+	XmlCharType_t7C471894C8862126737E800F5A14AACBD14FCBC3 ___xmlCharType_23;
 };
 
 // System.AggregateException
@@ -3188,13 +3186,13 @@ struct WindowsIdentity_t18EC60B678C8A1AA9A67A89BC3BCFA1CC1E2C459_StaticFields
 struct XmlTextWriter_t9CB64E379F8FE646DA31698A03CE6AF8A594A73B_StaticFields
 {
 	// System.String[] System.Xml.XmlTextWriter::stateName
-	StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* ___stateName_25;
+	StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* ___stateName_24;
 	// System.String[] System.Xml.XmlTextWriter::tokenName
-	StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* ___tokenName_26;
+	StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* ___tokenName_25;
 	// System.Xml.XmlTextWriter/State[] System.Xml.XmlTextWriter::stateTableDefault
-	StateU5BU5D_t41A58B7031FABDC61B34059A1FB722121203D858* ___stateTableDefault_27;
+	StateU5BU5D_t41A58B7031FABDC61B34059A1FB722121203D858* ___stateTableDefault_26;
 	// System.Xml.XmlTextWriter/State[] System.Xml.XmlTextWriter::stateTableDocument
-	StateU5BU5D_t41A58B7031FABDC61B34059A1FB722121203D858* ___stateTableDocument_28;
+	StateU5BU5D_t41A58B7031FABDC61B34059A1FB722121203D858* ___stateTableDocument_27;
 };
 
 // System.Xml.XmlTextWriter
@@ -10983,7 +10981,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EtwDiagnosticTrace_WriteTraceSource_m39C
 			XmlDocument_t4DE82998E642C5C21A4A620A5278237C70D3E42B* L_8 = L_7;
 			String_t* L_9 = V_3;
 			NullCheck(L_8);
-			VirtualActionInvoker1< String_t* >::Invoke(79 /* System.Void System.Xml.XmlDocument::LoadXml(System.String) */, L_8, L_9);
+			VirtualActionInvoker1< String_t* >::Invoke(72 /* System.Void System.Xml.XmlDocument::LoadXml(System.String) */, L_8, L_9);
 			NullCheck(L_8);
 			XPathNavigator_tC010C20907D6C6F1589A1BF1B5BE4C313C289E13* L_10;
 			L_10 = VirtualFuncInvoker0< XPathNavigator_tC010C20907D6C6F1589A1BF1B5BE4C313C289E13* >::Invoke(6 /* System.Xml.XPath.XPathNavigator System.Xml.XmlNode::CreateNavigator() */, L_8);

@@ -18184,7 +18184,7 @@ IL_009d_2:
 							StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_29 = V_4;
 							NullCheck(L_29);
 							String_t* L_30;
-							L_30 = VirtualFuncInvoker0< String_t* >::Invoke(13 /* System.String System.IO.TextReader::ReadToEnd() */, L_29);
+							L_30 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_29);
 							V_0 = L_30;
 							goto IL_00b2;
 						}// end try (depth: 3)
@@ -29155,7 +29155,7 @@ IL_0008:
 		Il2CppCodeGenWriteBarrier((void**)(&((sgJuTFiYDuaWVYw9wCF_t16529A1B44E47FD8278235D6595412970E95C70B_StaticFields*)il2cpp_codegen_static_fields_for(sgJuTFiYDuaWVYw9wCF_t16529A1B44E47FD8278235D6595412970E95C70B_il2cpp_TypeInfo_var))->___IE0iWEgZHW_2), (void*)L_2);
 		StreamWriter_t6E7DF7D524AA3C018A65F62EE80779873ED4D1E4* L_3 = ((sgJuTFiYDuaWVYw9wCF_t16529A1B44E47FD8278235D6595412970E95C70B_StaticFields*)il2cpp_codegen_static_fields_for(sgJuTFiYDuaWVYw9wCF_t16529A1B44E47FD8278235D6595412970E95C70B_il2cpp_TypeInfo_var))->___IE0iWEgZHW_2;
 		NullCheck(L_3);
-		VirtualActionInvoker1< bool >::Invoke(23 /* System.Void System.IO.StreamWriter::set_AutoFlush(System.Boolean) */, L_3, (bool)1);
+		VirtualActionInvoker1< bool >::Invoke(19 /* System.Void System.IO.StreamWriter::set_AutoFlush(System.Boolean) */, L_3, (bool)1);
 	}
 
 IL_002a:

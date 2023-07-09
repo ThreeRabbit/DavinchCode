@@ -1936,7 +1936,7 @@ IL_0184:
 		Type_t* L_78 = V_0;
 		NullCheck(L_78);
 		bool L_79;
-		L_79 = VirtualFuncInvoker0< bool >::Invoke(69 /* System.Boolean System.Type::get_IsEnum() */, L_78);
+		L_79 = VirtualFuncInvoker0< bool >::Invoke(68 /* System.Boolean System.Type::get_IsEnum() */, L_78);
 		if (!L_79)
 		{
 			goto IL_018f;
@@ -3309,7 +3309,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JpfVwhIhs9x7QvBuMLW2_tE048CD17FBDA6D5992D09B9
 		L_2 = Object_GetType_mE10A8FC1E57F3DF29972CCBC026C2DC3942263B3(L_1, NULL);
 		NullCheck(L_2);
 		bool L_3;
-		L_3 = VirtualFuncInvoker0< bool >::Invoke(69 /* System.Boolean System.Type::get_IsEnum() */, L_2);
+		L_3 = VirtualFuncInvoker0< bool >::Invoke(68 /* System.Boolean System.Type::get_IsEnum() */, L_2);
 		if (!L_3)
 		{
 			goto IL_003b;
@@ -3687,7 +3687,7 @@ IL_008a:
 		RuntimeObject* L_30 = V_0;
 		NullCheck(((Type_t*)CastclassClass((RuntimeObject*)L_30, Type_t_il2cpp_TypeInfo_var)));
 		RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B L_31;
-		L_31 = VirtualFuncInvoker0< RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B >::Invoke(113 /* System.RuntimeTypeHandle System.Type::get_TypeHandle() */, ((Type_t*)CastclassClass((RuntimeObject*)L_30, Type_t_il2cpp_TypeInfo_var)));
+		L_31 = VirtualFuncInvoker0< RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B >::Invoke(112 /* System.RuntimeTypeHandle System.Type::get_TypeHandle() */, ((Type_t*)CastclassClass((RuntimeObject*)L_30, Type_t_il2cpp_TypeInfo_var)));
 		RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B L_32 = L_31;
 		RuntimeObject* L_33 = Box(RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B_il2cpp_TypeInfo_var, &L_32);
 		V_0 = L_33;
@@ -3719,7 +3719,7 @@ IL_00b7:
 		RuntimeObject* L_39 = V_0;
 		NullCheck(((MethodBase_t*)CastclassClass((RuntimeObject*)L_39, MethodBase_t_il2cpp_TypeInfo_var)));
 		RuntimeMethodHandle_tB35B96E97214DCBE20B0B02B1E687884B34680B2 L_40;
-		L_40 = VirtualFuncInvoker0< RuntimeMethodHandle_tB35B96E97214DCBE20B0B02B1E687884B34680B2 >::Invoke(32 /* System.RuntimeMethodHandle System.Reflection.MethodBase::get_MethodHandle() */, ((MethodBase_t*)CastclassClass((RuntimeObject*)L_39, MethodBase_t_il2cpp_TypeInfo_var)));
+		L_40 = VirtualFuncInvoker0< RuntimeMethodHandle_tB35B96E97214DCBE20B0B02B1E687884B34680B2 >::Invoke(31 /* System.RuntimeMethodHandle System.Reflection.MethodBase::get_MethodHandle() */, ((MethodBase_t*)CastclassClass((RuntimeObject*)L_39, MethodBase_t_il2cpp_TypeInfo_var)));
 		RuntimeMethodHandle_tB35B96E97214DCBE20B0B02B1E687884B34680B2 L_41 = L_40;
 		RuntimeObject* L_42 = Box(RuntimeMethodHandle_tB35B96E97214DCBE20B0B02B1E687884B34680B2_il2cpp_TypeInfo_var, &L_41);
 		V_0 = L_42;
@@ -3845,7 +3845,7 @@ IL_016b:
 		RuntimeObject* L_73 = V_1;
 		NullCheck(((Type_t*)CastclassClass((RuntimeObject*)L_73, Type_t_il2cpp_TypeInfo_var)));
 		RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B L_74;
-		L_74 = VirtualFuncInvoker0< RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B >::Invoke(113 /* System.RuntimeTypeHandle System.Type::get_TypeHandle() */, ((Type_t*)CastclassClass((RuntimeObject*)L_73, Type_t_il2cpp_TypeInfo_var)));
+		L_74 = VirtualFuncInvoker0< RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B >::Invoke(112 /* System.RuntimeTypeHandle System.Type::get_TypeHandle() */, ((Type_t*)CastclassClass((RuntimeObject*)L_73, Type_t_il2cpp_TypeInfo_var)));
 		RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B L_75 = L_74;
 		RuntimeObject* L_76 = Box(RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B_il2cpp_TypeInfo_var, &L_75);
 		V_1 = L_76;
@@ -3877,7 +3877,7 @@ IL_0198:
 		RuntimeObject* L_82 = V_1;
 		NullCheck(((MethodBase_t*)CastclassClass((RuntimeObject*)L_82, MethodBase_t_il2cpp_TypeInfo_var)));
 		RuntimeMethodHandle_tB35B96E97214DCBE20B0B02B1E687884B34680B2 L_83;
-		L_83 = VirtualFuncInvoker0< RuntimeMethodHandle_tB35B96E97214DCBE20B0B02B1E687884B34680B2 >::Invoke(32 /* System.RuntimeMethodHandle System.Reflection.MethodBase::get_MethodHandle() */, ((MethodBase_t*)CastclassClass((RuntimeObject*)L_82, MethodBase_t_il2cpp_TypeInfo_var)));
+		L_83 = VirtualFuncInvoker0< RuntimeMethodHandle_tB35B96E97214DCBE20B0B02B1E687884B34680B2 >::Invoke(31 /* System.RuntimeMethodHandle System.Reflection.MethodBase::get_MethodHandle() */, ((MethodBase_t*)CastclassClass((RuntimeObject*)L_82, MethodBase_t_il2cpp_TypeInfo_var)));
 		RuntimeMethodHandle_tB35B96E97214DCBE20B0B02B1E687884B34680B2 L_84 = L_83;
 		RuntimeObject* L_85 = Box(RuntimeMethodHandle_tB35B96E97214DCBE20B0B02B1E687884B34680B2_il2cpp_TypeInfo_var, &L_84);
 		V_1 = L_85;

@@ -23738,7 +23738,7 @@ IL_00f1:
 		StringReader_t1A336148FF22A9584E759A9D720CC96C23E35DD8* L_62 = V_2;
 		NullCheck(L_62);
 		String_t* L_63;
-		L_63 = VirtualFuncInvoker0< String_t* >::Invoke(14 /* System.String System.IO.TextReader::ReadLine() */, L_62);
+		L_63 = VirtualFuncInvoker0< String_t* >::Invoke(13 /* System.String System.IO.TextReader::ReadLine() */, L_62);
 		String_t* L_64 = L_63;
 		V_3 = L_64;
 		if (!L_64)

@@ -9788,7 +9788,7 @@ IL_0116:
 		Type_t* L_68 = V_1;
 		NullCheck(L_68);
 		bool L_69;
-		L_69 = VirtualFuncInvoker0< bool >::Invoke(69 /* System.Boolean System.Type::get_IsEnum() */, L_68);
+		L_69 = VirtualFuncInvoker0< bool >::Invoke(68 /* System.Boolean System.Type::get_IsEnum() */, L_68);
 		if (!L_69)
 		{
 			goto IL_012b;

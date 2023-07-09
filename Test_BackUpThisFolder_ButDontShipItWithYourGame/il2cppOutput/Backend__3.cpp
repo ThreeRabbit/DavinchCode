@@ -9422,7 +9422,7 @@ IL_028e_5:
 											StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_133 = V_13;
 											NullCheck(L_133);
 											String_t* L_134;
-											L_134 = VirtualFuncInvoker0< String_t* >::Invoke(13 /* System.String System.IO.TextReader::ReadToEnd() */, L_133);
+											L_134 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_133);
 											__this->___U3CjsonU3E5__4_8 = L_134;
 											Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CjsonU3E5__4_8), (void*)L_134);
 											StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_135 = V_13;
@@ -10504,7 +10504,7 @@ IL_0158_4:
 									StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_48 = V_8;
 									NullCheck(L_48);
 									String_t* L_49;
-									L_49 = VirtualFuncInvoker0< String_t* >::Invoke(13 /* System.String System.IO.TextReader::ReadToEnd() */, L_48);
+									L_49 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_48);
 									__this->___U3CjsonU3E5__2_3 = L_49;
 									Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CjsonU3E5__2_3), (void*)L_49);
 									StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_50 = V_8;

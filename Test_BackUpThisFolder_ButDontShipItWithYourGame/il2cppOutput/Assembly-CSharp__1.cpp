@@ -24501,7 +24501,7 @@ IL_0076:
 		StringReader_t1A336148FF22A9584E759A9D720CC96C23E35DD8* L_20 = V_0;
 		NullCheck(L_20);
 		String_t* L_21;
-		L_21 = VirtualFuncInvoker0< String_t* >::Invoke(14 /* System.String System.IO.TextReader::ReadLine() */, L_20);
+		L_21 = VirtualFuncInvoker0< String_t* >::Invoke(13 /* System.String System.IO.TextReader::ReadLine() */, L_20);
 		String_t* L_22 = L_21;
 		V_1 = L_22;
 		if (L_22)
@@ -24795,7 +24795,7 @@ IL_0020:
 			StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_6 = V_1;
 			NullCheck(L_6);
 			String_t* L_7;
-			L_7 = VirtualFuncInvoker0< String_t* >::Invoke(13 /* System.String System.IO.TextReader::ReadToEnd() */, L_6);
+			L_7 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_6);
 			V_0 = L_7;
 			goto IL_0021;
 		}// end try (depth: 1)

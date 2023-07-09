@@ -91,37 +91,33 @@ extern void TRSpriteResources__ctor_m73DAEF4AD6005B19741137C530E7F6657CC4D0BD (v
 extern void TRAudioClipResources__ctor_m5929E3E1146E70082123F7909826D2CA3FB0E9FC (void);
 // 0x00000031 System.Void ThreeRabbitPackage.TRColorResources::.ctor()
 extern void TRColorResources__ctor_m6627B2F06E9B33524AA928D989E65D3257EB3AE7 (void);
-// 0x00000032 System.Void ThreeRabbitPackage.TRSaveLoad::Save(T,System.String)
-// 0x00000033 T ThreeRabbitPackage.TRSaveLoad::Load(System.String)
-// 0x00000034 System.Void ThreeRabbitPackage.TRSaveLoad::.cctor()
-extern void TRSaveLoad__cctor_mD1BC2444CD7891C3F34DC0F88630B649F60FC7F9 (void);
-// 0x00000035 System.Void ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter::.ctor(UnityEngine.Networking.UnityWebRequestAsyncOperation)
+// 0x00000032 System.Void ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter::.ctor(UnityEngine.Networking.UnityWebRequestAsyncOperation)
 extern void TRUnityWebRequestAwaiter__ctor_mE40C9361F6456AB57E81CAFCDDCFAC7D78845D6F (void);
-// 0x00000036 System.Boolean ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter::get_IsCompleted()
+// 0x00000033 System.Boolean ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter::get_IsCompleted()
 extern void TRUnityWebRequestAwaiter_get_IsCompleted_m74003E122A9C626CFC7DAA38045E8159849312D8 (void);
-// 0x00000037 System.Void ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter::GetResult()
+// 0x00000034 System.Void ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter::GetResult()
 extern void TRUnityWebRequestAwaiter_GetResult_m19250C333FD5DF0E3B161DF25F47177DB998866D (void);
-// 0x00000038 System.Void ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter::OnCompleted(System.Action)
+// 0x00000035 System.Void ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter::OnCompleted(System.Action)
 extern void TRUnityWebRequestAwaiter_OnCompleted_m7C8BBBD5589F232F3D1BD9B8C15245270F015E16 (void);
-// 0x00000039 System.Void ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter::OnRequestCompleted(UnityEngine.AsyncOperation)
+// 0x00000036 System.Void ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter::OnRequestCompleted(UnityEngine.AsyncOperation)
 extern void TRUnityWebRequestAwaiter_OnRequestCompleted_m215D2CAAFED590EDE507C29FB41A8E5D762D8312 (void);
-// 0x0000003A ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter ThreeRabbitPackage.Util.ExtensionMethods::GetAwaiter(UnityEngine.Networking.UnityWebRequestAsyncOperation)
+// 0x00000037 ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter ThreeRabbitPackage.Util.ExtensionMethods::GetAwaiter(UnityEngine.Networking.UnityWebRequestAsyncOperation)
 extern void ExtensionMethods_GetAwaiter_mEB05F60AEBFEB894CAD8E8FEEA554179BD2F9055 (void);
-// 0x0000003B System.Void ThreeRabbitPackage.Settings.ThreeRabbitPackageSettings::.ctor()
+// 0x00000038 System.Void ThreeRabbitPackage.Settings.ThreeRabbitPackageSettings::.ctor()
 extern void ThreeRabbitPackageSettings__ctor_mEDC5BABB45A1A5DEE7CB953A88FB9DA2A07A5298 (void);
-// 0x0000003C T ThreeRabbitPackage.DesignPattern.TRSingleton`1::get_Instance()
-// 0x0000003D System.Void ThreeRabbitPackage.DesignPattern.TRSingleton`1::Awake()
-// 0x0000003E System.Void ThreeRabbitPackage.DesignPattern.TRSingleton`1::.ctor()
-// 0x0000003F ThreeRabbitPackage.DesignPattern.TRState`1<T> ThreeRabbitPackage.DesignPattern.TRState`1::InputHandle(T)
-// 0x00000040 System.Void ThreeRabbitPackage.DesignPattern.TRState`1::.ctor()
-// 0x00000041 System.Void ThreeRabbitPackage.DesignPattern.TRState`1::Enter(T)
-// 0x00000042 System.Void ThreeRabbitPackage.DesignPattern.TRState`1::Update(T)
-// 0x00000043 System.Void ThreeRabbitPackage.DesignPattern.TRState`1::Exit(T)
-// 0x00000044 System.Void ThreeRabbitBase.TRScriptableObject::.ctor()
+// 0x00000039 T ThreeRabbitPackage.DesignPattern.TRSingleton`1::get_Instance()
+// 0x0000003A System.Void ThreeRabbitPackage.DesignPattern.TRSingleton`1::Awake()
+// 0x0000003B System.Void ThreeRabbitPackage.DesignPattern.TRSingleton`1::.ctor()
+// 0x0000003C ThreeRabbitPackage.DesignPattern.TRState`1<T> ThreeRabbitPackage.DesignPattern.TRState`1::InputHandle(T)
+// 0x0000003D System.Void ThreeRabbitPackage.DesignPattern.TRState`1::.ctor()
+// 0x0000003E System.Void ThreeRabbitPackage.DesignPattern.TRState`1::Enter(T)
+// 0x0000003F System.Void ThreeRabbitPackage.DesignPattern.TRState`1::Update(T)
+// 0x00000040 System.Void ThreeRabbitPackage.DesignPattern.TRState`1::Exit(T)
+// 0x00000041 System.Void ThreeRabbitBase.TRScriptableObject::.ctor()
 extern void TRScriptableObject__ctor_m85ACEA0BAA0272B02499F0A761C2E5B7EF07C12E (void);
-// 0x00000045 System.Void ThreeRabbitBase.TRMonoBehaviour::.ctor()
+// 0x00000042 System.Void ThreeRabbitBase.TRMonoBehaviour::.ctor()
 extern void TRMonoBehaviour__ctor_m36A0BE7A8E474A45B859E252372E73F36C5396E6 (void);
-static Il2CppMethodPointer s_methodPointers[69] = 
+static Il2CppMethodPointer s_methodPointers[66] = 
 {
 	StringDictionaryToString__ctor_m02DE423349E05C568140550506025D2564311CDF,
 	GameObjectDictionaryToString__ctor_m2961B4EC19DED0A1ED22C93064BE80418E046DC8,
@@ -172,9 +168,6 @@ static Il2CppMethodPointer s_methodPointers[69] =
 	TRSpriteResources__ctor_m73DAEF4AD6005B19741137C530E7F6657CC4D0BD,
 	TRAudioClipResources__ctor_m5929E3E1146E70082123F7909826D2CA3FB0E9FC,
 	TRColorResources__ctor_m6627B2F06E9B33524AA928D989E65D3257EB3AE7,
-	NULL,
-	NULL,
-	TRSaveLoad__cctor_mD1BC2444CD7891C3F34DC0F88630B649F60FC7F9,
 	TRUnityWebRequestAwaiter__ctor_mE40C9361F6456AB57E81CAFCDDCFAC7D78845D6F,
 	TRUnityWebRequestAwaiter_get_IsCompleted_m74003E122A9C626CFC7DAA38045E8159849312D8,
 	TRUnityWebRequestAwaiter_GetResult_m19250C333FD5DF0E3B161DF25F47177DB998866D,
@@ -193,10 +186,10 @@ static Il2CppMethodPointer s_methodPointers[69] =
 	TRScriptableObject__ctor_m85ACEA0BAA0272B02499F0A761C2E5B7EF07C12E,
 	TRMonoBehaviour__ctor_m36A0BE7A8E474A45B859E252372E73F36C5396E6,
 };
-static const int32_t s_InvokerIndices[69] = 
+static const int32_t s_InvokerIndices[66] = 
 {
-	5648,
-	5648,
+	5123,
+	5123,
 	0,
 	0,
 	0,
@@ -216,44 +209,41 @@ static const int32_t s_InvokerIndices[69] =
 	0,
 	0,
 	0,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	2636,
-	4091,
-	4603,
-	4603,
-	4091,
-	2640,
-	4091,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	5648,
-	0,
-	0,
-	8463,
-	4603,
-	5454,
-	5648,
-	4603,
-	4603,
-	8093,
-	5648,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	2388,
+	3707,
+	4179,
+	4179,
+	3707,
+	2392,
+	3707,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	5123,
+	4179,
+	4946,
+	5123,
+	4179,
+	4179,
+	7348,
+	5123,
 	0,
 	0,
 	0,
@@ -262,18 +252,16 @@ static const int32_t s_InvokerIndices[69] =
 	0,
 	0,
 	0,
-	5648,
-	5648,
+	5123,
+	5123,
 };
-static const Il2CppTokenRangePair s_rgctxIndices[7] = 
+static const Il2CppTokenRangePair s_rgctxIndices[5] = 
 {
 	{ 0x02000004, { 0, 25 } },
 	{ 0x02000005, { 25, 5 } },
 	{ 0x02000008, { 30, 7 } },
-	{ 0x02000025, { 39, 5 } },
-	{ 0x02000026, { 44, 4 } },
-	{ 0x06000032, { 37, 1 } },
-	{ 0x06000033, { 38, 1 } },
+	{ 0x02000024, { 37, 5 } },
+	{ 0x02000025, { 42, 4 } },
 };
 extern const uint32_t g_rgctx_Dictionary_2__ctor_m26AD89C577B9F8E56962262C122465C2E7FAF569;
 extern const uint32_t g_rgctx_Dictionary_2_t321EA132E26920A046FF327E7D6A1377A2A72FA0;
@@ -312,8 +300,6 @@ extern const uint32_t g_rgctx_SerializableDictionaryBase_3__ctor_m985C805EDC25C0
 extern const uint32_t g_rgctx_SerializableDictionaryBase_3__ctor_m76ADC955B4384E27EF371577312743878E9796D2;
 extern const uint32_t g_rgctx_TValueStorage_t0C3AD72C91DA4F1D66C426381063C046C58A091D;
 extern const uint32_t g_rgctx_Activator_CreateInstance_TisTValueStorage_t0C3AD72C91DA4F1D66C426381063C046C58A091D_mC6112AC58678497ABEB0AFD6B898750487AB8E23;
-extern const uint32_t g_rgctx_T_t1A83F791DF9C31D997124731F3A6F2C1F25306D1;
-extern const uint32_t g_rgctx_JsonConvert_DeserializeObject_TisT_t36FF1DE8DFDF020E139A02EA07F16F41355E707D_mF302B470BE9F1D1AAD1B224B39DDC3E761804793;
 extern const uint32_t g_rgctx_TRSingleton_1_t98DAEFEE105C1852FB61118D075DD16A624F9481;
 extern const uint32_t g_rgctx_T_tA3749650CEA4AEFC5A5347C978CD226BAB5B2A70;
 extern const uint32_t g_rgctx_T_tA3749650CEA4AEFC5A5347C978CD226BAB5B2A70;
@@ -323,7 +309,7 @@ extern const uint32_t g_rgctx_TRState_1_Enter_mC9923E4E51B20075BA218DFB48B03315D
 extern const uint32_t g_rgctx_Action_1_tC338E428732B19617025E32B782CFF3307AE2731;
 extern const uint32_t g_rgctx_Action_1__ctor_m3D447D1EB383F843EFB3696595CB8B992BB34158;
 extern const uint32_t g_rgctx_TRState_1_Update_m8F532397500C2D7EC1E923DC1D5D4C377F7399E3;
-static const Il2CppRGCTXDefinition s_rgctxValues[48] = 
+static const Il2CppRGCTXDefinition s_rgctxValues[46] = 
 {
 	{ (Il2CppRGCTXDataType)3, (const void *)&g_rgctx_Dictionary_2__ctor_m26AD89C577B9F8E56962262C122465C2E7FAF569 },
 	{ (Il2CppRGCTXDataType)2, (const void *)&g_rgctx_Dictionary_2_t321EA132E26920A046FF327E7D6A1377A2A72FA0 },
@@ -362,8 +348,6 @@ static const Il2CppRGCTXDefinition s_rgctxValues[48] =
 	{ (Il2CppRGCTXDataType)3, (const void *)&g_rgctx_SerializableDictionaryBase_3__ctor_m76ADC955B4384E27EF371577312743878E9796D2 },
 	{ (Il2CppRGCTXDataType)2, (const void *)&g_rgctx_TValueStorage_t0C3AD72C91DA4F1D66C426381063C046C58A091D },
 	{ (Il2CppRGCTXDataType)3, (const void *)&g_rgctx_Activator_CreateInstance_TisTValueStorage_t0C3AD72C91DA4F1D66C426381063C046C58A091D_mC6112AC58678497ABEB0AFD6B898750487AB8E23 },
-	{ (Il2CppRGCTXDataType)2, (const void *)&g_rgctx_T_t1A83F791DF9C31D997124731F3A6F2C1F25306D1 },
-	{ (Il2CppRGCTXDataType)3, (const void *)&g_rgctx_JsonConvert_DeserializeObject_TisT_t36FF1DE8DFDF020E139A02EA07F16F41355E707D_mF302B470BE9F1D1AAD1B224B39DDC3E761804793 },
 	{ (Il2CppRGCTXDataType)2, (const void *)&g_rgctx_TRSingleton_1_t98DAEFEE105C1852FB61118D075DD16A624F9481 },
 	{ (Il2CppRGCTXDataType)2, (const void *)&g_rgctx_T_tA3749650CEA4AEFC5A5347C978CD226BAB5B2A70 },
 	{ (Il2CppRGCTXDataType)1, (const void *)&g_rgctx_T_tA3749650CEA4AEFC5A5347C978CD226BAB5B2A70 },
@@ -378,16 +362,16 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_ThreeRabbitCore_CodeGenModule;
 const Il2CppCodeGenModule g_ThreeRabbitCore_CodeGenModule = 
 {
 	"ThreeRabbitCore.dll",
-	69,
+	66,
 	s_methodPointers,
 	0,
 	NULL,
 	s_InvokerIndices,
 	0,
 	NULL,
-	7,
+	5,
 	s_rgctxIndices,
-	48,
+	46,
 	s_rgctxValues,
 	NULL,
 	NULL, // module initializer,

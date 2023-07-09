@@ -178,6 +178,7 @@ UnityEngine.Application::get_productName
 UnityEngine.Application::get_streamingAssetsPath
 UnityEngine.Application::get_temporaryCachePath
 UnityEngine.Application::SetLogCallbackDefined
+UnityEngine.Application::get_internetReachability
 UnityEngine.Application::get_platform
 UnityEngine.Application::get_systemLanguage
 UnityEngine.AssetBundle::LoadFromMemory_Internal
@@ -456,6 +457,7 @@ UnityEngine.GUIUtility::set_imeCompositionMode
 UnityEngine.GUIUtility::set_mouseUsed
 UnityEngine.GUIUtility::set_systemCopyBuffer
 UnityEngine.Hash128::Hash128ToStringImpl_Injected
+UnityEngine.ImageConversion::LoadImage
 UnityEngine.Input::CheckDisabled
 UnityEngine.Input::GetButtonDown
 UnityEngine.Input::GetKeyDownInt
@@ -565,6 +567,9 @@ UnityEngine.Networking.DownloadHandler::Release
 UnityEngine.Networking.DownloadHandlerAssetBundle::CreateCached_Injected
 UnityEngine.Networking.DownloadHandlerAssetBundle::get_assetBundle
 UnityEngine.Networking.DownloadHandlerBuffer::Create
+UnityEngine.Networking.DownloadHandlerTexture::Create
+UnityEngine.Networking.DownloadHandlerTexture::ClearNativeTexture
+UnityEngine.Networking.DownloadHandlerTexture::InternalGetTextureNative
 UnityEngine.Networking.UnityWebRequest::IsExecuting
 UnityEngine.Networking.UnityWebRequest::get_isModifiable
 UnityEngine.Networking.UnityWebRequest::get_responseCode
@@ -652,7 +657,9 @@ UnityEngine.PlayerConnectionInternal::RegisterInternal
 UnityEngine.PlayerConnectionInternal::SendMessage
 UnityEngine.PlayerConnectionInternal::UnregisterInternal
 UnityEngine.PlayerPrefs::HasKey
+UnityEngine.PlayerPrefs::TrySetInt
 UnityEngine.PlayerPrefs::TrySetSetString
+UnityEngine.PlayerPrefs::GetInt
 UnityEngine.PlayerPrefs::GetString
 UnityEngine.PlayerPrefs::DeleteKey
 UnityEngine.PlayerPrefs::Save
@@ -828,6 +835,7 @@ UnityEngine.Texture2D::ApplyImpl
 UnityEngine.Texture2D::GetPixelBilinearImpl_Injected
 UnityEngine.Texture2D::SetAllPixels32
 UnityEngine.Texture2D::SetPixelImpl_Injected
+UnityEngine.Texture2D::get_blackTexture
 UnityEngine.Texture2D::get_whiteTexture
 UnityEngine.Texture2D::get_format
 UnityEngine.Texture2DArray::Internal_CreateImpl

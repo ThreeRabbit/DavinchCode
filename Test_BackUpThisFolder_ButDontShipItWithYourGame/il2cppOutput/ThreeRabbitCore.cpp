@@ -265,13 +265,11 @@ IL2CPP_EXTERN_C RuntimeClass* List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B_i
 IL2CPP_EXTERN_C RuntimeClass* Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Stack_1_tEDA6555F162AE2CC5394B19622F8A10CD078C7AF_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* TRGoogleSheetDataDictionary_tBEBB71A018997F326F1723A113EBBEDC7E41E035_il2cpp_TypeInfo_var;
-IL2CPP_EXTERN_C RuntimeClass* TRSaveLoad_t84B5A1BD8EBA5F6840E3AA6F4EFCA29E9211792D_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* TRUnityWebRequestAwaiter_t3EA1A5A5CA07E746840276261830A9279ECC9CFF_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C String_t* _stringLiteral2DA2D893C42E58DE0B6A20ED65AF04FBB86479A4;
 IL2CPP_EXTERN_C String_t* _stringLiteral304D60BACDC0A4B240AB547FA79F86286AACC4A1;
 IL2CPP_EXTERN_C String_t* _stringLiteral901CFE113E1E25A40EAC4C73AC2B5F705EC7DB0E;
 IL2CPP_EXTERN_C String_t* _stringLiteral90BEEF748EDD99D1820AE926E5251C7DABD97D3F;
-IL2CPP_EXTERN_C String_t* _stringLiteral9201891C2B5746F10A19FDB2FDEC2FEFF0AF4102;
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_Add_m262241C63CA5FD4C4C40338008DD2097E94E6222_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_Add_m58DE28D4B5A9CDFC201D45EB43114430B8DAE70F_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_ContainsKey_m293442CAE9D43A1C019CDFF74FD87C3D4ABA7AA4_RuntimeMethod_var;
@@ -297,7 +295,6 @@ IL2CPP_EXTERN_C const RuntimeMethod* List_1__ctor_m447372C1EF7141193B93090A77395
 IL2CPP_EXTERN_C const RuntimeMethod* List_1__ctor_mA783D25CAA687ED405C9320460F9DA6D6C8B61F2_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* List_1__ctor_mCE5B334E425F714D67133F49F68B07C1EF945459_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m58C654F1134533E29502629CA67645682B404811_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* Resources_Load_TisThreeRabbitPackageSettings_tBCCD81BF7C67E4F599A74BD28CC71DFB6CA5F37F_m95E0D1B2880CFEAB3C5A37E1EA9DFC17114DB7F2_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* SerializableDictionary_2__ctor_m2325B498C4868D93B00452827EC963FBDA1BF604_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* SerializableDictionary_2__ctor_m8DE5CEC0084BF3877DEF597F81DFBABA77935424_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* SerializableDictionary_2__ctor_m940A23F9F0FB38018D8C2A22E2FA8BE97B6FFEDE_RuntimeMethod_var;
@@ -711,11 +708,6 @@ struct String_t  : public RuntimeObject
 	int32_t ____stringLength_4;
 	// System.Char System.String::_firstChar
 	Il2CppChar ____firstChar_5;
-};
-
-// ThreeRabbitPackage.TRSaveLoad
-struct TRSaveLoad_t84B5A1BD8EBA5F6840E3AA6F4EFCA29E9211792D  : public RuntimeObject
-{
 };
 
 // ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter
@@ -1570,15 +1562,6 @@ struct String_t_StaticFields
 
 // System.String
 
-// ThreeRabbitPackage.TRSaveLoad
-struct TRSaveLoad_t84B5A1BD8EBA5F6840E3AA6F4EFCA29E9211792D_StaticFields
-{
-	// ThreeRabbitPackage.Settings.ThreeRabbitPackageSettings ThreeRabbitPackage.TRSaveLoad::trpSettings
-	ThreeRabbitPackageSettings_tBCCD81BF7C67E4F599A74BD28CC71DFB6CA5F37F* ___trpSettings_0;
-};
-
-// ThreeRabbitPackage.TRSaveLoad
-
 // ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter
 
 // ThreeRabbitPackage.Util.TRUnityWebRequestAwaiter
@@ -1977,8 +1960,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_mE921CC8F29FBBDE7CC3
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_m5B32FBC624618211EB461D59CFBB10E987FD1329_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, const RuntimeMethod* method) ;
 // System.Void ThreeRabbitPackage.DesignPattern.TRSingleton`1<System.Object>::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TRSingleton_1__ctor_mA3EA18E5ABBA3D0BAFE17D0AD974F57316DB5849_gshared (TRSingleton_1_t44A78EB5E34A2132410269CAE2EC66F9B875A370* __this, const RuntimeMethod* method) ;
-// T UnityEngine.Resources::Load<System.Object>(System.String)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Resources_Load_TisRuntimeObject_mD1AF6299B14F87ED1D1A6199A51480919F7C79D7_gshared (String_t* ___0_path, const RuntimeMethod* method) ;
 // System.Void System.Action`1<System.Object>::.ctor(System.Object,System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method) ;
 
@@ -2211,11 +2192,6 @@ inline void Dictionary_2__ctor_mC3BBDDAFE2FBCB7710787DE56899D4E6BCD9C0A2 (Dictio
 inline void TRSingleton_1__ctor_m4401FE9169362B9EFDACA67A176BC91BBC84A165 (TRSingleton_1_tBCF01A10AEA17C76CAA5CFE42EAD14D2E0B6159E* __this, const RuntimeMethod* method)
 {
 	((  void (*) (TRSingleton_1_tBCF01A10AEA17C76CAA5CFE42EAD14D2E0B6159E*, const RuntimeMethod*))TRSingleton_1__ctor_mA3EA18E5ABBA3D0BAFE17D0AD974F57316DB5849_gshared)(__this, method);
-}
-// T UnityEngine.Resources::Load<ThreeRabbitPackage.Settings.ThreeRabbitPackageSettings>(System.String)
-inline ThreeRabbitPackageSettings_tBCCD81BF7C67E4F599A74BD28CC71DFB6CA5F37F* Resources_Load_TisThreeRabbitPackageSettings_tBCCD81BF7C67E4F599A74BD28CC71DFB6CA5F37F_m95E0D1B2880CFEAB3C5A37E1EA9DFC17114DB7F2 (String_t* ___0_path, const RuntimeMethod* method)
-{
-	return ((  ThreeRabbitPackageSettings_tBCCD81BF7C67E4F599A74BD28CC71DFB6CA5F37F* (*) (String_t*, const RuntimeMethod*))Resources_Load_TisRuntimeObject_mD1AF6299B14F87ED1D1A6199A51480919F7C79D7_gshared)(___0_path, method);
 }
 // System.Void System.Object::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2 (RuntimeObject* __this, const RuntimeMethod* method) ;
@@ -3437,33 +3413,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TRColorResources__ctor_m6627B2F06E9B3352
 {
 	{
 		TRScriptableObject__ctor_m85ACEA0BAA0272B02499F0A761C2E5B7EF07C12E(__this, NULL);
-		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void ThreeRabbitPackage.TRSaveLoad::.cctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TRSaveLoad__cctor_mD1BC2444CD7891C3F34DC0F88630B649F60FC7F9 (const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Resources_Load_TisThreeRabbitPackageSettings_tBCCD81BF7C67E4F599A74BD28CC71DFB6CA5F37F_m95E0D1B2880CFEAB3C5A37E1EA9DFC17114DB7F2_RuntimeMethod_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&TRSaveLoad_t84B5A1BD8EBA5F6840E3AA6F4EFCA29E9211792D_il2cpp_TypeInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral9201891C2B5746F10A19FDB2FDEC2FEFF0AF4102);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		ThreeRabbitPackageSettings_tBCCD81BF7C67E4F599A74BD28CC71DFB6CA5F37F* L_0;
-		L_0 = Resources_Load_TisThreeRabbitPackageSettings_tBCCD81BF7C67E4F599A74BD28CC71DFB6CA5F37F_m95E0D1B2880CFEAB3C5A37E1EA9DFC17114DB7F2(_stringLiteral9201891C2B5746F10A19FDB2FDEC2FEFF0AF4102, Resources_Load_TisThreeRabbitPackageSettings_tBCCD81BF7C67E4F599A74BD28CC71DFB6CA5F37F_m95E0D1B2880CFEAB3C5A37E1EA9DFC17114DB7F2_RuntimeMethod_var);
-		((TRSaveLoad_t84B5A1BD8EBA5F6840E3AA6F4EFCA29E9211792D_StaticFields*)il2cpp_codegen_static_fields_for(TRSaveLoad_t84B5A1BD8EBA5F6840E3AA6F4EFCA29E9211792D_il2cpp_TypeInfo_var))->___trpSettings_0 = L_0;
-		Il2CppCodeGenWriteBarrier((void**)(&((TRSaveLoad_t84B5A1BD8EBA5F6840E3AA6F4EFCA29E9211792D_StaticFields*)il2cpp_codegen_static_fields_for(TRSaveLoad_t84B5A1BD8EBA5F6840E3AA6F4EFCA29E9211792D_il2cpp_TypeInfo_var))->___trpSettings_0), (void*)L_0);
 		return;
 	}
 }
