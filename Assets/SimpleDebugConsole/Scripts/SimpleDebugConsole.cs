@@ -24,7 +24,7 @@ namespace CoolishUI
         private bool displayWarning = true;
         private bool displayNormal = true;
 
-        private bool isVisible;
+        public bool isVisible;
         private float blockToggleConsoleTime = 0f;
 
         private class Log

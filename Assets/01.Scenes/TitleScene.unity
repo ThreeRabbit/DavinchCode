@@ -719,7 +719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bae879e35d24967af7bb1edf8bb5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleKey: 27
+  toggleKey: 0
+  isVisible: 1
 --- !u!4 &661864358
 Transform:
   m_ObjectHideFlags: 0
@@ -828,7 +829,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 830609902}
-  - component: {fileID: 830609901}
   m_Layer: 0
   m_Name: TitleSceneHandler
   m_TagString: Untagged
@@ -836,18 +836,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &830609901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830609900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdb71acb75a82d740b8dab7481614bae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &830609902
 Transform:
   m_ObjectHideFlags: 0
@@ -2451,18 +2439,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136724071}
   m_CullTransparentMesh: 0
---- !u!114 &6768187220770743635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6965106664942086588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce140678dcc4f37419d7efa747852077, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &6965106663334465064
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2717,7 +2693,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6768187220770743635}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: QuitGame
         m_Mode: 1
@@ -2763,7 +2739,6 @@ GameObject:
   - component: {fileID: 6965106664942086584}
   - component: {fileID: 6965106664942086585}
   - component: {fileID: 6965106664942086586}
-  - component: {fileID: 6768187220770743635}
   m_Layer: 5
   m_Name: Quit_btn
   m_TagString: Untagged
