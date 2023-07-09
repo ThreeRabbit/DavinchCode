@@ -563,11 +563,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title_txt: {fileID: 0}
-  googleSignUp_btn: {fileID: 0}
-  appleSignUp_btn: {fileID: 0}
-  facebookSignUp_btn: {fileID: 0}
-  guestSignUp_btn: {fileID: 0}
-  quit_btn: {fileID: 0}
+  googleSignUp_btn: {fileID: 1453720476}
+  appleSignUp_btn: {fileID: 637996315}
+  facebookSignUp_btn: {fileID: 1753436706}
+  guestSignUp_btn: {fileID: 1291555721}
+  quit_btn: {fileID: 6965106664942086586}
 --- !u!1 &637996313
 GameObject:
   m_ObjectHideFlags: 0
