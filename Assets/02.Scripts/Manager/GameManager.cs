@@ -13,11 +13,19 @@ public class GameManager : TRSingleton<GameManager>
             {
                 BackendManager.Instance.MatchServerHandler();
                 BackendManager.Instance.InGameServerHandler();
-                //LoginProcess();
             },
             fail: (message) =>
             {
-                Debug.Log(message);
+                TRLog.Red(message);
+            });
+        GPGSManager.Instance.Init(
+            success: () =>
+			{
+                TRLog.Green("GPGS Init: Scuccess");
+			},
+            fail: ()=>
+			{
+                TRLog.Red("GPGS Init: Fail");
             });
     }
 
@@ -28,22 +36,5 @@ public class GameManager : TRSingleton<GameManager>
             BackEnd.Backend.BMember.DeleteGuestInfo();
         }
 	}
-	public void LoginProcess()
-    {
-        BackendManager.Instance.TokenLogin(
-            success: () =>
-            {
-                SceneManager.LoadSceneAsync("LobbyScene");
-            },
-            fail: () =>
-            {
-                
-            });
-    }
-
-    public void MatchingProcess(BackEnd.Tcp.MatchType matchType)
-    {
-
-    }
 }
 
