@@ -11,7 +11,7 @@ namespace ThreeRabbitPackage
     public class PopupManager : TRSingleton<PopupManager>
     {
         public TRGameObjectResources trPopupResources;
-        public List<TRPopup> trPopupList = new List<TRPopup>();
+        [HideInInspector] public List<TRPopup> trPopupList = new List<TRPopup>();
         public GameObject trCommonPopup;
 
         private void Awake()
