@@ -5,8 +5,10 @@ using ThreeRabbitPackage.DesignPattern;
 
 public class LoginHandler : TRSingleton<LoginHandler>
 {
+	LoginProcedure loginProcedure;
 	public void GoogleLogin()
 	{
-		GPGSManager.Instance.GPGSLogin();
+		loginProcedure = new LoginProcedure();
+		loginProcedure.GoogleLogin();
 	}
 }

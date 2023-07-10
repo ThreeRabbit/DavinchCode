@@ -33,28 +33,23 @@ public class GPGSManager : TRSingleton<GPGSManager>
 		}
 	}
 
-	public void GPGSLogin()
+	public void GPGSLogin(UnityAction success = null, UnityAction fail = null)
 	{
 		// 이미 로그인 된 경우
 		if (Social.localUser.authenticated == true)
 		{
-			Debug.Log("GPGSLogin/authenticate = true");
-			BackendManager.Instance.FederationLogin(BackEnd.FederationType.Google, GetTokens());
+			success?.Invoke();
 		}
 		else
 		{			
-			Debug.Log("GPGSLogin/authenticate = false");
-			Social.localUser.Authenticate((bool success, string callback) => {
-				if (success)
+			Social.localUser.Authenticate((bool isSuccess, string callback) => {
+				if (isSuccess)
 				{
-					Debug.Log("GPGSLogin/Authenticate = success");
-					// 로그인 성공 -> 뒤끝 서버에 획득한 구글 토큰으로 가입 요청
-					BackendManager.Instance.FederationLogin(BackEnd.FederationType.Google, GetTokens());
+					success?.Invoke();
 				}
 				else
 				{
-					Debug.Log("GPGSLogin/Authenticate = fail");
-					// 로그인 실패
+					fail?.Invoke();
 					Debug.Log($"GPGSLogin Fail: {callback}");
 				}
 			});
