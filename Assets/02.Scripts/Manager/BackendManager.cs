@@ -7,6 +7,8 @@ using ThreeRabbitPackage.DesignPattern;
 using BackEnd;
 using BackEnd.Tcp;
 using UniRx;
+using System.Threading.Tasks;
+using System;
 
 public class BackendManager : TRSingleton<BackendManager>
 {
@@ -140,6 +142,40 @@ public class BackendManager : TRSingleton<BackendManager>
         }
     }
 
+    public async Task<UserInfo> GetUserInfoAsync()
+    {
+        UserInfo userInfo = new UserInfo();
+
+        TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+
+        SendQueue.Enqueue(Backend.BMember.GetUserInfo, (callback) =>
+        {
+            if (callback.GetReturnValuetoJSON() != null &&
+                callback.GetReturnValuetoJSON()["row"] != null &&
+                this != null)
+            {
+                var row = callback.GetReturnValuetoJSON()["row"];
+
+                userInfo.nickname = row["nickname"]?.ToString();
+                userInfo.gamerId = row["gamerId"]?.ToString();
+                userInfo.countryCode = row["countryCode"]?.ToString();
+                userInfo.inDate = row["inDate"]?.ToString();
+                userInfo.emailForFindPassword = row["emailForFindPassword"]?.ToString();
+                userInfo.subscriptionType = row["subscriptionType"]?.ToString();
+                userInfo.federationId = row["federationId"]?.ToString();
+            }
+            else
+            {
+                throw new InvalidOperationException("Invalid response from backend");
+            }
+
+            tcs.SetResult(true);
+        });
+
+        await tcs.Task;
+
+        return userInfo;
+    }
     public void GuestLogin(UnityAction success = null, UnityAction<BackendReturnObject> fail = null)
     {
         SendQueue.Enqueue(Backend.BMember.GuestLogin, (callback) =>

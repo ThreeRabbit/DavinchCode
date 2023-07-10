@@ -29,10 +29,19 @@ public class TitleSceneHandler : MonoBehaviour
             loginProcedure.GoogleLogin();
         }).AddTo(this.gameObject);
     }
+
+    private void SubscribeGuestLogin()
+    {
+        guestSignUp_btn.OnClickAsObservable().Subscribe(_ =>
+        {
+            loginProcedure.GuestLogin();
+        }).AddTo(this.gameObject);
+    }
     #endregion
 
     public void Awake()
     {
         SubscribeGoogleSignUp();
+        SubscribeGuestLogin();
     }
 }
