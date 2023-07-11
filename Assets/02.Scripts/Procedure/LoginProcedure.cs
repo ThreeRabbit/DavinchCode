@@ -24,7 +24,7 @@ public class LoginProcedure : MonoBehaviour
 						GameObject messagePopup = PopupManager.Instance.CreateCommonPopup();
 						messagePopup.GetComponent<TRCommonPopup>().Init(
 							title: "System",
-							message: "???? ???? ?????? ????",
+							message: "로그인 실패",
 							okAction: () =>
 							{
 								Destroy(messagePopup);
@@ -36,7 +36,7 @@ public class LoginProcedure : MonoBehaviour
 				GameObject messagePopup = PopupManager.Instance.CreateCommonPopup();
 				messagePopup.GetComponent<TRCommonPopup>().Init(
 					title: "System",
-					message: "???? ???????? ????",
+					message: "로그인 실패",
 					okAction: () =>
 					{
 						Destroy(messagePopup);

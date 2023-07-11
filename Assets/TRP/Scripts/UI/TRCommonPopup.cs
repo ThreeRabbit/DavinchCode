@@ -53,7 +53,7 @@ public class TRCommonPopup : TRPopup
 		this.buttonGroup.SetActive(true);
 		this.cancel_btn.gameObject.SetActive(false);
 		this.ok_btn.gameObject.SetActive(true);
-		ok_txt.text = I2.Loc.LocalizationManager.GetTermData(("Ok")).Term;
+		ok_txt.text = I2.Loc.LocalizationManager.GetTranslation("OK");
 		ok_btn.onClick.AddListener(okAction);
 	}
 
@@ -85,10 +85,10 @@ public class TRCommonPopup : TRPopup
 		this.cancel_btn.gameObject.SetActive(true);
 		this.ok_btn.gameObject.SetActive(true);
 
-		ok_txt.text = I2.Loc.LocalizationManager.GetTermData(("Yes")).Term;
+		ok_txt.text = I2.Loc.LocalizationManager.GetTranslation("Yes");
 		ok_btn.onClick.AddListener(okAction);
 
-		cancel_txt.text = I2.Loc.LocalizationManager.GetTermData(("No")).Term;
+		cancel_txt.text = I2.Loc.LocalizationManager.GetTranslation("No");
 		cancel_btn.onClick.AddListener(cancelAction);
 	}
 }
