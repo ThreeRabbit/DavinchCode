@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using ThreeRabbitPackage;
 using UnityEngine.SceneManagement;
-public class LoginProcedure : MonoBehaviour
+using System;
+
+
+public class LoginProcedure
 {
 	public void GoogleLogin()
 	{
-		// ???? ???? ?????? ????
 		GPGSManager.Instance.GPGSLogin(
 			success: () =>
 			{
-				// ???? ?????? ?????????? ???????? ????????.
 				BackendManager.Instance.FederationLogin(
 					federationType: BackEnd.FederationType.Google,
 					token: GPGSManager.Instance.GetTokens(),
@@ -27,7 +28,7 @@ public class LoginProcedure : MonoBehaviour
 							message: "로그인 실패",
 							okAction: () =>
 							{
-								Destroy(messagePopup);
+								UnityEngine.Object.Destroy(messagePopup);
 							});
 					});
 			},
@@ -39,10 +40,20 @@ public class LoginProcedure : MonoBehaviour
 					message: "로그인 실패",
 					okAction: () =>
 					{
-						Destroy(messagePopup);
+						UnityEngine.Object.Destroy(messagePopup);
 					});
 			});
 
+	}
+
+	internal void FacebookLogin()
+	{
+		throw new NotImplementedException();
+	}
+
+	internal void AppleLogin()
+	{
+		throw new NotImplementedException();
 	}
 
 	public void GuestLogin()
@@ -55,6 +66,19 @@ public class LoginProcedure : MonoBehaviour
 			fail: (callback) =>
 			{
 				
+			});
+	}
+
+	public void LoginProcess()
+	{
+		BackendManager.Instance.TokenLogin(
+			success: () =>
+			{
+				// 로비 씬으로 이동
+			},
+			fail: () =>
+			{
+				// SignUpPanel 활성화
 			});
 	}
 }
