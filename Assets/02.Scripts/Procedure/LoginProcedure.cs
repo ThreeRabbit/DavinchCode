@@ -4,10 +4,19 @@ using UnityEngine;
 using ThreeRabbitPackage;
 using UnityEngine.SceneManagement;
 using System;
-
+using System.Threading.Tasks;
 
 public class LoginProcedure
 {
+	public Task<bool> TokenLoginAsync()
+	{
+		bool isSuccess = false;
+		var tcs = new TaskCompletionSource<bool>();
+		BackendManager.Instance.TokenLogin(() => isSuccess = true, () => isSuccess = false);
+		tcs.SetResult(isSuccess);
+		return Task.FromResult(tcs.Task.Result);
+	}
+
 	public void GoogleLogin()
 	{
 		GPGSManager.Instance.GPGSLogin(
@@ -66,19 +75,6 @@ public class LoginProcedure
 			fail: (callback) =>
 			{
 				
-			});
-	}
-
-	public void LoginProcess()
-	{
-		BackendManager.Instance.TokenLogin(
-			success: () =>
-			{
-				// 로비 씬으로 이동
-			},
-			fail: () =>
-			{
-				// SignUpPanel 활성화
 			});
 	}
 }

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class TitleSceneModel
 {
     public enum LoginType { Google, Apple, Facebook, Guest }
     private LoginProcedure loginProcedure = new LoginProcedure();
-
     public void SignUp(LoginType loginType)
     {
         switch (loginType)

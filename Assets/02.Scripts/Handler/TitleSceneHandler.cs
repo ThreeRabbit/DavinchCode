@@ -4,56 +4,44 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UniRx;
+using System;
+using UnityEngine.SceneManagement;
+
 public class TitleSceneHandler : MonoBehaviour
 {
     #region MVP
-    private TitleSceneModel titleSceneModel;
-    private TitleSceneView titleSceneView;
-    private TitleScenePresenter titleScenePresenter;
+    private TitleSceneModel titleSceneModel = new TitleSceneModel();
+    [SerializeField] private TitleSceneView titleSceneView;
+    [SerializeField] private TitleScenePresenter titleScenePresenter;
+    #endregion
+
+    #region Procedure
+    LoginProcedure loginProcedure = new LoginProcedure();
+    #endregion
+
+    #region UI Panel
+    public GameObject signUpPanel;
 	#endregion
 
-	#region OnlyHandler
-	public TMP_Text title_txt;
-    public Button googleSignUp_btn;
-    public Button appleSignUp_btn;
-    public Button facebookSignUp_btn;
-    public Button guestSignUp_btn;
-    
-    private readonly LoginProcedure loginProcedure = new();
-    
-    private void SubscribeGoogleSignUp()
+	public async void Start()
     {
-        googleSignUp_btn.OnClickAsObservable().Subscribe(_ =>
-        {
-            loginProcedure.GoogleLogin();
-        }).AddTo(this.gameObject);
-    }
+        // 최초 타이틀 씬 진입 시 signUpPanel 비활성화
+        signUpPanel.SetActive(false);
 
-    private void SubscribeGuestLogin()
-    {
-        guestSignUp_btn.OnClickAsObservable().Subscribe(_ =>
-        {
-            loginProcedure.GuestLogin();
-        }).AddTo(this.gameObject);
-    }
+        // 타이틀 씬 프레젠터 초기화
+        titleScenePresenter.Init(titleSceneModel, titleSceneView);
 
-	#endregion
+		// 토큰 로그인을 시도
+		if (await loginProcedure.TokenLoginAsync())
+		{
+			// 성공한 경우 LobbyScene으로 이동
+			SceneManager.LoadSceneAsync("LobbyScene");
+		}
+		else
+		{
+			// 실패한 경우 signUpPanel 활성화
+			signUpPanel.SetActive(true);
+		}
 
-	public void Start()
-    {
-        // MVP
-        titleSceneModel = new TitleSceneModel();
-        titleSceneView = FindObjectOfType<TitleSceneView>();
-        titleScenePresenter = new TitleScenePresenter(titleSceneModel, titleSceneView);
-
-        // OnlyHandler
-        //SubscribeGoogleSignUp();
-        //SubscribeGuestLogin();
-    }
-
-	public void OnDestroy()
-	{
-        // MVP
-        titleScenePresenter.Dispose();
-    }
+	}
 }

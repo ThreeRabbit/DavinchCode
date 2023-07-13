@@ -1,15 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-public class TitleSceneView : MonoBehaviour
+public class SignUpPanelView : MonoBehaviour
 {
-    #region UI
-    public TMP_Text title_txt;
-    public GameObject signUpPanel;
     public Button googleSignUp_btn;
     public Button appleSignUp_btn;
     public Button facebookSignUp_btn;
     public Button guestSignUp_btn;
-	#endregion
 }

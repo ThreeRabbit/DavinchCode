@@ -4,45 +4,36 @@ using UnityEngine;
 using UniRx;
 using System;
 
-public class TitleScenePresenter : IDisposable
+public class TitleScenePresenter : MonoBehaviour
 {
 	private TitleSceneModel model;
 	private TitleSceneView view;
-	private CompositeDisposable disposables = new CompositeDisposable();
 
-	public TitleScenePresenter(TitleSceneModel model, TitleSceneView view)
+	public void Init(TitleSceneModel model, TitleSceneView view)
 	{
 		this.model = model;
 		this.view = view;
-
-		SubscribeSignUpButton();
 	}
-
-	public void Dispose()
+	private void SubscribeSignUpPanel(SignUpPanelView view)
 	{
-		disposables.Dispose();
-	}
-
-	private void SubscribeSignUpButton()
-	{
-		var googleSignUpDisposable = view.googleSignUp_btn
+		view.googleSignUp_btn
 			.OnClickAsObservable()?
-			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Google));
-		disposables.Add(googleSignUpDisposable);
-
-		var appleSignUpDisposable = view.appleSignUp_btn
+			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Google))
+			.AddTo(this.gameObject);
+	
+		view.appleSignUp_btn
 			.OnClickAsObservable()?
-			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Apple));
-		disposables.Add(appleSignUpDisposable);
+			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Apple))
+			.AddTo(this.gameObject);
 
-		var facebookSignUpDisposable = view.facebookSignUp_btn
+		view.facebookSignUp_btn
 			.OnClickAsObservable()?
-			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Facebook));
-		disposables.Add(facebookSignUpDisposable);
+			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Facebook))
+			.AddTo(this.gameObject);
 
-		var guestSignUpDisposable = view.guestSignUp_btn
+		view.guestSignUp_btn
 			.OnClickAsObservable()?
-			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Guest));
-		disposables.Add(guestSignUpDisposable);
+			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Guest))
+			.AddTo(this.gameObject);
 	}
 }
