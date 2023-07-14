@@ -185,8 +185,8 @@ GameObject:
   m_Component:
   - component: {fileID: 130298228}
   - component: {fileID: 130298231}
+  - component: {fileID: 130298232}
   - component: {fileID: 130298230}
-  - component: {fileID: 130298229}
   m_Layer: 5
   m_Name: Language_btn
   m_TagString: Untagged
@@ -216,50 +216,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 50}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &130298229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130298227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 130298230}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &130298230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +254,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130298227}
   m_CullTransparentMesh: 0
+--- !u!114 &130298232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130298227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c85bb32c522fe4da85cb30904ca067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIResources: {fileID: 11400000, guid: 45cf53b3f58343d4eacd28d45d342dfb, type: 2}
+  buttonResource: MainButton_Sky
+  buttonType: 4
+  popupName: 
+  closePopup: {fileID: 0}
+  parent: {fileID: 0}
+  createPopup: {fileID: 0}
+  choice: 7
 --- !u!114 &148673637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,11 +495,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title_txt: {fileID: 1024207062}
-  signUpPanel: {fileID: 0}
-  googleSignUp_btn: {fileID: 1453720476}
-  appleSignUp_btn: {fileID: 637996315}
-  facebookSignUp_btn: {fileID: 1753436706}
-  guestSignUp_btn: {fileID: 1291555721}
+  signUpPanel: {fileID: 1851397826}
+  quit_btn: {fileID: 6965106664942086586}
+  language_btn: {fileID: 0}
 --- !u!1 &637996313
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +796,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleSceneView: {fileID: 580284156}
   titleScenePresenter: {fileID: 1919434177}
-  signUpPanel: {fileID: 1851397826}
 --- !u!1 &920441627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,7 +2663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIResources: {fileID: 11400000, guid: 45cf53b3f58343d4eacd28d45d342dfb, type: 2}
   buttonResource: MainButton_Gray
-  buttonType: 2
+  buttonType: 4
   popupName: 
   closePopup: {fileID: 0}
   parent: {fileID: 0}
@@ -2769,19 +2742,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6965106664942086585}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: QuitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!224 &6965106664942086587
 RectTransform:
   m_ObjectHideFlags: 0

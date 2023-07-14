@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using UniRx;
-using System;
 using UnityEngine.SceneManagement;
+using UniRx;
 
+/// <summary>
+/// TitleScene의 초기화와 로그인 절차를 처리합니다.
+/// </summary>
 public class TitleSceneHandler : MonoBehaviour
 {
     #region MVP
@@ -19,17 +17,13 @@ public class TitleSceneHandler : MonoBehaviour
     LoginProcedure loginProcedure = new LoginProcedure();
     #endregion
 
-    #region UI Panel
-    public GameObject signUpPanel;
-	#endregion
-
 	public async void Start()
     {
-        // 최초 타이틀 씬 진입 시 signUpPanel 비활성화
-        signUpPanel.SetActive(false);
-
         // 타이틀 씬 프레젠터 초기화
         titleScenePresenter.Init(titleSceneModel, titleSceneView);
+
+		// 최초 타이틀 씬 진입 시 signUpPanel 비활성화
+		titleScenePresenter.View.signUpPanel.SetActive(false);
 
 		// 토큰 로그인을 시도
 		if (await loginProcedure.TokenLoginAsync())
@@ -40,8 +34,7 @@ public class TitleSceneHandler : MonoBehaviour
 		else
 		{
 			// 실패한 경우 signUpPanel 활성화
-			signUpPanel.SetActive(true);
+			titleScenePresenter.View.signUpPanel.SetActive(true);
 		}
-
 	}
 }

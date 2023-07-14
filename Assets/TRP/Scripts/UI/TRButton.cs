@@ -10,7 +10,8 @@ public enum EButtonType
 	OpenPopup,
 	CreatePopup,
 	ClickEvent,
-	Close
+	Close,
+	None
 }
 
 namespace ThreeRabbitPackage
@@ -75,6 +76,9 @@ namespace ThreeRabbitPackage
 					OnClick?.Invoke();
 					break;
 				case EButtonType.Close:
+					break;
+
+				case EButtonType.None:
 					break;
 			}
 		}

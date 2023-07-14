@@ -7,9 +7,7 @@ public class TitleSceneView : MonoBehaviour
     #region UI
     public TMP_Text title_txt;
     public GameObject signUpPanel;
-    public Button googleSignUp_btn;
-    public Button appleSignUp_btn;
-    public Button facebookSignUp_btn;
-    public Button guestSignUp_btn;
+    public Button quit_btn;
+    public Button language_btn;
 	#endregion
 }
