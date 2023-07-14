@@ -16,7 +16,7 @@ public enum EButtonType
 
 namespace ThreeRabbitPackage
 {
-	public class TRButton : MonoBehaviour
+	public class TRButton : Button
 	{
 		public TRSpriteResources UIResources;
 		[HideInInspector] public string buttonResource;

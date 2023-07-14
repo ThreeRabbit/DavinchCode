@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 public class LoginProcedure
 {
-	public Task<bool> TokenLoginAsync()
+	public static Task<bool> TokenLoginAsync()
 	{
 		bool isSuccess = false;
 		var tcs = new TaskCompletionSource<bool>();

@@ -106,17 +106,87 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - "\uD68C\uC6D0 \uAC00\uC785"
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
+      - Language
+      - "\uC5B8\uC5B4"
+      - "\u8A00\u8A9E"
+      - "\u8BED\u8A00"
+      - "\u8A9E\u8A00"
+      - Bahasa
+      - "\u042F\u0437\u044B\u043A"
+      - Linguagem
+      - Sprache
+      - Langue
+      - Lingua
+      Flags: 0000000000000000000000
+      Languages_Touch: []
+    - Term: System
+      TermType: 0
+      Description: 
+      Languages:
+      - System
+      - "\uC2DC\uC2A4\uD15C"
+      - "\u30B7\u30B9\u30C6\u30E0"
+      - "\u7CFB\u7EDF"
+      - "\u7CFB\u7D71"
+      - Sistem
+      - "\u0421\u0438\u0441\u0442\u0435\u043C\u0430"
+      - Sistema
+      - System
+      - "Syst\xE8me"
+      - Sistema
+      Flags: 0000000000000000000000
+      Languages_Touch: []
+    - Term: Error
+      TermType: 0
+      Description: 
+      Languages:
+      - Error
+      - "\uC624\uB958"
+      - "\u30A8\u30E9\u30FC"
+      - "\u9519\u8BEF"
+      - "\u932F\u8AA4"
+      - Kesalahan
+      - "\u041E\u0448\u0438\u0431\u043A\u0430"
+      - Erro
+      - Fehler
+      - Erreur
+      - Errore
+      Flags: 0000000000000000000000
+      Languages_Touch: []
+    - Term: QuitMessage
+      TermType: 0
+      Description: 
+      Languages:
+      - Are you sure you want to quit the game?
+      - "\uAC8C\uC784\uC744 \uC885\uB8CC\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+      - "\u30B2\u30FC\u30E0\u3092\u7D42\u4E86\u3057\u307E\u3059\u304B\uFF1F"
+      - "\u60A8\u786E\u5B9A\u8981\u9000\u51FA\u6E38\u620F\u5417\uFF1F"
+      - "\u60A8\u78BA\u5B9A\u8981\u9000\u51FA\u904A\u6232\u55CE\uFF1F"
+      - Apakah Anda yakin ingin keluar dari permainan?
+      - "\u0412\u044B \u0443\u0432\u0435\u0440\u0435\u043D\u044B, \u0447\u0442\u043E
+        \u0445\u043E\u0442\u0438\u0442\u0435 \u0432\u044B\u0439\u0442\u0438 \u0438\u0437
+        \u0438\u0433\u0440\u044B?"
+      - Tem certeza de que deseja sair do jogo?
+      - "Sind Sie sicher, dass Sie das Spiel beenden m\xF6chten?"
+      - "Voulez-vous vraiment quitter le jeu\_?"
+      - sei sicuro di voler chiudere il gioco?
+      Flags: 0000000000000000000000
+      Languages_Touch: []
+    - Term: Cancel
+      TermType: 0
+      Description: 
+      Languages:
+      - Cancel
+      - "\uCDE8\uC18C"
+      - "\u30AD\u30E3\u30F3\u30BB\u30EB"
+      - "\u53D6\u6D88"
+      - "\u53D6\u6D88"
+      - Membatalkan
+      - "\u041E\u0442\u043C\u0435\u043D\u0430"
+      - Cancelar
+      - Stornieren
+      - Annuler
+      - Annulla
       Flags: 0000000000000000000000
       Languages_Touch: []
     CaseInsensitiveTerms: 0

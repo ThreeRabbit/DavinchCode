@@ -17,6 +17,8 @@ public class TitleScenePresenter : MonoBehaviour
 		this.view = view;
 
 		SubscribeSignUpPanel();
+		SubscribeQuitButton();
+		SubscribeLanguageButton();
 	}
 
 	public void SubscribeSignUpPanel()
@@ -49,24 +51,7 @@ public class TitleScenePresenter : MonoBehaviour
 		view.quit_btn.OnClickAsObservable().Subscribe(_ =>
 		{
 			if (ThreeRabbitPackage.PopupManager.Instance.trPopupList.Count > 0) return;
-
-			TRCommonPopup.Instantiate(ThreeRabbitPackage.PopupManager.Instance.transform)
-			.SetTitle(I2.Loc.LocalizationManager.GetTermData("Quit").Term)
-			.SetMessage("게임을 종료하시겠습니까?")
-			.SetConfirm(
-				confirmAction: thisPopup =>
-				{
-					Destroy(thisPopup);
-					Application.Quit();
-				},
-				confirmText: "종료")
-			.SetCancel(
-				cancelAction: thisPopup =>
-				{
-					Destroy(thisPopup);
-				},
-				cancelText: "아니오")
-			.Build();
+			QuitProcedure.QuitProcess();
 		}).AddTo(this.gameObject);
 	}
 
@@ -74,7 +59,10 @@ public class TitleScenePresenter : MonoBehaviour
 	{
 		view.language_btn.OnClickAsObservable().Subscribe(_ =>
 		{
-
+			TRCommonPopup.Instantiate(ThreeRabbitPackage.PopupManager.Instance.transform)
+			.SetTitle("System")
+			.SetMessage("기능 개발 중")
+			.SetConfirm(thisPopup => Destroy(thisPopup), "확인");
 		}).AddTo(this.gameObject);
 	}
 }

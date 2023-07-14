@@ -13,10 +13,6 @@ public class TitleSceneHandler : MonoBehaviour
     [SerializeField] private TitleScenePresenter titleScenePresenter;
     #endregion
 
-    #region Procedure
-    LoginProcedure loginProcedure = new LoginProcedure();
-    #endregion
-
 	public async void Start()
     {
         // 타이틀 씬 프레젠터 초기화
@@ -26,7 +22,7 @@ public class TitleSceneHandler : MonoBehaviour
 		titleScenePresenter.View.signUpPanel.SetActive(false);
 
 		// 토큰 로그인을 시도
-		if (await loginProcedure.TokenLoginAsync())
+		if (await LoginProcedure.TokenLoginAsync())
 		{
 			// 성공한 경우 LobbyScene으로 이동
 			SceneManager.LoadSceneAsync("LobbyScene");
@@ -36,5 +32,10 @@ public class TitleSceneHandler : MonoBehaviour
 			// 실패한 경우 signUpPanel 활성화
 			titleScenePresenter.View.signUpPanel.SetActive(true);
 		}
+	}
+
+	private void Update()
+	{
+		QuitProcedure.Update();
 	}
 }
