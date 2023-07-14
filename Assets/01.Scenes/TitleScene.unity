@@ -377,7 +377,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0efda3f16051540b88e96b26fd73933b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 00fc846610b024ecf9b6d9b497cbe286, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -421,7 +421,8 @@ MonoBehaviour:
   CorrectAlignmentForRTL: 1
   AddSpacesToJoinedLanguages: 0
   AllowLocalizedParameters: 1
-  TranslatedObjects: []
+  TranslatedObjects:
+  - {fileID: 323283687}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -432,7 +433,7 @@ MonoBehaviour:
   mGUI_ShowReferences: 1
   mGUI_ShowTems: 1
   mGUI_ShowCallback: 0
-  mLocalizeTarget: {fileID: 1985387930}
+  mLocalizeTarget: {fileID: 1998346303}
   mLocalizeTargetName: I2.Loc.LocalizeTarget_UnityUI_Image
 --- !u!1 &580284150
 GameObject:
@@ -2247,7 +2248,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1985387930
+--- !u!114 &1998346303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2488,7 +2489,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lingua
+  m_Text: "\u8A00\u8A9E"
 --- !u!222 &2136724076
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2577,7 +2578,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Esentato
+  m_Text: "\u3084\u3081\u308B"
 --- !u!114 &6965106663334465066
 MonoBehaviour:
   m_ObjectHideFlags: 0
