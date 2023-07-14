@@ -77,6 +77,7 @@ namespace ThreeRabbitPackage
 					OnClick?.Invoke();
 					break;
 				case EButtonType.Close:
+					Destroy(closePopup);
 					break;
 
 				case EButtonType.None:

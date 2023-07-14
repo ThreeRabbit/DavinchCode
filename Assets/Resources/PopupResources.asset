@@ -18,8 +18,10 @@ MonoBehaviour:
     - NicknamePopup
     - MessagePopup
     - SignUpPopup
+    - LanguagePopup
     m_values:
     - {fileID: 6091830628574581832, guid: 596292ba98a3641f8af7ee0e75d33296, type: 3}
     - {fileID: 7050189945731404802, guid: 817e30c7806544930b31c7bbc059c653, type: 3}
     - {fileID: 2998153427030312100, guid: fabfa7a3b5cac8c44880ad872e0fffe2, type: 3}
     - {fileID: 8460816185068046040, guid: e1590af6f590a42158a63a68495fb0b9, type: 3}
+    - {fileID: 1574104031991438888, guid: 4437c48657c170a419ad118ea338263a, type: 3}

@@ -59,10 +59,7 @@ public class TitleScenePresenter : MonoBehaviour
 	{
 		view.language_btn.OnClickAsObservable().Subscribe(_ =>
 		{
-			TRCommonPopup.Instantiate(ThreeRabbitPackage.PopupManager.Instance.transform)
-			.SetTitle("System")
-			.SetMessage("기능 개발 중")
-			.SetConfirm(thisPopup => Destroy(thisPopup), "확인");
+			ThreeRabbitPackage.PopupManager.Instance.InstantiatePopup("LanguagePopup");
 		}).AddTo(this.gameObject);
 	}
 }
