@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1666082664, guid: 549df22451305e5488982e4a540c538a, type: 3}
+  m_Name: LanguageIconResources
+  m_EditorClassIdentifier: 
+  spriteDictionary:
+    m_keys:
+    - Icon_Flag_Eng
+    - Icon_Flag_Kor
+    - Icon_Flag_Jpn
+    - Icon_Flag_Chn
+    - Icon_Flag_Twn
+    - Icon_Flag_Ina
+    - Icon_Flag_Rus
+    - Icon_Flag_Prt
+    - Icon_Flag_Deu
+    - Icon_Flag_Fra
+    - Icon_Flag_Ita
+    m_values:
+    - {fileID: 21300000, guid: a3196820b16eb4df588d8ef9f2671b8c, type: 3}
+    - {fileID: 21300000, guid: 0da3b6c1a719249859abb2864ad75d6b, type: 3}
+    - {fileID: 21300000, guid: 00fc846610b024ecf9b6d9b497cbe286, type: 3}
+    - {fileID: 21300000, guid: 1af1970b58e9a42e5b365731d49e450d, type: 3}
+    - {fileID: 21300000, guid: 285b5c9e33c7e42fe87593e02aac301a, type: 3}
+    - {fileID: 21300000, guid: 01da09d3ef74b41a88aeb8a5e4fb2119, type: 3}
+    - {fileID: 21300000, guid: bdda05755eb8e4de788e752fda668fc7, type: 3}
+    - {fileID: 21300000, guid: 2853eeb452a754777b2f240d217c9535, type: 3}
+    - {fileID: 21300000, guid: c2657b9df8f9e48fb84c4417b47e5920, type: 3}
+    - {fileID: 21300000, guid: 89f8acf856b2e4750a7749f92f308def, type: 3}
+    - {fileID: 21300000, guid: 0efda3f16051540b88e96b26fd73933b, type: 3}
