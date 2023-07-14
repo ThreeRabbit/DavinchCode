@@ -31,26 +31,30 @@ public class LoginProcedure
 					},
 					fail: () =>
 					{
-						GameObject messagePopup = PopupManager.Instance.CreateCommonPopup();
-						messagePopup.GetComponent<TRCommonPopup>().Init(
-							title: "System",
-							message: "로그인 실패",
-							okAction: () =>
+						TRCommonPopup.Instantiate(PopupManager.Instance.transform)
+						.SetTitle("System")
+						.SetMessage("로그인 실패")
+						.SetConfirm(
+							confirmAction: obj =>
 							{
-								UnityEngine.Object.Destroy(messagePopup);
-							});
+								UnityEngine.Object.Destroy(obj);
+							},
+							confirmText: "OK")
+						.Build();
 					});
 			},
 			fail: () =>
 			{
-				GameObject messagePopup = PopupManager.Instance.CreateCommonPopup();
-				messagePopup.GetComponent<TRCommonPopup>().Init(
-					title: "System",
-					message: "로그인 실패",
-					okAction: () =>
+				TRCommonPopup.Instantiate(PopupManager.Instance.transform)
+				.SetTitle("System")
+				.SetMessage("로그인 실패")
+				.SetConfirm(
+					confirmAction: obj =>
 					{
-						UnityEngine.Object.Destroy(messagePopup);
-					});
+						UnityEngine.Object.Destroy(obj);
+					},
+					confirmText: "OK")
+				.Build();
 			});
 
 	}

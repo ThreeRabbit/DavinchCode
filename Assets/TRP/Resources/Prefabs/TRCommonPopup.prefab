@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 6754552375552683373}
   - component: {fileID: 7890527618704051952}
   m_Layer: 5
-  m_Name: Ok_txt
+  m_Name: Confirm_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,9 +787,9 @@ MonoBehaviour:
   item_img: {fileID: 6754552375875031388}
   title_txt: {fileID: 6754552376028164828}
   message_txt: {fileID: 6754552376533307259}
-  ok_txt: {fileID: 6754552375552683375}
+  confirm_txt: {fileID: 6754552375552683375}
   cancel_txt: {fileID: 6754552374948030471}
-  ok_btn: {fileID: 6754552376003814234}
+  confirm_btn: {fileID: 6754552376003814234}
   cancel_btn: {fileID: 6754552375822647922}
   title: {fileID: 6754552376657600695}
   item: {fileID: 6754552376263757742}
@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 6754552376003814237}
   - component: {fileID: 6754552376003814234}
   m_Layer: 5
-  m_Name: Ok_btn
+  m_Name: Confirm_btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

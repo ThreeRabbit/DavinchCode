@@ -50,19 +50,23 @@ public class TitleScenePresenter : MonoBehaviour
 		{
 			if (ThreeRabbitPackage.PopupManager.Instance.trPopupList.Count > 0) return;
 
-			GameObject exitPopup = ThreeRabbitPackage.PopupManager.Instance.CreateCommonPopup();
-
-			exitPopup.GetComponent<TRCommonPopup>().Init(
-				title: I2.Loc.LocalizationManager.GetTermData("Quit").Term,
-				message: "게임을 종료하시겠습니까?",
-				okAction: () =>
+			TRCommonPopup.Instantiate(ThreeRabbitPackage.PopupManager.Instance.transform)
+			.SetTitle(I2.Loc.LocalizationManager.GetTermData("Quit").Term)
+			.SetMessage("게임을 종료하시겠습니까?")
+			.SetConfirm(
+				confirmAction: thisPopup =>
 				{
+					Destroy(thisPopup);
 					Application.Quit();
 				},
-				cancelAction: () =>
+				confirmText: "종료")
+			.SetCancel(
+				cancelAction: thisPopup =>
 				{
-					Destroy(exitPopup);
-				});
+					Destroy(thisPopup);
+				},
+				cancelText: "아니오")
+			.Build();
 		}).AddTo(this.gameObject);
 	}
 

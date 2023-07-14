@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using ThreeRabbitPackage.DesignPattern;
 
 public class TRCommonPopup : TRPopup
 {
@@ -13,11 +12,11 @@ public class TRCommonPopup : TRPopup
 	[Header("Text")]
 	public Text title_txt;
 	public Text message_txt;
-	public Text ok_txt;
+	public Text confirm_txt;
 	public Text cancel_txt;
 
 	[Header("Button")]
-	public Button ok_btn;
+	public Button confirm_btn;
 	public Button cancel_btn;
 
 	[Header("Enable Object")]
@@ -35,6 +34,8 @@ public class TRCommonPopup : TRPopup
 		item.SetActive(false);
 		message.SetActive(false);
 		buttonGroup.SetActive(false);
+		confirm_btn.gameObject.SetActive(false);
+		cancel_btn.gameObject.SetActive(false);
 	}
 
 	public void OnDestroy()
@@ -42,53 +43,63 @@ public class TRCommonPopup : TRPopup
 		base.Close();
 	}
 
-	public void Init(string title, string message, UnityAction okAction)
+	public static CommonPopupBuilder Instantiate(Transform parent)
 	{
-		this.title.SetActive(true);
-		title_txt.text = title;
-
-		this.message.SetActive(true);
-		message_txt.text = message;
-
-		this.buttonGroup.SetActive(true);
-		this.cancel_btn.gameObject.SetActive(false);
-		this.ok_btn.gameObject.SetActive(true);
-		ok_txt.text = I2.Loc.LocalizationManager.GetTranslation("OK");
-		ok_btn.onClick.AddListener(okAction);
+		return new CommonPopupBuilder(Instantiate(Resources.Load<GameObject>("Prefabs/TRCommonPopup"), parent));
 	}
 
-	public void Init(string title, string message, UnityAction okAction, string okText)
+	public class CommonPopupBuilder : TRBuilder<TRCommonPopup>
 	{
-		this.title.SetActive(true);
-		title_txt.text = title;
+		public CommonPopupBuilder(GameObject obj) : base(obj) { }
 
-		this.message.SetActive(true);
-		message_txt.text = message;
+		public CommonPopupBuilder SetTitle(string title)
+		{
+			component.title.SetActive(true);
+			component.title_txt.text = title;
+			return this;
+		}
 
-		this.buttonGroup.SetActive(true);
-		this.cancel_btn.gameObject.SetActive(false);
-		this.ok_btn.gameObject.SetActive(true);
-		ok_txt.text = okText;
-		ok_btn.onClick.AddListener(okAction);
+		public CommonPopupBuilder SetMessage(string message)
+		{
+			component.message.SetActive(true);
+			component.message_txt.text = message;
+			return this;
+		}
 
-	}
+		public CommonPopupBuilder SetConfirm(UnityAction<GameObject> confirmAction, string confirmText)
+		{
+			component.buttonGroup.SetActive(true);
+			component.confirm_btn.gameObject.SetActive(true);
+			component.confirm_btn.onClick.AddListener(() =>
+			{
+				confirmAction?.Invoke(this.gameObject);
+			});
+			component.confirm_txt.text = confirmText;
+			return this;
+		}
 
-	public void Init(string title, string message, UnityAction okAction, UnityAction cancelAction)
-	{
-		this.title.SetActive(true);
-		title_txt.text = title;
+		public CommonPopupBuilder SetCancel(UnityAction<GameObject> cancelAction, string cancelText)
+		{
+			component.buttonGroup.SetActive(true);
+			component.cancel_btn.gameObject.SetActive(true);
+			component.cancel_btn.onClick.AddListener(() => 
+			{
+				cancelAction?.Invoke(this.gameObject);
+			});
+			component.cancel_txt.text = cancelText;
+			return this;
+		}
 
-		this.message.SetActive(true);
-		message_txt.text = message;
+		public CommonPopupBuilder SetItemImage(Sprite itemSprite)
+		{
+			component.item.SetActive(true);
+			component.item_img.sprite = itemSprite;
+			return this;
+		}
 
-		this.buttonGroup.SetActive(true);
-		this.cancel_btn.gameObject.SetActive(true);
-		this.ok_btn.gameObject.SetActive(true);
-
-		ok_txt.text = I2.Loc.LocalizationManager.GetTranslation("Yes");
-		ok_btn.onClick.AddListener(okAction);
-
-		cancel_txt.text = I2.Loc.LocalizationManager.GetTranslation("No");
-		cancel_btn.onClick.AddListener(cancelAction);
+		public GameObject Build()
+		{
+			return this.gameObject;
+		}
 	}
 }

@@ -18,22 +18,21 @@ public class SignUpPopup : MonoBehaviour
 			BackendManager.Instance.GuestLogin(
 				success: () =>
 				{
-					ThreeRabbitPackage.PopupManager.Instance.CreatePopup("NicknamePopup");
+					ThreeRabbitPackage.PopupManager.Instance.InstantiatePopup("NicknamePopup");
 				},
 				fail: error =>
 				{
-					ThreeRabbitPackage.PopupManager.Instance
-					.CreateCommonPopup()
-					.GetComponent<TRCommonPopup>()
-					.Init(
-						title: "Error",
-						message: $"status:{error.GetStatusCode()},{error.GetMessage()}",
-						okAction: () =>
-						{
-							//TODO: SignUp 팝업에서 에러 발생 시 처리
-						}
-					);
-				});
+					TRCommonPopup.Instantiate(ThreeRabbitPackage.PopupManager.Instance.transform)
+						.SetTitle("Error")
+						.SetMessage($"status:{error.GetStatusCode()},{error.GetMessage()}")
+						.SetConfirm(
+							confirmAction: thisPopup =>
+							{
+								Destroy(thisPopup);
+							},
+							confirmText: I2.Loc.LocalizationManager.GetTranslation("OK"))
+						.Build();
+			});
 		}).AddTo(this.gameObject);
 	}
 }

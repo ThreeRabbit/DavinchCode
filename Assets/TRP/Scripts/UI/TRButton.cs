@@ -53,7 +53,8 @@ namespace ThreeRabbitPackage
 
 		public void Start()
 		{
-			GetComponent<Button>().onClick.AddListener(ClickEvent);
+			if(buttonType != EButtonType.None)
+				GetComponent<Button>().onClick.AddListener(ClickEvent);
 		}
 
 		public void OnDestroy()

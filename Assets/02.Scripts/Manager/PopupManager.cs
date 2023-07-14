@@ -12,20 +12,13 @@ namespace ThreeRabbitPackage
     {
         public TRGameObjectResources trPopupResources;
         [HideInInspector] public List<TRPopup> trPopupList = new List<TRPopup>();
-        public GameObject trCommonPopup;
 
         private void Awake()
 		{
             trPopupResources = Resources.Load<TRGameObjectResources>("PopupResources");
 		}
 
-        public GameObject CreateCommonPopup()
-		{
-            GameObject commonPopup = Instantiate(trCommonPopup, this.transform);
-            return commonPopup;
-        }
-
-		public void CreatePopup(string popupName)
+		public void InstantiatePopup(string popupName)
         {
             GameObject obj = Instantiate(trPopupResources.gameObjectDictionary[popupName], this.transform);
         }
