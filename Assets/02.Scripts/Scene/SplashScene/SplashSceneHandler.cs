@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SplashSceneHandler : MonoBehaviour
 {
-    private async void Awake()
+    private async void Start()
     {
         // 게임 매니저 초기화
         GameManager.Instance.Init();

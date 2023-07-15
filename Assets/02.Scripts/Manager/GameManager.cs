@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using ThreeRabbitPackage.DesignPattern;
+using System.Threading.Tasks;
 
 public class GameManager : TRSingleton<GameManager>
 {
@@ -11,7 +12,7 @@ public class GameManager : TRSingleton<GameManager>
         base.Awake();
     }
     public void Init()
-    {
+     {
         SendQueueManager.Instance.Init(
             success: () =>
             {
