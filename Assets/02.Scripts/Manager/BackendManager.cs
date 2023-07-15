@@ -88,15 +88,15 @@ public class BackendManager : TRSingleton<BackendManager>
                 break;
 
             case LogType.GREEN:
-                Debug.Log($"<color=green>BackendManager {funcName}: {message}</color>");
+                Debug.Log($"<color=green> BackendManager {funcName}: {message} </color>");
                 break;
 
             case LogType.YELLOW:
-                Debug.LogWarning($"<color=yellow>BackendManager {funcName}: {message}</color>");
+                Debug.LogWarning($"<color=yellow> BackendManager {funcName}: {message} </color>");
                 break;
 
             case LogType.RED:
-                Debug.LogError($"<color=red>BackendManager {funcName}: {message}</color>");
+                Debug.LogError($"<color=red> BackendManager {funcName}: {message} </color>");
                 break;
 
             default:
@@ -108,6 +108,10 @@ public class BackendManager : TRSingleton<BackendManager>
     #endregion
 
     #region Private Method
+    private void Awake()
+    {
+        base.Awake();
+    }
 
     private void Update()
     {
@@ -193,7 +197,7 @@ public class BackendManager : TRSingleton<BackendManager>
         });
     }
 
-    public void TokenLogin(UnityAction success = null, UnityAction fail = null)
+    public void TokenLogin(UnityAction success = null, UnityAction<BackendReturnObject> fail = null)
     {
         SendQueue.Enqueue(Backend.BMember.LoginWithTheBackendToken, (callback) =>
         {
@@ -205,7 +209,7 @@ public class BackendManager : TRSingleton<BackendManager>
             else
             {
                 BackendLog(callback, LogType.RED, "TockenLogin");
-                fail?.Invoke();
+                fail?.Invoke(callback);
             }
         });
     }

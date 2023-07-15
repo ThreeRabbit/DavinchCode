@@ -11,7 +11,16 @@ public class LoginProcedure
 	public static Task<bool> TokenLoginAsync()
 	{
 		var tcs = new TaskCompletionSource<bool>();
-		BackendManager.Instance.TokenLogin(() => tcs.SetResult(true), () => tcs.SetResult(false));
+		BackendManager.Instance.TokenLogin(
+			success: () =>
+			{
+				tcs.SetResult(true);
+			},
+			fail: (callback) =>
+			{
+				tcs.SetResult(false);
+				OpenLoginFailPopup(callback.GetMessage());
+			});
 		return tcs.Task;
 	}
 
@@ -76,7 +85,36 @@ public class LoginProcedure
 			},
 			fail: (callback) =>
 			{
-				
+				OpenLoginFailPopup(callback.GetMessage());
 			});
+	}
+
+	public static Task<bool> GoogleLoginAsync()
+    {
+		GPGSManager.Instance.GPGSLogin(
+			success: () =>
+			{
+
+			},
+			fail: () =>
+			{
+
+			});
+
+		return null;
+    }
+
+	public static void OpenLoginFailPopup(string errorMessage = null)
+    {
+		TRCommonPopup.Instantiate(PopupManager.Instance.transform)
+		.SetTitle("System")
+		.SetMessage(errorMessage)
+		.SetConfirm(
+			confirmAction: obj =>
+			{
+				UnityEngine.Object.Destroy(obj);
+			},
+			confirmText: I2.Loc.LocalizationManager.GetTranslation("OK"))
+		.Build();
 	}
 }

@@ -8,6 +8,11 @@ using UnityEngine.Events;
 
 public class GPGSManager : TRSingleton<GPGSManager>
 {
+	private void Awake()
+	{
+		base.Awake();
+	}
+
 	public void Init(UnityAction success = null, UnityAction fail = null)
 	{
 		// GPGS 플러그인 설정

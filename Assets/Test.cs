@@ -11,5 +11,9 @@ public class Test : MonoBehaviour
             var data = BackendManager.Instance.GetUserInfoAsync();
             Debug.Log(data.ToString());
         }
+        if(Input.GetKey(KeyCode.A))
+        {
+            BackEnd.Backend.BMember.DeleteGuestInfo();
+        }
     }
 }

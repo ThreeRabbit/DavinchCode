@@ -18,20 +18,18 @@ public class TitleSceneHandler : MonoBehaviour
 		// 타이틀 씬 프레젠터 초기화
         titleScenePresenter.Init(titleSceneModel, titleSceneView);
 
-		// 최초 타이틀 씬 진입 시 signUpPanel 비활성화
-		titleScenePresenter.View.signUpPanel.SetActive(false);
+		// 최초 타이틀 씬 진입 시 signUpPanel 활성화
+		titleScenePresenter.View.signUpPanel.SetActive(true);
 
-		// 토큰 로그인을 시도
-		if (await LoginProcedure.TokenLoginAsync())
-		{
-			// 성공한 경우 LobbyScene으로 이동
-			SceneManager.LoadSceneAsync("LobbyScene");
-		}
+		// SignUpPanel을 통해 로그인 시도
+		if(true)
+        {
+			// 로그인 성공
+        }
 		else
-		{
-			// 실패한 경우 signUpPanel 활성화
-			titleScenePresenter.View.signUpPanel.SetActive(true);
-		}
+        {
+			// 로그인 실패
+        }
 	}
 
 	private void Update()

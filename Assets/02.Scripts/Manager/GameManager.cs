@@ -6,8 +6,22 @@ using ThreeRabbitPackage.DesignPattern;
 
 public class GameManager : TRSingleton<GameManager>
 {
-    private new void Awake()
+    private void Awake()
     {
+        base.Awake();
+    }
+    public void Init()
+    {
+        SendQueueManager.Instance.Init(
+            success: () =>
+            {
+                TRLog.Green("SendQueueManager Init: Scuccess");
+            },
+            fail: () =>
+            {
+                TRLog.Red("SendQueueManager Init: Fail");
+            });
+
         BackendManager.Instance.Init(
             success: () =>
             {
@@ -18,6 +32,7 @@ public class GameManager : TRSingleton<GameManager>
             {
                 TRLog.Red(message);
             });
+
         GPGSManager.Instance.Init(
             success: () =>
 			{
@@ -34,6 +49,7 @@ public class GameManager : TRSingleton<GameManager>
 		if(Input.GetKey(KeyCode.A))
 		{
             BackEnd.Backend.BMember.DeleteGuestInfo();
+            BackEnd.Backend.BMember.Logout();
         }
 	}
 }

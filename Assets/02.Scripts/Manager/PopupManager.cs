@@ -15,6 +15,7 @@ namespace ThreeRabbitPackage
 
         private void Awake()
 		{
+            base.Awake();
             trPopupResources = Resources.Load<TRGameObjectResources>("PopupResources");
 		}
 
