@@ -10,12 +10,9 @@ public class LoginProcedure
 {
 	public static Task<bool> TokenLoginAsync()
 	{
-		bool isSuccess = false;
 		var tcs = new TaskCompletionSource<bool>();
-		BackendManager.Instance.TokenLogin(() => isSuccess = true, () => isSuccess = false);
-		tcs.SetResult(isSuccess);
-		Debug.Log("토큰로그인 결과: " + isSuccess);
-		return Task.FromResult(tcs.Task.Result);
+		BackendManager.Instance.TokenLogin(() => tcs.SetResult(true), () => tcs.SetResult(false));
+		return tcs.Task;
 	}
 
 	public void GoogleLogin()
