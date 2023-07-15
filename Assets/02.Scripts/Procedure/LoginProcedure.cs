@@ -14,6 +14,7 @@ public class LoginProcedure
 		var tcs = new TaskCompletionSource<bool>();
 		BackendManager.Instance.TokenLogin(() => isSuccess = true, () => isSuccess = false);
 		tcs.SetResult(isSuccess);
+		Debug.Log("í† í°ë¡œê·¸ì¸ ê²°ê³¼: " + isSuccess);
 		return Task.FromResult(tcs.Task.Result);
 	}
 
@@ -33,7 +34,7 @@ public class LoginProcedure
 					{
 						TRCommonPopup.Instantiate(PopupManager.Instance.transform)
 						.SetTitle("System")
-						.SetMessage("·Î±×ÀÎ ½ÇÆÐ")
+						.SetMessage("ë¡œê·¸ì¸ ì‹¤íŒ¨")
 						.SetConfirm(
 							confirmAction: obj =>
 							{
@@ -47,7 +48,7 @@ public class LoginProcedure
 			{
 				TRCommonPopup.Instantiate(PopupManager.Instance.transform)
 				.SetTitle("System")
-				.SetMessage("·Î±×ÀÎ ½ÇÆÐ")
+				.SetMessage("ë¡œê·¸ì¸ ì‹¤íŒ¨")
 				.SetConfirm(
 					confirmAction: obj =>
 					{
