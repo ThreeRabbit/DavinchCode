@@ -11,17 +11,22 @@ public class LoginProcedure
 	public static Task<bool> TokenLoginAsync()
 	{
 		var tcs = new TaskCompletionSource<bool>();
-		BackendManager.Instance.TokenLogin(
-			success: () =>
-			{
-				tcs.SetResult(true);
-			},
-			fail: (callback) =>
-			{
-				tcs.SetResult(false);
-				OpenLoginFailPopup(callback.GetMessage());
-			});
-		return tcs.Task;
+
+        BackendManager.Instance.TokenLogin(
+            success: () =>
+            {
+                tcs.SetResult(true);
+            },
+            fail: (callback) =>
+            {
+                tcs.SetResult(false);
+                if (callback.GetStatusCode() != "400")
+                {
+                    OpenLoginFailPopup(callback.GetMessage());
+                }
+            });
+
+        return tcs.Task;
 	}
 
 	public void GoogleLogin()

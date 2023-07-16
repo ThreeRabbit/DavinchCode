@@ -37,6 +37,15 @@ public class LoadingManager : TRSingleton<LoadingManager>
 		}).AddTo(this.gameObject);
 	}
 
+    public void IsLoading(bool isLoading)
+    {
+        subject.OnNext(isLoading);
+    }
+
+    public void Loading(UnityAction action)
+    {
+        action?.Invoke();
+    }
 	public void Update()
 	{
 		if (Input.GetKey(KeyCode.B)) subject.OnNext(true);
