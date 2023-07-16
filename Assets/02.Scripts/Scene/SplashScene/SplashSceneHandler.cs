@@ -11,17 +11,14 @@ public class SplashSceneHandler : MonoBehaviour
         GameManager.Instance.Init();
 
         // 토큰 로그인 시도
-        LoadingManager.Instance.IsLoading(true);
-		if (await LoginProcedure.TokenLoginAsync())
+		if (await LoginProcedure.TokenLogin())
 		{
             // 성공한 경우 LobbyScene으로 이동
-            LoadingManager.Instance.IsLoading(false);
             SceneManager.LoadSceneAsync("LobbyScene");
 		}
 		else
 		{
             // 실패한 경우 TitleScene으로 이동
-            LoadingManager.Instance.IsLoading(false);
             SceneManager.LoadSceneAsync("TitleScene");
 		}
 	}

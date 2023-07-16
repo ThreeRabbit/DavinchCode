@@ -39,12 +39,15 @@ public class GPGSManager : TRSingleton<GPGSManager>
 		}
 	}
 
-	public void GPGSLogin(UnityAction success = null, UnityAction fail = null)
+	public Task<bool> GPGSLoginAsync(UnityAction success = null, UnityAction fail = null)
 	{
+        var tcs = new TaskCompletionSource<bool>();
+
         // 이미 로그인 된 경우
         if (PlayGamesPlatform.Instance.localUser.authenticated == true)
 		{
 			success?.Invoke();
+            tcs.SetResult(true);
 		}
 		else
 		{
@@ -52,14 +55,18 @@ public class GPGSManager : TRSingleton<GPGSManager>
 				if (isSuccess)
 				{
                     success?.Invoke();
-				}
+                    tcs.SetResult(true);
+                }
 				else
 				{
                     fail?.Invoke();
 					Debug.Log($"GPGSLogin Fail: {callback}");
-				}
+                    tcs.SetResult(false);
+                }
 			});
 		}
+
+        return tcs.Task;
 	}
 
 	public string GetTokens()

@@ -3,29 +3,11 @@
     "m_SelectedPackage": {
         "deviceId": "127.0.0.1:62001",
         "name": "com.threerabbitgames.davinchcode",
-        "processId": 4216,
+        "processId": 5140,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "127.0.0.1:62001",
-            "name": "com.threerabbitgames.davinchcode",
-            "processId": 4394,
-            "exited": true
-        },
-        {
-            "deviceId": "127.0.0.1:62001",
-            "name": "com.threerabbitgames.davinchcode",
-            "processId": 3792,
-            "exited": true
-        },
-        {
-            "deviceId": "127.0.0.1:62001",
-            "name": "com.threerabbitgames.davinchcode",
-            "processId": 4242,
-            "exited": true
-        },
         {
             "deviceId": "127.0.0.1:62001",
             "name": "com.threerabbitgames.davinchcode",
@@ -36,6 +18,24 @@
             "deviceId": "127.0.0.1:62001",
             "name": "com.threerabbitgames.davinchcode",
             "processId": 4216,
+            "exited": true
+        },
+        {
+            "deviceId": "127.0.0.1:62001",
+            "name": "com.threerabbitgames.davinchcode",
+            "processId": 3779,
+            "exited": true
+        },
+        {
+            "deviceId": "127.0.0.1:62001",
+            "name": "com.threerabbitgames.davinchcode",
+            "processId": 4613,
+            "exited": true
+        },
+        {
+            "deviceId": "127.0.0.1:62001",
+            "name": "com.threerabbitgames.davinchcode",
+            "processId": 5140,
             "exited": false
         }
     ],
@@ -90,7 +90,7 @@
         "Behavior": 0
     },
     "m_FilterOptions": {
-        "m_Filter": "",
+        "m_Filter": "Backend",
         "m_UseRegularExpressions": false,
         "m_MatchCase": false
     },
