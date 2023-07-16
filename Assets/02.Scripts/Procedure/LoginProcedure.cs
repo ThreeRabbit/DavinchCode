@@ -29,15 +29,16 @@ public class LoginProcedure
         return tcs.Task;
 	}
 
-	public static async Task<bool> GoogleLogin()
+    #region Google Login
+    public static async Task<bool> GoogleLogin()
 	{
-        if(!await GPGSManager.Instance.GPGSLoginAsync())
+        if(!await GPGSLoginAsync())
         {
             OpenLoginFailPopup("LoginProcedure: Google Federation Login Fail");
             return false;
         }
 
-        if(!await BackendManager.Instance.FederationLoginAsync(BackEnd.FederationType.Google, GPGSManager.Instance.GetTokens()))
+        if(!await FederationLoginAsync(BackEnd.FederationType.Google, GPGSManager.Instance.GetTokens()))
         {
             OpenLoginFailPopup("LoginProcedure: Google Federation Login Fail");
             return false;
@@ -46,7 +47,44 @@ public class LoginProcedure
         return true;
     }
 
-	internal void FacebookLogin()
+    private static Task<bool> GPGSLoginAsync()
+    {
+        var tcs = new TaskCompletionSource<bool>();
+
+        GPGSManager.Instance.GPGSLogin(
+            success: () =>
+            {
+                tcs.SetResult(true);
+            },
+            fail: () =>
+            {
+                tcs.SetResult(false);
+            });
+
+        return tcs.Task;
+    }
+
+    private static Task<bool> FederationLoginAsync(BackEnd.FederationType federationType, string token)
+    {
+        var tcs = new TaskCompletionSource<bool>();
+
+        BackendManager.Instance.FederationLogin(
+            federationType: federationType,
+            token: token,
+            success: () =>
+            {
+                tcs.SetResult(true);
+            },
+            fail: () =>
+            {
+                tcs.SetResult(false);
+            });
+
+        return tcs.Task;
+    }
+    #endregion
+
+    internal void FacebookLogin()
 	{
 		throw new NotImplementedException();
 	}
@@ -56,25 +94,37 @@ public class LoginProcedure
 		throw new NotImplementedException();
 	}
 
-	public static async Task<bool> GuestLogin()
+    #region GuestLogin
+    public static async Task<bool> GuestLogin()
 	{
-        bool isSuccess = false;
+        if(!await GuestLoginAsync())
+        {
+            return false;
+        }
 
-        await BackendManager.Instance.GuestLoginAsync(
+        return true;
+	}
+
+    private static Task<bool> GuestLoginAsync()
+    {
+        var tcs = new TaskCompletionSource<bool>();
+
+        BackendManager.Instance.GuestLogin(
             success: () =>
             {
-                isSuccess = true;
+                tcs.SetResult(true);
             },
             fail: (callback) =>
             {
                 OpenLoginFailPopup(callback.GetMessage());
-                isSuccess = false;
+                tcs.SetResult(false);
             });
 
-        return isSuccess;
-	}
+        return tcs.Task;
+    }
+    #endregion
 
-	public static void OpenLoginFailPopup(string errorMessage = null)
+    public static void OpenLoginFailPopup(string errorMessage = null)
     {
 		TRCommonPopup.Instantiate(PopupManager.Instance.transform)
 		.SetTitle("System")

@@ -36,7 +36,7 @@ public class BackendManager : TRSingleton<BackendManager>
     public Subject<Unit> LeaveGameServer = new Subject<Unit>();
     public Subject<Unit> JoinGameRoom = new Subject<Unit>();
     public Subject<Unit> SessionListInServer = new Subject<Unit>();
-    public Subject<Unit> MatchInGameStart = new Subject<Unit>();    
+    public Subject<Unit> MatchInGameStart = new Subject<Unit>();
     #endregion
 
     #region Log
@@ -180,27 +180,21 @@ public class BackendManager : TRSingleton<BackendManager>
 
         return userInfo;
     }
-    public Task<bool> GuestLoginAsync(UnityAction success = null, UnityAction<BackendReturnObject> fail = null)
+    public void GuestLogin(UnityAction success = null, UnityAction<BackendReturnObject> fail = null)
     {
-        var tcs = new TaskCompletionSource<bool>();
-
         SendQueue.Enqueue(Backend.BMember.GuestLogin, (callback) =>
         {
             if (callback.IsSuccess())
             {
                 BackendLog(callback, LogType.GREEN, "GuestLogin");
                 success?.Invoke();
-                tcs.SetResult(true);
             }
             else
             {
                 BackendLog(callback, LogType.RED, "GuestLogin");
                 fail?.Invoke(callback);
-                tcs.SetResult(false);
             }
         });
-
-        return tcs.Task;
     }
 
     public void TokenLogin(UnityAction success = null, UnityAction<BackendReturnObject> fail = null)
@@ -220,27 +214,21 @@ public class BackendManager : TRSingleton<BackendManager>
         });
     }
 
-    public Task<bool> FederationLoginAsync(FederationType federationType, string token, UnityAction success = null, UnityAction fail = null)
+    public void FederationLogin(FederationType federationType, string token, UnityAction success = null, UnityAction fail = null)
     {
-        var tcs = new TaskCompletionSource<bool>();
-
         SendQueue.Enqueue(Backend.BMember.AuthorizeFederation, token, federationType, (callback) =>
         {
             if(callback.IsSuccess())
 			{
                 BackendLog(callback, LogType.GREEN, $"FederationLoginAsync - {federationType} Login Success");
                 success?.Invoke();
-                tcs.SetResult(true);
             }
 			else 
             {
                 BackendLog(callback, LogType.RED, $"FederationLoginAsync - {federationType} Login Fail");
                 fail?.Invoke();
-                tcs.SetResult(false);
             }
         });
-
-        return tcs.Task;
     }
 
     public void CreateNickname(string nickname, UnityAction success = null, UnityAction fail = null)

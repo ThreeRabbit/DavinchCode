@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "127.0.0.1:62001",
         "name": "com.threerabbitgames.davinchcode",
-        "processId": 3188,
+        "processId": 4216,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -30,6 +30,12 @@
             "deviceId": "127.0.0.1:62001",
             "name": "com.threerabbitgames.davinchcode",
             "processId": 3188,
+            "exited": true
+        },
+        {
+            "deviceId": "127.0.0.1:62001",
+            "name": "com.threerabbitgames.davinchcode",
+            "processId": 4216,
             "exited": false
         }
     ],
