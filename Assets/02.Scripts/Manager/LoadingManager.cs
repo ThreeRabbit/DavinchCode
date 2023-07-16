@@ -11,13 +11,13 @@ public class LoadingManager : TRSingleton<LoadingManager>
 	public Subject<bool> subject = new Subject<bool>();
 
 	/// <summary>
-	/// LoadingManager Å¬·¡½º´Â ÄÄÆ÷³ÍÆ® Á¢±ÙÀ» À§ÇØ ½Ì±ÛÅÏ ÆĞÅÏÀ» »ç¿ëÇÏÁö¸¸ DontDestroy·Î °ü¸®µÇÁö ¾ÊÀ½
-	/// ±× ÀÌÀ¯´Â LoadingCanvas ÇÏÀ§¿¡ LoadingManager ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ°í 
-	/// LoadingCansvas´Â ¾ÀÀÌ º¯°æ µÉ ¶§ Á¦°ÅµÇ±â ¶§¹®¿¡ LoadingManagerÀÇ À¯È¿¼ºÀ» È®½ÅÇÒ ¼ö ¾øÀ½
-	/// µû¶ó¼­ ÇöÀç´Â °¢ ¾À¸¶´Ù LoadingCanvas¸¦ »ı¼ºÇØµÎ¾úÀ¸¸ç ¾ÀÀÌ ·ÎµåµÉ ¶§ LoadingManagerÀÇ Awake() ¸Ş¼­µå¸¦ ½ÇÇàÇÏ¸é¼­ Initµµ ½ÇÇàÇÔ
-	/// Init¿¡¼­´Â subject¸¦ ±¸µ¶ÇÏ´Âµ¥ 
-	/// ÀÌ ¶ÇÇÑ ¾ÀÀÌ º¯°æµÉ ¶§¸¶´Ù °´Ã¼°¡ ÆÄ±«µÇ¸é¼­ ±¸µ¶ÀÌ ÇØÁ¦µÇ°í 
-	/// ±×·ÎÀÎÇØ Awake() ¸Ş¼­µå¿¡¼­ ±¸µ¶À» ´Ù½Ã ÇØÁÖ¾î¾ß ÇÔ.
+	/// LoadingManager í´ë˜ìŠ¤ëŠ” ì»´í¬ë„ŒíŠ¸ ì ‘ê·¼ì„ ìœ„í•´ ì‹±ê¸€í„´ íŒ¨í„´ì„ ì‚¬ìš©í•˜ì§€ë§Œ DontDestroyë¡œ ê´€ë¦¬ë˜ì§€ ì•ŠìŒ
+	/// ê·¸ ì´ìœ ëŠ” LoadingCanvas í•˜ìœ„ì— LoadingManager ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ê³  
+	/// LoadingCansvasëŠ” ì”¬ì´ ë³€ê²½ ë  ë•Œ ì œê±°ë˜ê¸° ë•Œë¬¸ì— LoadingManagerì˜ ìœ íš¨ì„±ì„ í™•ì‹ í•  ìˆ˜ ì—†ìŒ
+	/// ë”°ë¼ì„œ í˜„ì¬ëŠ” ê° ì”¬ë§ˆë‹¤ LoadingCanvasë¥¼ ìƒì„±í•´ë‘ì—ˆìœ¼ë©° ì”¬ì´ ë¡œë“œë  ë•Œ LoadingManagerì˜ Awake() ë©”ì„œë“œë¥¼ ì‹¤í–‰í•˜ë©´ì„œ Initë„ ì‹¤í–‰í•¨
+	/// Initì—ì„œëŠ” subjectë¥¼ êµ¬ë…í•˜ëŠ”ë° 
+	/// ì´ ë˜í•œ ì”¬ì´ ë³€ê²½ë  ë•Œë§ˆë‹¤ ê°ì²´ê°€ íŒŒê´´ë˜ë©´ì„œ êµ¬ë…ì´ í•´ì œë˜ê³  
+	/// ê·¸ë¡œì¸í•´ Awake() ë©”ì„œë“œì—ì„œ êµ¬ë…ì„ ë‹¤ì‹œ í•´ì£¼ì–´ì•¼ í•¨
 	/// </summary>
 	private void Awake()
 	{
