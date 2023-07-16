@@ -11,17 +11,13 @@ public class LoadingManager : TRSingleton<LoadingManager>
 	public Subject<bool> subject = new Subject<bool>();
 
 	/// <summary>
-	/// LoadingManager 클래스는 컴포넌트 접근을 위해 싱글턴 패턴을 사용하지만 DontDestroy로 관리되지 않음
-	/// 그 이유는 LoadingCanvas 하위에 LoadingManager 오브젝트가 존재하고 
-	/// LoadingCansvas는 씬이 변경 될 때 제거되기 때문에 LoadingManager의 유효성을 확신할 수 없음
-	/// 따라서 현재는 각 씬마다 LoadingCanvas를 생성해두었으며 씬이 로드될 때 LoadingManager의 Awake() 메서드를 실행하면서 Init도 실행함
-	/// Init에서는 subject를 구독하는데 
-	/// 이 또한 씬이 변경될 때마다 객체가 파괴되면서 구독이 해제되고 
-	/// 그로인해 Awake() 메서드에서 구독을 다시 해주어야 함
+    /// LoadingManager는 초기화 시점에 loadingPanel에 바인딩 된 프리팹을 참조하여 subject의 이벤트를 구독해야 함.
+    /// 따라서 현재 GameManager에서 Init() 메서드를 호출 하지 않으며 SplashScene에 인스턴스를 미리 생성해두고 인스턴스가 초기화 될 때 Init()메서드를 호출함
 	/// </summary>
 	private void Awake()
 	{
-		Init();
+        base.Awake();
+        Init();
 	}
 
 	public void Init()
