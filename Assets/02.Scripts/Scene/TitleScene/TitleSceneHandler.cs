@@ -13,7 +13,7 @@ public class TitleSceneHandler : MonoBehaviour
     [SerializeField] private TitleScenePresenter titleScenePresenter;
     #endregion
 
-	public async void Start()
+	public void Start()
     {
 		// 타이틀 씬 프레젠터 초기화
         titleScenePresenter.Init(titleSceneModel, titleSceneView);
@@ -21,15 +21,11 @@ public class TitleSceneHandler : MonoBehaviour
 		// 최초 타이틀 씬 진입 시 signUpPanel 활성화
 		titleScenePresenter.View.signUpPanel.SetActive(true);
 
-		// SignUpPanel을 통해 로그인 시도
-		if(true)
-        {
-			// 로그인 성공
-        }
-		else
-        {
-			// 로그인 실패
-        }
+        // 유저가 로그인에 성공했을 경우 LobbyScene으로 이동
+        titleSceneModel.loginSubject
+            .Where(isLogin => isLogin)
+            .Subscribe(_ => SceneManager.LoadSceneAsync("LobbyScene"))
+            .AddTo(this.gameObject);
 	}
 
 	private void Update()

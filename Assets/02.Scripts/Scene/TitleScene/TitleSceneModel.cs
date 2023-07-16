@@ -6,25 +6,34 @@ using UniRx;
 public class TitleSceneModel
 {
     public enum LoginType { Google, Apple, Facebook, Guest }
-    private LoginProcedure loginProcedure = new LoginProcedure();
-    public void SignUp(LoginType loginType)
+    public Subject<bool> loginSubject = new Subject<bool>();
+
+    public async void SignUp(LoginType loginType)
     {
         switch (loginType)
         {
             case LoginType.Google:
-                loginProcedure.GoogleLogin();
+                if(await LoginProcedure.GoogleLogin())
+                {
+                    loginSubject.OnNext(true);
+                }
+  
                 break;
 
             case LoginType.Apple:
-                loginProcedure.AppleLogin();
+                //loginProcedure.AppleLogin();
                 break;
 
             case LoginType.Facebook:
-                loginProcedure.FacebookLogin();
+                //loginProcedure.FacebookLogin();
                 break;
 
             case LoginType.Guest:
-                loginProcedure.GuestLogin();
+                if(await LoginProcedure.GuestLogin())
+                {
+                    loginSubject.OnNext(true);
+                }
+
                 break;
         }
     }

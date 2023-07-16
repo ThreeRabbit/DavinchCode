@@ -1,10 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ThreeRabbitPackage.DesignPattern;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine.Events;
+using System.Threading.Tasks;
 
 public class GPGSManager : TRSingleton<GPGSManager>
 {
@@ -38,27 +39,34 @@ public class GPGSManager : TRSingleton<GPGSManager>
 		}
 	}
 
-	public void GPGSLogin(UnityAction success = null, UnityAction fail = null)
+	public Task<bool> GPGSLoginAsync(UnityAction success = null, UnityAction fail = null)
 	{
-		// 이미 로그인 된 경우
-		if (Social.localUser.authenticated == true)
+        var tcs = new TaskCompletionSource<bool>();
+
+        // 이미 로그인 된 경우
+        if (PlayGamesPlatform.Instance.localUser.authenticated == true)
 		{
+            tcs.SetResult(true);
 			success?.Invoke();
 		}
 		else
-		{			
-			Social.localUser.Authenticate((bool isSuccess, string callback) => {
+		{
+            PlayGamesPlatform.Instance.localUser.Authenticate((bool isSuccess, string callback) => {
 				if (isSuccess)
 				{
-					success?.Invoke();
+                    tcs.SetResult(true);
+                    success?.Invoke();
 				}
 				else
 				{
-					fail?.Invoke();
+                    tcs.SetResult(false);
+                    fail?.Invoke();
 					Debug.Log($"GPGSLogin Fail: {callback}");
 				}
 			});
 		}
+
+        return tcs.Task;
 	}
 
 	public string GetTokens()

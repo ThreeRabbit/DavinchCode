@@ -29,47 +29,22 @@ public class LoginProcedure
         return tcs.Task;
 	}
 
-	public void GoogleLogin()
+	public static async Task<bool> GoogleLogin()
 	{
-		GPGSManager.Instance.GPGSLogin(
-			success: () =>
-			{
-				BackendManager.Instance.FederationLogin(
-					federationType: BackEnd.FederationType.Google,
-					token: GPGSManager.Instance.GetTokens(),
-					success: () =>
-					{
-						SceneManager.LoadSceneAsync("LobbyScene");
-					},
-					fail: () =>
-					{
-						TRCommonPopup.Instantiate(PopupManager.Instance.transform)
-						.SetTitle("System")
-						.SetMessage("로그인 실패")
-						.SetConfirm(
-							confirmAction: obj =>
-							{
-								UnityEngine.Object.Destroy(obj);
-							},
-							confirmText: "OK")
-						.Build();
-					});
-			},
-			fail: () =>
-			{
-				TRCommonPopup.Instantiate(PopupManager.Instance.transform)
-				.SetTitle("System")
-				.SetMessage("로그인 실패")
-				.SetConfirm(
-					confirmAction: obj =>
-					{
-						UnityEngine.Object.Destroy(obj);
-					},
-					confirmText: "OK")
-				.Build();
-			});
+        if(!await GPGSManager.Instance.GPGSLoginAsync())
+        {
+            OpenLoginFailPopup("LoginProcedure: Google Federation Login Fail");
+            return false;
+        }
 
-	}
+        if(!await BackendManager.Instance.FederationLoginAsync(BackEnd.FederationType.Google, GPGSManager.Instance.GetTokens()))
+        {
+            OpenLoginFailPopup("LoginProcedure: Google Federation Login Fail");
+            return false;
+        }
+
+        return true;
+    }
 
 	internal void FacebookLogin()
 	{
@@ -81,33 +56,23 @@ public class LoginProcedure
 		throw new NotImplementedException();
 	}
 
-	public void GuestLogin()
+	public static async Task<bool> GuestLogin()
 	{
-		BackendManager.Instance.GuestLogin(
-			success: () =>
-			{
-				SceneManager.LoadSceneAsync("LobbyScene");
-			},
-			fail: (callback) =>
-			{
-				OpenLoginFailPopup(callback.GetMessage());
-			});
+        bool isSuccess = false;
+
+        await BackendManager.Instance.GuestLoginAsync(
+            success: () =>
+            {
+                isSuccess = true;
+            },
+            fail: (callback) =>
+            {
+                OpenLoginFailPopup(callback.GetMessage());
+                isSuccess = false;
+            });
+
+        return isSuccess;
 	}
-
-	public static Task<bool> GoogleLoginAsync()
-    {
-		GPGSManager.Instance.GPGSLogin(
-			success: () =>
-			{
-
-			},
-			fail: () =>
-			{
-
-			});
-
-		return null;
-    }
 
 	public static void OpenLoginFailPopup(string errorMessage = null)
     {
