@@ -197,6 +197,7 @@ public class BackendManager : TRSingleton<BackendManager>
                 inDate = bro.FlattenRows()[0]["inDate"].ToString();
             }
 
+            BackendLog(bro, LogType.GREEN, "RequestRowInDateAsync");
             tcs.SetResult(inDate);
         });
 
