@@ -9,6 +9,9 @@ public class LobbyView : MonoBehaviour
     public Button match_btn;
     public Text match_txt;
     public Text userName_txt;
+
+    public GameObject UserInfoPanel;
+
     private void Awake()
     {
         LobbyPresenter.Instance.InitLobbyView(this);

@@ -23,24 +23,24 @@ public class TitleScenePresenter : MonoBehaviour
 
 	public void SubscribeSignUpPanel()
 	{
-		var signUpPanelView = View.signUpPanel.GetComponent<SignUpPanelView>();
+		var signUpPanel = View.signUpPanel.GetComponent<SignUpPanel>();
 		
-		signUpPanelView.googleSignUp_btn
+		signUpPanel.googleSignUp_btn
 			.OnClickAsObservable()?
 			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Google))
 			.AddTo(this.gameObject);
 
-		signUpPanelView.appleSignUp_btn
+		signUpPanel.appleSignUp_btn
 			.OnClickAsObservable()?
 			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Apple))
 			.AddTo(this.gameObject);
 
-		signUpPanelView.facebookSignUp_btn
+		signUpPanel.facebookSignUp_btn
 			.OnClickAsObservable()?
 			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Facebook))
 			.AddTo(this.gameObject);
 
-		signUpPanelView.guestSignUp_btn
+		signUpPanel.guestSignUp_btn
 			.OnClickAsObservable()?
 			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Guest))
 			.AddTo(this.gameObject);

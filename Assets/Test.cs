@@ -4,12 +4,11 @@ using UnityEngine;
 using BackEnd;
 public class Test : MonoBehaviour
 {
-    private void Update()
+    private async void Update()
     {
         if(Input.GetKey(KeyCode.U))
         {
-            var data = BackendManager.Instance.GetUserInfoAsync();
-            Debug.Log(data.ToString());
+
         }
         if(Input.GetKey(KeyCode.A))
         {

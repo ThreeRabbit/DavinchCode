@@ -146,11 +146,87 @@ public class BackendManager : TRSingleton<BackendManager>
         }
     }
 
-    public async Task<UserInfo> GetUserInfoAsync()
+    #region Table
+    public Task<bool> RequestTableInsertAsync(string tableName, Param param)
     {
-        UserInfo userInfo = new UserInfo();
+        var tcs = new TaskCompletionSource<bool>();
 
-        TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+        
+        SendQueue.Enqueue(Backend.GameData.Insert, tableName, param, (callback) =>
+        {
+            if(callback.IsSuccess())
+            {
+                tcs.SetResult(true);
+                BackendLog(callback, LogType.GREEN, "RequestTableInsert");
+            }
+            else
+            {
+                tcs.SetResult(false);
+                BackendLog(callback, LogType.RED, "RequestTableInsert");
+            }
+        });
+
+        return tcs.Task;
+    }
+
+    public Task<string> RequestRowInDateAsync(string tableName)
+    {
+        var tcs = new TaskCompletionSource<string>();
+
+        SendQueue.Enqueue(Backend.GameData.GetMyData, tableName, new Where(), 10, bro =>
+        {
+            string inDate = string.Empty;
+
+            if (bro.IsSuccess() == false)
+            {
+                // 요청 실패 처리
+                BackendLog(bro, LogType.RED, "RequestRowInDateAsync");
+                return;
+            }
+            if (bro.GetReturnValuetoJSON()["rows"].Count <= 0)
+            {
+                // 요청이 성공해도 where 조건에 부합하는 데이터가 없을 수 있기 때문에
+                // 데이터가 존재하는지 확인
+                // 위와 같은 new Where() 조건의 경우 테이블에 row가 하나도 없으면 Count가 0 이하 일 수 있다.
+                BackendLog(bro, LogType.RED, "RequestRowInDateAsync");
+                return;
+            }
+            // 검색한 데이터의 모든 row의 inDate 값 확인
+            for (int i = 0; i < bro.Rows().Count; ++i)
+            {
+                inDate = bro.FlattenRows()[0]["inDate"].ToString();
+            }
+
+            tcs.SetResult(inDate);
+        });
+
+        return tcs.Task;
+    }
+
+    public Task<LitJson.JsonData> RequestGetMyData(string tableName, string rowInDate, string[] select)
+    {
+        var tcs = new TaskCompletionSource<LitJson.JsonData>();
+
+        SendQueue.Enqueue(Backend.GameData.GetMyData, tableName, rowInDate, select, (callback) =>
+        {
+            if(callback.IsSuccess())
+            {
+                tcs.SetResult(callback.GetFlattenJSON()["row"]);
+                BackendLog(callback, LogType.GREEN, "RequestGetMyData");
+            }
+            else
+            {
+                tcs.SetResult(null);
+                BackendLog(callback, LogType.RED, "RequestGetMyData");
+            }
+        });
+
+        return tcs.Task;
+    }
+
+    public Task<LitJson.JsonData> RequestUserInfoAsync()
+    {
+        TaskCompletionSource<LitJson.JsonData> tcs = new TaskCompletionSource<LitJson.JsonData>();
 
         SendQueue.Enqueue(Backend.BMember.GetUserInfo, (callback) =>
         {
@@ -159,27 +235,17 @@ public class BackendManager : TRSingleton<BackendManager>
                 this != null)
             {
                 var row = callback.GetReturnValuetoJSON()["row"];
-
-                userInfo.nickname = row["nickname"]?.ToString();
-                userInfo.gamerId = row["gamerId"]?.ToString();
-                userInfo.countryCode = row["countryCode"]?.ToString();
-                userInfo.inDate = row["inDate"]?.ToString();
-                userInfo.emailForFindPassword = row["emailForFindPassword"]?.ToString();
-                userInfo.subscriptionType = row["subscriptionType"]?.ToString();
-                userInfo.federationId = row["federationId"]?.ToString();
+                tcs.SetResult(row);
             }
             else
             {
                 throw new InvalidOperationException("Invalid response from backend");
             }
-
-            tcs.SetResult(true);
         });
 
-        await tcs.Task;
-
-        return userInfo;
+        return tcs.Task;
     }
+    #endregion
     public Task<bool> GuestLoginAsync(UnityAction success = null, UnityAction<BackendReturnObject> fail = null)
     {
         var tcs = new TaskCompletionSource<bool>();
@@ -249,21 +315,27 @@ public class BackendManager : TRSingleton<BackendManager>
         return tcs.Task;
     }
 
-    public void CreateNickname(string nickname, UnityAction success = null, UnityAction fail = null)
+    public Task<bool> CreateNickname(string nickname, UnityAction success = null, UnityAction fail = null)
     {
+        var tcs = new TaskCompletionSource<bool>();
+
         SendQueue.Enqueue(Backend.BMember.CreateNickname, nickname, (callback) =>
         {
             if (callback.IsSuccess())
             {
                 BackendLog(callback, LogType.GREEN, "CreateNickname");
                 success?.Invoke();
+                tcs.SetResult(true);
             }
             else
             {
                 BackendLog(callback, LogType.RED, "CreateNickname");
                 fail?.Invoke();
+                tcs.SetResult(false);
             }
         });
+
+        return tcs.Task;
     }
 
     public void UpdateNickname(string nickname, UnityAction success = null, UnityAction fail = null)
