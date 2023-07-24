@@ -51,6 +51,40 @@ MonoBehaviour:
       - Errore
       Flags: 0000000000000000000000
       Languages_Touch: []
+    - Term: Font
+      TermType: 1
+      Description: 
+      Languages:
+      - LilitaOne-Regular
+      - Arial
+      - Arial
+      - Arial
+      - Arial
+      - Arial
+      - Arial
+      - Arial
+      - Arial
+      - Arial
+      - Arial
+      Flags: 0000000000000000000000
+      Languages_Touch: []
+    - Term: Image_LanguageIcon
+      TermType: 5
+      Description: 
+      Languages:
+      - Icon_Flag_Eng
+      - Icon_Flag_Kor
+      - Icon_Flag_Jpn
+      - Icon_Flag_Chn
+      - Icon_Flag_Twn
+      - Icon_Flag_Ina
+      - Icon_Flag_Rus
+      - Icon_Flag_Prt
+      - Icon_Flag_Deu
+      - Icon_Flag_Fra
+      - Icon_Flag_Ita
+      Flags: 0000000000000000000000
+      Languages_Touch: []
     - Term: Language
       TermType: 0
       Description: 
@@ -66,6 +100,80 @@ MonoBehaviour:
       - Sprache
       - Langue
       - Lingua
+      Flags: 0000000000000000000000
+      Languages_Touch: []
+    - Term: LoginToApple
+      TermType: 0
+      Description: 
+      Languages:
+      - Sign in with Apple account
+      - "\uC560\uD50C \uACC4\uC815\uC73C\uB85C \uB85C\uADF8\uC778"
+      - "Apple \u30A2\u30AB\u30A6\u30F3\u30C8\u3067\u30B5\u30A4\u30F3\u30A4\u30F3\u3059\u308B"
+      - "\u4F7F\u7528\u82F9\u679C\u5E10\u6237\u767B\u5F55"
+      - "\u4F7F\u7528\u860B\u679C\u5E33\u6236\u767B\u9304"
+      - Masuk dengan akun Apple
+      - "\u0412\u043E\u0439\u0442\u0438 \u0441 \u0443\u0447\u0435\u0442\u043D\u043E\u0439
+        \u0437\u0430\u043F\u0438\u0441\u044C\u044E Apple"
+      - "Fa\xE7a login com a conta da Apple"
+      - Melden Sie sich mit einem Apple-Konto an
+      - Connectez-vous avec un compte Apple
+      - Accedi con l'account Apple
+      Flags: 0000000000000000000000
+      Languages_Touch: []
+    - Term: LoginToFacebook
+      TermType: 0
+      Description: 
+      Languages:
+      - Sign in with Facebook account
+      - "\uD398\uC774\uC2A4\uBD81 \uACC4\uC815\uC73C\uB85C \uB85C\uADF8\uC778"
+      - "Facebook \u30A2\u30AB\u30A6\u30F3\u30C8\u3067\u30B5\u30A4\u30F3\u30A4\u30F3\u3059\u308B"
+      - "\u4F7F\u7528 Facebook \u5E10\u6237\u767B\u5F55"
+      - "\u4F7F\u7528 Facebook \u5E33\u6236\u767B\u9304"
+      - Masuk dengan akun Facebook
+      - "\u0412\u043E\u0439\u0434\u0438\u0442\u0435 \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E
+        \u0443\u0447\u0435\u0442\u043D\u043E\u0439 \u0437\u0430\u043F\u0438\u0441\u0438
+        Facebook"
+      - "Fa\xE7a login com a conta do Facebook"
+      - Melden Sie sich mit einem Facebook-Konto an
+      - Connectez-vous avec un compte Facebook
+      - Accedi con l'account Facebook
+      Flags: 0000000000000000000000
+      Languages_Touch: []
+    - Term: LoginToGoogle
+      TermType: 0
+      Description: 
+      Languages:
+      - Sign in with Google account
+      - "\uAD6C\uAE00 \uACC4\uC815\uC73C\uB85C \uB85C\uADF8\uC778"
+      - "Google\u30A2\u30AB\u30A6\u30F3\u30C8\u3067\u30B5\u30A4\u30F3\u30A4\u30F3"
+      - "\u4F7F\u7528 Google \u5E10\u6237\u767B\u5F55"
+      - "\u4F7F\u7528 Google \u5E33\u6236\u767B\u9304"
+      - Masuk dengan akun Google
+      - "\u0412\u043E\u0439\u0434\u0438\u0442\u0435 \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E
+        \u0443\u0447\u0435\u0442\u043D\u043E\u0439 \u0437\u0430\u043F\u0438\u0441\u0438
+        Google"
+      - "Fa\xE7a login com a conta do Google"
+      - Melden Sie sich mit einem Google-Konto an
+      - Connectez-vous avec un compte Google
+      - Accedi con l'account Google
+      Flags: 0000000000000000000000
+      Languages_Touch: []
+    - Term: LoginToGuest
+      TermType: 0
+      Description: 
+      Languages:
+      - Sign in with Guest account
+      - "\uAC8C\uC2A4\uD2B8 \uACC4\uC815\uC73C\uB85C \uB85C\uADF8\uC778"
+      - "\u30B2\u30B9\u30C8\u30A2\u30AB\u30A6\u30F3\u30C8\u3067\u30B5\u30A4\u30F3\u30A4\u30F3\u3059\u308B"
+      - "\u4F7F\u7528\u8BBF\u5BA2\u5E10\u6237\u767B\u5F55"
+      - "\u4F7F\u7528\u8A2A\u5BA2\u5E33\u6236\u767B\u9304"
+      - Masuk dengan akun Tamu
+      - "\u0412\u043E\u0439\u0442\u0438 \u0441 \u0433\u043E\u0441\u0442\u0435\u0432\u043E\u0439
+        \u0443\u0447\u0435\u0442\u043D\u043E\u0439 \u0437\u0430\u043F\u0438\u0441\u044C\u044E"
+      - Entrar com conta de convidado
+      - Melden Sie sich mit dem Gastkonto an
+      - "Connectez-vous avec un compte Invit\xE9"
+      - Accedi con l'account Ospite
       Flags: 0000000000000000000000
       Languages_Touch: []
     - Term: No
@@ -189,40 +297,6 @@ MonoBehaviour:
       - "S\xCC"
       Flags: 0000000000000000000000
       Languages_Touch: []
-    - Term: Font
-      TermType: 1
-      Description: 
-      Languages:
-      - LilitaOne-Regular
-      - Arial
-      - Arial
-      - Arial
-      - Arial
-      - Arial
-      - Arial
-      - Arial
-      - Arial
-      - Arial
-      - Arial
-      Flags: 0000000000000000000000
-      Languages_Touch: []
-    - Term: Image_LanguageIcon
-      TermType: 5
-      Description: 
-      Languages:
-      - Icon_Flag_Eng
-      - Icon_Flag_Kor
-      - Icon_Flag_Jpn
-      - Icon_Flag_Chn
-      - Icon_Flag_Twn
-      - Icon_Flag_Ina
-      - Icon_Flag_Rus
-      - Icon_Flag_Prt
-      - Icon_Flag_Deu
-      - Icon_Flag_Fra
-      - Icon_Flag_Ita
-      Flags: 0000000000000000000000
-      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 
@@ -265,7 +339,7 @@ MonoBehaviour:
     Google_WebServiceURL: https://script.google.com/macros/s/AKfycby9SbINS9QXykg6BH_Av_Sc40OjC8GABlXgdvSQxhrsJwm2KSvYGVAWMOxIxMkZJONi1Q/exec
     Google_SpreadsheetKey: 1rBSHUXwuAZaA9-oidzwb_vUVQfwM4eFk7z-DCmQpGxE
     Google_SpreadsheetName: I2Loc DavinchCodeM Localization
-    Google_LastUpdatedVersion: 1689372854900
+    Google_LastUpdatedVersion: 1690200626840
     Google_Password: threerabbit1!
     GoogleUpdateFrequency: 3
     GoogleInEditorCheckFrequency: 2
