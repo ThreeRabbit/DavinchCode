@@ -172,24 +172,21 @@ public class BackendManager : TRSingleton<BackendManager>
     public Task<string> RequestRowInDateAsync(string tableName)
     {
         var tcs = new TaskCompletionSource<string>();
+        var inDate = string.Empty;
 
         SendQueue.Enqueue(Backend.GameData.GetMyData, tableName, new Where(), 10, bro =>
         {
-            string inDate = string.Empty;
-
             if (bro.IsSuccess() == false)
             {
                 // 요청 실패 처리
-                BackendLog(bro, LogType.RED, "RequestRowInDateAsync");
-                return;
+                BackendLog(bro, LogType.RED, "RequestRowInDateAsync - fail");
             }
             if (bro.GetReturnValuetoJSON()["rows"].Count <= 0)
             {
                 // 요청이 성공해도 where 조건에 부합하는 데이터가 없을 수 있기 때문에
                 // 데이터가 존재하는지 확인
                 // 위와 같은 new Where() 조건의 경우 테이블에 row가 하나도 없으면 Count가 0 이하 일 수 있다.
-                BackendLog(bro, LogType.RED, "RequestRowInDateAsync");
-                return;
+                BackendLog(bro, LogType.RED, "RequestRowInDateAsync - zero count");
             }
             // 검색한 데이터의 모든 row의 inDate 값 확인
             for (int i = 0; i < bro.Rows().Count; ++i)
@@ -198,9 +195,9 @@ public class BackendManager : TRSingleton<BackendManager>
             }
 
             BackendLog(bro, LogType.GREEN, "RequestRowInDateAsync");
-            tcs.SetResult(inDate);
         });
 
+        tcs.SetResult(inDate);
         return tcs.Task;
     }
 

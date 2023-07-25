@@ -21,12 +21,12 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
 
     private void SubscribeUserInfo()
     {
-        model.userInfoData.exp.Subscribe(exp =>
+        UserInfoData.exp.Subscribe(exp =>
         {
            var userInfoPanel = view.userInfoPanel.GetComponent<UserInfoPanel>();
 
-            userInfoPanel.nickname_txt.text = model.userInfoData.nickname == null ?
-                                              model.userInfoData.gamerId : model.userInfoData.nickname;
+            userInfoPanel.nickname_txt.text = UserInfoData.nickname == null ?
+                                              UserInfoData.gamerId : UserInfoData.nickname;
 
             userInfoPanel.exp_txt.text = $"{exp} / 1234";
         }).AddTo(this.gameObject);
@@ -36,7 +36,7 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
     {
         if(Input.GetKey(KeyCode.F1))
         {
-            model.userInfoData.exp.Value++;
+            UserInfoData.exp.Value++;
         }
     }
 }
