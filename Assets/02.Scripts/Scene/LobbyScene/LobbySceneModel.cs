@@ -6,5 +6,6 @@ using UniRx;
 public class LobbySceneModel
 {
     public UserInfoData userInfoData = new UserInfoData();
+    public PlayerData playerData = new PlayerData();
 
 }

@@ -156,13 +156,13 @@ public class BackendManager : TRSingleton<BackendManager>
         {
             if(callback.IsSuccess())
             {
-                tcs.SetResult(true);
                 BackendLog(callback, LogType.GREEN, "RequestTableInsert");
+                tcs.SetResult(true);
             }
             else
             {
-                tcs.SetResult(false);
                 BackendLog(callback, LogType.RED, "RequestTableInsert");
+                tcs.SetResult(false);
             }
         });
 
@@ -180,6 +180,7 @@ public class BackendManager : TRSingleton<BackendManager>
             {
                 // 요청 실패 처리
                 BackendLog(bro, LogType.RED, "RequestRowInDateAsync - fail");
+                tcs.SetResult(inDate);
             }
             if (bro.GetReturnValuetoJSON()["rows"].Count <= 0)
             {
@@ -187,6 +188,7 @@ public class BackendManager : TRSingleton<BackendManager>
                 // 데이터가 존재하는지 확인
                 // 위와 같은 new Where() 조건의 경우 테이블에 row가 하나도 없으면 Count가 0 이하 일 수 있다.
                 BackendLog(bro, LogType.RED, "RequestRowInDateAsync - zero count");
+                tcs.SetResult(inDate);
             }
             // 검색한 데이터의 모든 row의 inDate 값 확인
             for (int i = 0; i < bro.Rows().Count; ++i)
@@ -195,9 +197,9 @@ public class BackendManager : TRSingleton<BackendManager>
             }
 
             BackendLog(bro, LogType.GREEN, "RequestRowInDateAsync");
+            tcs.SetResult(inDate);
         });
 
-        tcs.SetResult(inDate);
         return tcs.Task;
     }
 

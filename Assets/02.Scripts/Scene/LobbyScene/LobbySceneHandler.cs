@@ -13,8 +13,10 @@ public class LobbySceneHandler : MonoBehaviour
     private async void Start()
     {
         // 서버로부터 유저 정보를 불러옴
-        UserInfoData.RequestPlayerData();
         lobbyScenePresenter.Init(lobbySceneModel, lobbySceneView);
+
+        await lobbySceneModel.userInfoData.Request();
+        await lobbySceneModel.playerData.Request();
     }
 
 }

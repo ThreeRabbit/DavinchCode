@@ -42,7 +42,11 @@ public class TitleScenePresenter : MonoBehaviour
 
 		signUpPanel.guestSignUp_btn
 			.OnClickAsObservable()?
-			.Subscribe(_ => model.SignUp(TitleSceneModel.LoginType.Guest))
+			.Subscribe(_ => 
+            {
+                model.SignUp(TitleSceneModel.LoginType.Guest);
+                model.RequestAddDataTables();
+            })
 			.AddTo(this.gameObject);
 	}
 

@@ -16,27 +16,48 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
         this.model = model;
         this.view = view;
 
+        InitUserInfoPanel();
         SubscribeUserInfo();
     }
 
+    private async void InitUserInfoPanel()
+    {
+        var userInfoPanel = view.userInfoPanel.GetComponent<UserInfoPanel>();
+
+        await model.userInfoData.Request();
+
+        userInfoPanel.nickname_txt.text = model.userInfoData.nickname == null ?
+                 model.userInfoData.gamerId : model.userInfoData.nickname;
+    }
     private void SubscribeUserInfo()
     {
-        UserInfoData.exp.Subscribe(exp =>
+        var userInfoPanel = view.userInfoPanel.GetComponent<UserInfoPanel>();
+
+        // 닉네임
+        model.userInfoData.nickNameProperty.Subscribe(nickname =>
         {
-           var userInfoPanel = view.userInfoPanel.GetComponent<UserInfoPanel>();
-
-            userInfoPanel.nickname_txt.text = UserInfoData.nickname == null ?
-                                              UserInfoData.gamerId : UserInfoData.nickname;
-
-            userInfoPanel.exp_txt.text = $"{exp} / 1234";
+            userInfoPanel.nickname_txt.text = model.userInfoData.nickname == null ?
+                             model.userInfoData.gamerId : model.userInfoData.nickname;
         }).AddTo(this.gameObject);
+
+        // 레벨
+        model.playerData.level.Subscribe(level =>
+        {
+            userInfoPanel.level_txt.text = $"{level}";
+        }).AddTo(this.gameObject);
+
+        // 경험치
+        model.playerData.exp.Subscribe(exp =>
+        {
+            userInfoPanel.exp_txt.text = $"{exp} / 1234";
+        }).AddTo(this.gameObject);     
     }
 
-    public void Update()
-    {
-        if(Input.GetKey(KeyCode.F1))
-        {
-            UserInfoData.exp.Value++;
-        }
-    }
+    //public void Update()
+    //{
+    //    if(Input.GetKey(KeyCode.F1))
+    //    {
+    //        UserInfoData.exp.Value++;
+    //    }
+    //}
 }

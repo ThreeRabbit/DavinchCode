@@ -46,25 +46,12 @@ public class LoginProcedure
 	}
 
     public static async Task<bool> GuestLogin()
-	{
-        BackEnd.Param param = new BackEnd.Param();
-        param.Add("level", 1);
-        param.Add("exp", 0);
-   
+	{   
         // 게스트로 로그인
         if(!await BackendManager.Instance.GuestLoginAsync())
         {
             return false;
         }
-
-        // TODO: 유저 정보 조회
-
-        // 기존에 유저 정보가 없을 경우 유저 테이블 추가
-        if(!await BackendManager.Instance.RequestTableInsertAsync("UserInfoData", param))
-        {
-            return false;
-        }
-
 
         return true;
 	}

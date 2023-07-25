@@ -7,6 +7,7 @@ public class TitleSceneModel
 {
     public enum LoginType { Google, Apple, Facebook, Guest }
     public Subject<bool> loginSubject = new Subject<bool>();
+    public PlayerData playerData = new PlayerData();
 
     public async void SignUp(LoginType loginType)
     {
@@ -36,5 +37,10 @@ public class TitleSceneModel
 
                 break;
         }
+    }
+
+    public async void RequestAddDataTables()
+    {
+        await playerData.RequestAddPlayerData();
     }
 }
