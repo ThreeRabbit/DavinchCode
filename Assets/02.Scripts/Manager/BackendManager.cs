@@ -203,6 +203,26 @@ public class BackendManager : TRSingleton<BackendManager>
         return tcs.Task;
     }
 
+    public Task<bool> RequestUpdateV2(string tableName, string inDate, string owner_inDate, Param param)
+    {
+        var tcs = new TaskCompletionSource<bool>();
+
+        SendQueue.Enqueue(Backend.GameData.UpdateV2, tableName, inDate, owner_inDate, param, (callback) =>
+        {
+            if (callback.IsSuccess())
+            {
+                tcs.SetResult(true);
+                BackendLog(callback, LogType.GREEN, "RequestUpdateV2");
+            }
+            else
+            {
+                tcs.SetResult(false);
+                BackendLog(callback, LogType.RED, "RequestUpdateV2");
+            }
+        });
+
+        return tcs.Task;
+    }
     public Task<LitJson.JsonData> RequestGetMyData(string tableName, string rowInDate, string[] select)
     {
         var tcs = new TaskCompletionSource<LitJson.JsonData>();

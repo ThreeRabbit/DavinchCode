@@ -6,12 +6,14 @@ public class PlayerData
     public ReactiveProperty<int> level = new ReactiveProperty<int>();
     public ReactiveProperty<int> exp = new ReactiveProperty<int>();
 
+    // 뒤끝DB에 등록 된 PlayerData 테이블
+    private readonly string playerDataTableName = "PlayerData";
+
     public async Task<bool> Request()
     {
         var tcs = new TaskCompletionSource<bool>();
 
         // 뒤끝DB에 등록 된 PlayerData 테이블
-        string playerDataTableName = "PlayerData";
         string[] playerDataColumn = new string[] { "level", "exp" };
 
         // 뒤끝 서버에 rowInDate를 요청
@@ -28,6 +30,18 @@ public class PlayerData
         return tcs.Task.Result;
     }
 
+    public async Task<bool> RequestUpdate(BackEnd.Param param)
+    {
+        // 뒤끝 서버에 rowInDate를 요청
+        var rowInDate = await BackendManager.Instance.RequestRowInDateAsync(playerDataTableName);
+
+        if(!await BackendManager.Instance.RequestUpdateV2(playerDataTableName, rowInDate, BackEnd.Backend.UserInDate, param))
+        {
+            return false;
+        }
+
+        return true;
+    }
     public async Task<bool> RequestAddPlayerData()
     {
         // PlayerData의 파라미터 값 추가

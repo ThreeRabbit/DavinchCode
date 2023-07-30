@@ -53,11 +53,15 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
         }).AddTo(this.gameObject);     
     }
 
-    //public void Update()
-    //{
-    //    if(Input.GetKey(KeyCode.F1))
-    //    {
-    //        UserInfoData.exp.Value++;
-    //    }
-    //}
+    public async void Update()
+    {
+        if (Input.GetKey(KeyCode.F1))
+        {
+            model.playerData.exp.Value++;
+            BackEnd.Param param = new BackEnd.Param();
+            param.Add("exp", model.playerData.exp.Value + 1);
+            await model.playerData.RequestUpdate(param);
+            await model.playerData.Request();
+        }
+    }
 }
