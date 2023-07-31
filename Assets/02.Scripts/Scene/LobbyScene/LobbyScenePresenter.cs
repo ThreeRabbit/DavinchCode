@@ -22,37 +22,44 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
 
     private async void InitUserInfoPanel()
     {
-        var userInfoPanel = view.userInfoPanel.GetComponent<UserInfoPanel>();
+        var lobbySceneMainPanel = view.userInfoPanel.GetComponent<LobbySceneMainPanel>();
 
         await model.userInfoData.Request();
 
-        userInfoPanel.nickname_txt.text = model.userInfoData.nickname == null ?
+        lobbySceneMainPanel.nickname_txt.text = model.userInfoData.nickname == null ?
                  model.userInfoData.gamerId : model.userInfoData.nickname;
     }
     private void SubscribeUserInfo()
     {
-        var userInfoPanel = view.userInfoPanel.GetComponent<UserInfoPanel>();
+        var lobbySceneMainPanel = view.userInfoPanel.GetComponent<LobbySceneMainPanel>();
 
-        // 닉네임
         model.userInfoData.nickNameProperty.Subscribe(nickname =>
         {
-            userInfoPanel.nickname_txt.text = model.userInfoData.nickname == null ?
+            // 만약 유저가 닉네임을 생성하지 않았을 경우 gamerId를 닉네임으로 설정
+            lobbySceneMainPanel.nickname_txt.text = model.userInfoData.nickname == null ?
                              model.userInfoData.gamerId : model.userInfoData.nickname;
         }).AddTo(this.gameObject);
 
-        // 레벨
         model.playerData.level.Subscribe(level =>
         {
-            userInfoPanel.level_txt.text = $"{level}";
+            lobbySceneMainPanel.level_txt.text = $"{level}";
         }).AddTo(this.gameObject);
 
-        // 경험치
         model.playerData.exp.Subscribe(exp =>
         {
-            userInfoPanel.exp_txt.text = $"{exp} / 1234";
+            lobbySceneMainPanel.exp_txt.text = $"{exp} / 1234";
         }).AddTo(this.gameObject);     
     }
 
+    public void SubscribeMatchBtn()
+    {
+        var lobbySceneMainPanel = view.userInfoPanel.GetComponent<LobbySceneMainPanel>();
+
+        lobbySceneMainPanel.match_btn.OnClickAsObservable().Subscribe(_ =>
+        {
+
+        }).AddTo(this.gameObject);
+    }
     public async void Update()
     {
         if (Input.GetKey(KeyCode.F1))
@@ -64,4 +71,6 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
             await model.playerData.Request();
         }
     }
+
+
 }
