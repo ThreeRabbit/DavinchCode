@@ -404,9 +404,8 @@ public class BackendManager : TRSingleton<BackendManager>
         // 이미 연결되어 있는 경우 리턴
         if (isConnectMatchServer) return;
 
-        ErrorInfo errorInfo;
         isConnectMatchServer = true;
-        if (!Backend.Match.JoinMatchMakingServer(out errorInfo))
+        if (!Backend.Match.JoinMatchMakingServer(out var errorInfo))
         {
             var errorLog = string.Format(FAIL_CONNECT_MATCHSERVER, errorInfo.ToString());
             TRLog.Green(errorLog);
@@ -434,7 +433,7 @@ public class BackendManager : TRSingleton<BackendManager>
             Debug.Log(NOTCONNECT_MATCHSERVER);
             Debug.Log(RECONNECT_MATCHSERVER);
             RequestJoinMatchMakingServer();
-            // 잠시 후 다시 시도하세요. 팝업 호출 필요
+            // 잠시 후 다시 시도하세요. 팝업 호출 필요(의존성 역전 때문에 잠시 보류)
             return false;
         }
         Backend.Match.CreateMatchRoom();
