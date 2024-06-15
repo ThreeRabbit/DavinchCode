@@ -23,7 +23,7 @@ public class TitleScenePresenter : MonoBehaviour
 
 	public void SubscribeSignUpPanel()
 	{
-		var signUpPanel = View.signUpPanel.GetComponent<SignUpPanel>();
+		var signUpPanel = view.signUpPanel.GetComponent<SignUpPanel>();
 		
 		signUpPanel.googleSignUp_btn
 			.OnClickAsObservable()?

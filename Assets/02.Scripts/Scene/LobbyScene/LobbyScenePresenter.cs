@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UniRx;
 using ThreeRabbitPackage.DesignPattern;
 
@@ -16,27 +17,17 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
         this.model = model;
         this.view = view;
 
-        InitUserInfoPanel();
-        SubscribeUserInfo();
+        InitLobbySceneMainPanel();
     }
 
-    private async void InitUserInfoPanel()
+    private void InitLobbySceneMainPanel()
     {
-        var lobbySceneMainPanel = view.userInfoPanel.GetComponent<LobbySceneMainPanel>();
-
-        await model.userInfoData.Request();
-
-        lobbySceneMainPanel.nickname_txt.text = model.userInfoData.nickname == null ?
-                 model.userInfoData.gamerId : model.userInfoData.nickname;
-    }
-    private void SubscribeUserInfo()
-    {
-        var lobbySceneMainPanel = view.userInfoPanel.GetComponent<LobbySceneMainPanel>();
+        var lobbySceneMainPanel = view.LobbySceneMainPanel;
 
         model.userInfoData.nickNameProperty.Subscribe(nickname =>
         {
             // 만약 유저가 닉네임을 생성하지 않았을 경우 gamerId를 닉네임으로 설정
-            lobbySceneMainPanel.nickname_txt.text = model.userInfoData.nickname == null ?
+            lobbySceneMainPanel.nickname_txt.text = string.IsNullOrEmpty(BackEnd.Backend.UserNickName) ?
                              model.userInfoData.gamerId : model.userInfoData.nickname;
         }).AddTo(this.gameObject);
 
@@ -48,18 +39,13 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
         model.playerData.exp.Subscribe(exp =>
         {
             lobbySceneMainPanel.exp_txt.text = $"{exp} / 1234";
-        }).AddTo(this.gameObject);     
-    }
-
-    public void SubscribeMatchBtn()
-    {
-        var lobbySceneMainPanel = view.userInfoPanel.GetComponent<LobbySceneMainPanel>();
+        }).AddTo(this.gameObject);
 
         lobbySceneMainPanel.match_btn.OnClickAsObservable().Subscribe(_ =>
         {
-
         }).AddTo(this.gameObject);
     }
+
     public async void Update()
     {
         if (Input.GetKey(KeyCode.F1))

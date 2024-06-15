@@ -15,6 +15,11 @@ public class LoginProcedure
             return false;
         }
 
+        if (BackEnd.Backend.UserNickName == string.Empty)
+        {
+            PopupManager.Instance.InstantiatePopup("NicknamePopup");
+        }
+
         return true;
     }
 
@@ -50,7 +55,13 @@ public class LoginProcedure
         // 게스트로 로그인
         if(!await BackendManager.Instance.GuestLoginAsync())
         {
+            OpenLoginFailPopup("LoginProcedure: Guest Login Fail");
             return false;
+        }
+
+        if(BackEnd.Backend.UserNickName is null)
+        {
+            PopupManager.Instance.InstantiatePopup("NicknamePopup");
         }
 
         return true;

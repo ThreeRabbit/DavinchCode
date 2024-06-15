@@ -27,6 +27,7 @@ public class NicknamePopup : MonoBehaviour
                 success: () =>
                 {
                     BackendManager.Instance.CreateNickname(nickname);
+                    Destroy(this.gameObject);
                 },
                 fail: (message) =>
                 {

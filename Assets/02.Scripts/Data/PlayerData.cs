@@ -25,7 +25,6 @@ public class PlayerData
         // 값을 초기화 함
         level.Value = ushort.Parse(playerData["level"].ToString());
         exp.Value = ushort.Parse(playerData["exp"].ToString());
-
         tcs.SetResult(true);
         return tcs.Task.Result;
     }

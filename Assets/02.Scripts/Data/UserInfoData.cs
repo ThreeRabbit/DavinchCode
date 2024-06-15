@@ -34,7 +34,7 @@ public class UserInfoData
         emailForFindPassword = row["emailForFindPassword"]?.ToString();
         subscriptionType = row["subscriptionType"]?.ToString();
         federationId = row["federationId"]?.ToString();
-
+        Debug.Log("유저인포");
         return tcs.Task.Result;
     }
 }
