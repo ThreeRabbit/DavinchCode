@@ -26,8 +26,8 @@ public class GameManager : TRSingleton<GameManager>
         BackendManager.Instance.Init(
             success: () =>
             {
-                BackendManager.Instance.MatchServerHandler();
-                BackendManager.Instance.InGameServerHandler();
+                BackendMatchManager.Instance.MatchServerHandler();
+                BackendMatchManager.Instance.InGameServerHandler();
             },
             fail: (message) =>
             {

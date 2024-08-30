@@ -17,12 +17,19 @@ public class MatchProcedure : MonoBehaviour
 		SubscribeCancelMatchMaking();
 	}
 
+	public async void MatchProcess()
+	{
+		await BackendMatchManager.Instance.RequestJoinMatchMakingServer();
+	    await BackendMatchManager.Instance.RequestCreateMatchRoom();
+
+	}
+
 	/// <summary>
 	/// 매치 서버 접속
 	/// </summary>
 	public static void JoinMatchMakingServer()
 	{
-		BackendManager.Instance.RequestJoinMatchMakingServer();
+		BackendMatchManager.Instance.RequestJoinMatchMakingServer();
 	}
 
 	/// <summary>
@@ -30,7 +37,7 @@ public class MatchProcedure : MonoBehaviour
 	/// </summary>
 	public static void CreateMatchRoom()
 	{
-		BackendManager.Instance.RequestCreateMatchRoom();
+		BackendMatchManager.Instance.RequestCreateMatchRoom();
 	}
 
 	/// <summary>
@@ -38,10 +45,10 @@ public class MatchProcedure : MonoBehaviour
 	/// </summary>
 	/// <param name="matchType">매칭 타입</param>
 	/// <param name="matchModeType">매치 모드 타입</param>
-	/// <param name="matchCardIndateKey">매치카드 인데이</param>
+	/// <param name="matchCardIndateKey">매치카드 인데이트</param>
 	public void MatchMaking(BackEnd.Tcp.MatchType matchType, BackEnd.Tcp.MatchModeType matchModeType, string matchCardIndateKey)
 	{
-		BackendManager.Instance.RequestMatchMaking(matchType, matchModeType, matchCardIndateKey);
+		BackendMatchManager.Instance.RequestMatchMaking(matchType, matchModeType, matchCardIndateKey);
 	}
 
 	/// <summary>
@@ -49,7 +56,7 @@ public class MatchProcedure : MonoBehaviour
 	/// </summary>
 	public void CancelMatchMaking()
 	{
-		BackendManager.Instance.RequestCancleMatchMaking();
+		BackendMatchManager.Instance.RequestCancleMatchMaking();
 	}
 
 
@@ -58,11 +65,11 @@ public class MatchProcedure : MonoBehaviour
 	/// </summary>
 	public void SubscribeResponseJoinMatchMakingServer()
 	{
-		BackendManager.Instance.JoinMatchMakingServer.Subscribe(joinMatchMakingServer =>
+		BackendMatchManager.Instance.JoinMatchMakingServer.Subscribe(joinMatchMakingServer =>
 		{
 			if (joinMatchMakingServer.ErrInfo == BackEnd.Tcp.ErrorInfo.Success)
 			{
-				CreateMatchRoom();
+				//CreateMatchRoom();
 			}
 		}).AddTo(this.gameObject);
 	}
@@ -72,7 +79,7 @@ public class MatchProcedure : MonoBehaviour
 	/// </summary>
 	public void SubscribeResponseMatchMaking()
 	{
-		BackendManager.Instance.MatchMaking.Subscribe(matchMaking =>
+		BackendMatchManager.Instance.MatchMaking.Subscribe(matchMaking =>
 		{
 			switch (matchMaking.ErrInfo)
 			{
@@ -147,7 +154,7 @@ public class MatchProcedure : MonoBehaviour
 	/// </summary>
 	public void SubscribeCancelMatchMaking()
 	{
-		BackendManager.Instance.CancelMatchMaking.Subscribe(_ =>
+		BackendMatchManager.Instance.CancelMatchMaking.Subscribe(_ =>
 		{
 			SceneManager.LoadSceneAsync("GameScene");
 		}).AddTo(this.gameObject);
@@ -158,7 +165,7 @@ public class MatchProcedure : MonoBehaviour
 	/// </summary>
 	public void SubscribeResponseLeaveMatchMakingServer()
 	{
-		BackendManager.Instance.LeaveMatchMakingServer.Subscribe(args =>
+		BackendMatchManager.Instance.LeaveMatchMakingServer.Subscribe(args =>
 		{
 			if (args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.DisconnectFromRemote)
 				|| args.ErrInfo.Category.Equals(BackEnd.Tcp.ErrorCode.Exception)
@@ -176,7 +183,7 @@ public class MatchProcedure : MonoBehaviour
 	/// </summary>
 	public void SubscribeResponseMatchMakingRoomCreate()
 	{
-		BackendManager.Instance.MatchMakingRoomCreate.Subscribe(_ =>
+		BackendMatchManager.Instance.MatchMakingRoomCreate.Subscribe(_ =>
 		{
 
 		}).AddTo(this.gameObject);
@@ -187,7 +194,7 @@ public class MatchProcedure : MonoBehaviour
 	/// </summary>
 	public void SubscribeResponseMatchMakingRoomJoin()
 	{
-		BackendManager.Instance.MatchMakingRoomJoin.Subscribe(_ =>
+		BackendMatchManager.Instance.MatchMakingRoomJoin.Subscribe(_ =>
 		{
 		}).AddTo(this.gameObject);
 

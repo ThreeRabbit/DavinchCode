@@ -9,6 +9,7 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
 {
     private LobbySceneModel model;
     private LobbySceneView view;
+    private MatchProcedure matchProcedure = new();
 
     public LobbySceneView View { get { return view; } private set { view = value; } }
 
@@ -43,6 +44,7 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
 
         lobbySceneMainPanel.match_btn.OnClickAsObservable().Subscribe(_ =>
         {
+            matchProcedure.MatchProcess();
         }).AddTo(this.gameObject);
     }
 
