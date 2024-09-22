@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1354406480, guid: 549df22451305e5488982e4a540c538a, type: 3}
+  m_Script: {fileID: 1354406480, guid: ae42b752234522d4097ce6ca81a077e1, type: 3}
   m_Name: ANDROID_DEV_DEBUG
   m_EditorClassIdentifier: 
   buildName: DavinchCode_Android_1.0.2_1
