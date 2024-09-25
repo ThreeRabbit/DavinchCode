@@ -25,12 +25,8 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
     {
         var lobbySceneMainPanel = view.LobbySceneMainPanel;
 
-        model.userInfoData.nickNameProperty.Subscribe(nickname =>
-        {
-            // 만약 유저가 닉네임을 생성하지 않았을 경우 gamerId를 닉네임으로 설정
-            lobbySceneMainPanel.nickname_txt.text = string.IsNullOrEmpty(BackEnd.Backend.UserNickName) ?
-                             model.userInfoData.gamerId : model.userInfoData.nickname;
-        }).AddTo(this.gameObject);
+        lobbySceneMainPanel.nickname_txt.text = BackEnd.Backend.UserNickName.IsNullOrEmpty() ?
+                         model.userInfoData.gamerId : model.userInfoData.nickname;
 
         model.playerData.level.Subscribe(level =>
         {
@@ -48,6 +44,18 @@ public class LobbyScenePresenter : TRSingleton<LobbyScenePresenter>
         }).AddTo(this.gameObject);
     }
 
+    public async void UpdateLobbySceneMainPanel()
+    {
+        await model.userInfoData.Request();
+
+        var mainPanel = view.LobbySceneMainPanel;
+        var userInfoData = model.userInfoData;
+        var playerData = model.playerData;
+
+        mainPanel.nickname_txt.text = userInfoData.nickname;
+        mainPanel.level_txt.text = $"{playerData.level.Value}";
+        mainPanel.exp_txt.text = $"{playerData.exp.Value} / 1234";
+    }
     public async void Update()
     {
         if (Input.GetKey(KeyCode.F1))

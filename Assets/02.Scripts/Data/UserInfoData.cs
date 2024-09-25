@@ -6,8 +6,7 @@ using BackEnd;
 using System.Threading.Tasks;
 
 public class UserInfoData
-{
-    
+{ 
     public string gamerId;
     public string countryCode;
     public string nickname;
@@ -15,8 +14,6 @@ public class UserInfoData
     public string emailForFindPassword;
     public string subscriptionType;
     public string federationId;
-
-    public ReactiveProperty<string> nickNameProperty = new ReactiveProperty<string>();
 
     public async Task<bool> Request()
     {
@@ -34,7 +31,7 @@ public class UserInfoData
         emailForFindPassword = row["emailForFindPassword"]?.ToString();
         subscriptionType = row["subscriptionType"]?.ToString();
         federationId = row["federationId"]?.ToString();
-        Debug.Log("유저인포");
+
         return tcs.Task.Result;
     }
 }

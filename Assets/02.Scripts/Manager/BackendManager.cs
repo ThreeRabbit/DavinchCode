@@ -248,6 +248,12 @@ public class BackendManager : TRSingleton<BackendManager>
                 success?.Invoke();
                 tcs.SetResult(true);
             }
+            else if(callback.StatusCode == 400)
+            {
+                BackendLog(callback, LogType.YELLOW, "TockenLogin");
+                fail?.Invoke(callback);
+                tcs.SetResult(false);
+            }
             else
             {
                 BackendLog(callback, LogType.RED, "TockenLogin");
@@ -322,21 +328,27 @@ public class BackendManager : TRSingleton<BackendManager>
         });
     }
 
-    public void CheckNicknameDuplication(string nickname, UnityAction success = null, UnityAction<string> fail = null)
+    public Task<bool> CheckNicknameDuplication(string nickname, UnityAction success = null, UnityAction<string> fail = null)
     {
+        var tcs = new TaskCompletionSource<bool>();
+
         SendQueue.Enqueue(Backend.BMember.CheckNicknameDuplication, nickname, (callback) =>
         {
             if (callback.IsSuccess())
             {
                 BackendLog(callback, LogType.GREEN, "CheckNicknameDuplication");
                 success?.Invoke();
+                tcs.SetResult(true);
             }
             else
             {
                 BackendLog(callback, LogType.RED, "CheckNicknamDuplication");
-                fail?.Invoke(callback.GetMessage());
+                fail?.Invoke(callback.GetMessage()); // GetMessage 대신 StatusCode를 반환하고 받은 곳에서 처리하도록 변경 필요
+                tcs.SetResult(false);
             }
         });
+
+        return tcs.Task;
     }
 
     #endregion

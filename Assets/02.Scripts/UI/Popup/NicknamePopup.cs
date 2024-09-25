@@ -22,11 +22,14 @@ public class NicknamePopup : MonoBehaviour
         {
             string nickname = nicknameField.text;
 
-            BackendManager.Instance.CheckNicknameDuplication(
+                BackendManager.Instance.CheckNicknameDuplication(
                 nickname: nicknameField.text,
-                success: () =>
+                success: async () =>
                 {
-                    BackendManager.Instance.CreateNickname(nickname);
+                    if(await BackendManager.Instance.CreateNickname(nickname))
+                    {
+                        LobbyScenePresenter.Instance.UpdateLobbySceneMainPanel();
+                    }
                     Destroy(this.gameObject);
                 },
                 fail: (message) =>
