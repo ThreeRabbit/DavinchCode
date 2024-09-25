@@ -44,14 +44,5 @@ public class GameManager : TRSingleton<GameManager>
                 TRLog.Red("GPGS Init: Fail");
             });
     }
-
-	private void Update()
-	{
-		if(Input.GetKey(KeyCode.A))
-		{
-            BackEnd.Backend.BMember.DeleteGuestInfo();
-            BackEnd.Backend.BMember.Logout();
-        }
-	}
 }
 
