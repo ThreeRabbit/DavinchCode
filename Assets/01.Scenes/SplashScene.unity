@@ -1627,8 +1627,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1951719707}
-  - component: {fileID: 1951719706}
   - component: {fileID: 1951719708}
+  - component: {fileID: 1951719706}
   m_Layer: 0
   m_Name: TestFuncManager
   m_TagString: Untagged
