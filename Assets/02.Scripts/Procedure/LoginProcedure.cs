@@ -59,7 +59,7 @@ public class LoginProcedure
             return false;
         }
 
-        if(BackEnd.Backend.UserNickName is null)
+        if(BackEnd.Backend.UserNickName.IsNullOrEmpty())
         {
             PopupManager.Instance.InstantiatePopup("NicknamePopup");
         }
