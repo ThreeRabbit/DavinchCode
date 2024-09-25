@@ -110,7 +110,6 @@ public class BackendMatchManager : TRSingleton<BackendMatchManager>
 
     private void Poll()
     {
-        Backend.AsyncPoll();
         if (isConnectMatchServer)
         {
             Backend.Match.Poll();

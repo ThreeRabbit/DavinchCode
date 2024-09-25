@@ -80,7 +80,7 @@ public class BackendManager : TRSingleton<BackendManager>
 
     public void Init(UnityAction success = null, UnityAction<string> fail = null)
     {
-        var bro = Backend.Initialize(true);
+        var bro = Backend.Initialize();
         if (bro.IsSuccess())
         {
             BackendLog(bro, LogType.GREEN, "Init");

@@ -18,4 +18,5 @@ MonoBehaviour:
   buildOptions: 0
   extension: 1
   defineSymbols:
+  - TextMeshPro
   - DEBUG

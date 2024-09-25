@@ -15,14 +15,13 @@ MonoBehaviour:
   clientAppID: e201d350-84de-11ed-9be8-5da060e8fefc4316
   signatureKey: e201fa60-84de-11ed-9be8-5da060e8fefc4316
   functionAuthKey: 
-  packageName: com.DefaultCompany.DavinchCodeM
-  isAllPlatform: 1
+  packageName: com.DefaultCompany.DavinchCode
   sendLogReport: 1
-  rateCountActive: 0
   timeOutSec: 100
-  Version: 5.9.6
+  Version: 5.14.0
   autoRefreshToken: 1
   retryWhenClientRequestFailError: 1
   retryWhenServerError: 1
-  retryWhenBadSignatureError: 1
   initFailWhenDeviceIdUnknown: 1
+  autoLoadLocationProperties: 1
+  waitUntilInitializeFinish: 1
