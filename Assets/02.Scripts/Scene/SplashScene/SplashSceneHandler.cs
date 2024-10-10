@@ -11,7 +11,7 @@ public class SplashSceneHandler : MonoBehaviour
         GameManager.Instance.Init();
 
         // 토큰 로그인 시도
-		if (await LoginProcedure.TokenLogin())
+		if (await LoginProcedure.Do(LoginProcedure.TokenLoginAdapter))
 		{
             // 성공한 경우 LobbyScene으로 이동
             SceneManager.LoadSceneAsync("LobbyScene");

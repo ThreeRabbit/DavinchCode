@@ -288,6 +288,25 @@ public class BackendManager : TRSingleton<BackendManager>
         return tcs.Task;
     }
 
+    public Task<string> GetGPGSAccessToken(string authCode, string redirectUri = null)
+    {
+        var tcs = new TaskCompletionSource<string>();
+
+        SendQueue.Enqueue(Backend.BMember.GetGPGS2AccessToken, authCode, callback => {
+            if (callback.IsSuccess())
+            {
+                var accesToken = callback.GetReturnValuetoJSON()["access_token"].ToString();
+                tcs.SetResult(accesToken);
+            }
+            else
+            {
+                tcs.SetResult(null);
+            }
+        });
+
+        return tcs.Task;
+    }
+
     public Task<bool> CreateNickname(string nickname, UnityAction success = null, UnityAction fail = null)
     {
         var tcs = new TaskCompletionSource<bool>();

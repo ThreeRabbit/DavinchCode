@@ -14,7 +14,7 @@ public class TitleSceneModel
         switch (loginType)
         {
             case LoginType.Google:
-                if(await LoginProcedure.GoogleLogin())
+                if(await LoginProcedure.Do(LoginProcedure.GoogleLoginAdapter))
                 {
                     loginSubject.OnNext(true);
                 }
@@ -30,7 +30,7 @@ public class TitleSceneModel
                 break;
 
             case LoginType.Guest:
-                if(await LoginProcedure.GuestLogin())
+                if(await LoginProcedure.Do(LoginProcedure.GuestLoginAdapter))
                 {
                     loginSubject.OnNext(true);
                 }
